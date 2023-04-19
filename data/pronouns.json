@@ -1,0 +1,26 @@
+{
+    "me": {
+        "written": "من",
+        "spoken": ""
+    },
+    "you": {
+        "written": "تو",
+        "spoken": ""
+    },
+    "he/she": {
+        "written": "او",
+        "spoken": "اون"
+    },
+    "we": {
+        "written": "ما",
+        "spoken": ""
+    },
+    "you (respectful)": {
+        "written": "شما",
+        "spoken": ""
+    },
+    "they/them": {
+        "written": "آنها",
+        "spoken": "اونا"
+    }
+}
