@@ -1,13 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import random
-from pyarabic.araby import normalize_ligature
+# from pyarabic.araby import normalize_ligature
 
 app = Flask(__name__)
-
-
-
-
-
 
 
 @app.route('/test')
@@ -20,6 +15,10 @@ def test():
 
     return render_template("test.html", test_var = test_var)
 
+
+@app.route('/')
+def splash():
+    return render_template("splash.html")
 
 
 # books = [{'title': 'Software Engineering', 'id': '1'}, \
