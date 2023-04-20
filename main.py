@@ -5,6 +5,18 @@ import json
 
 # with open('data/vocabulary.json') as f:
     # vocabulary_list = json.load(f)
+
+verb_list = [    
+    {
+        "english": "to think",
+        "infinitive": "فکر کردن",
+        "present_root": [
+            "فکر", "ک"    # note that the first or zeroth object is from right to left
+        ]
+    }
+]
+
+
 vocabulary_list = [
     {
         "english": "door",
@@ -43,6 +55,36 @@ vocabulary_list = [
     }
 ]
 
+pronouns = {
+    "me": {
+        "written": "من",
+        "spoken": ""
+    },
+    "you": {
+        "written": "تو",
+        "spoken": ""
+    },
+    "he/she": {
+        "written": "او",
+        "spoken": "اون"
+    },
+    "we": {
+        "written": "ما",
+        "spoken": ""
+    },
+    "you (respectful)": {
+        "written": "شما",
+        "spoken": ""
+    },
+    "they/them": {
+        "written": "آنها",
+        "spoken": "اونا"
+    }
+}
+
+# present stem creation
+# present_tense = []
+# for verb in verb_list:
 
 
 
