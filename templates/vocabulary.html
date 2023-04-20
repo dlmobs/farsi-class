@@ -70,6 +70,7 @@
                     {% for item in vocabulary %}
                     <!-- row -->
                     <tr>
+                      <td>{{ item.english }}</td>
                       {% for key, value in item.farsi.items() %}
                         {% if value != "" %}
                           <h5>{{ key }}</h5>
