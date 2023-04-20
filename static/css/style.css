@@ -1,0 +1,14 @@
+#background-setup {
+    background-image: url("/static/images/tower2.jpg");
+    background-size: cover;
+    background-position: center center;
+    height: calc(100vh - 60px);
+}
+
+/* .container:first-of-type {
+  height:100vh
+} */
+
+body {
+  background-color:black
+}

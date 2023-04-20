@@ -1,6 +1,59 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 import random
+import json
 # from pyarabic.araby import normalize_ligature
+
+# with open('data/vocabulary.json') as f:
+    # vocabulary_list = json.load(f)
+vocabulary_list = [
+    {
+        "english": "door",
+        "farsi": {
+            "written": "در",
+            "spoken": ""
+        }
+    },
+        {
+        "english": "door",
+        "farsi": {
+            "written": "در",
+            "spoken": ""
+        }
+    },
+    {
+        "english": "door",
+        "farsi": {
+            "written": "در",
+            "spoken": ""
+        }
+    },
+    {
+        "english": "door",
+        "farsi": {
+            "written": "در",
+            "spoken": ""
+        }
+    },
+    {
+        "english": "door",
+        "farsi": {
+            "written": "در",
+            "spoken": ""
+        }
+    }
+]
+
+
+
+
+
+
+
+
+
+
+
+
 
 app = Flask(__name__)
 
@@ -21,21 +74,10 @@ def splash():
     return render_template("splash.html")
 
 
-# books = [{'title': 'Software Engineering', 'id': '1'}, \
-# 		 {'title': 'Algorithm Design', 'id':'2'}, \
-# 		 {'title': 'Python', 'id':'3'}]
+@app.route('/vocabulary')
+def vocabulary():
+    return render_template("vocabulary.html", vocabulary=vocabulary_list)
 
-
-# @app.route('/book/JSON')
-# def bookJSON():
-# 	r = jsonify(books)
-# 	return r
-
-
-# @app.route('/')
-# @app.route('/book/')
-# def showBook():
-#     return render_template("showBook.html", books=books)
 
 
 # @app.route('/book/new/', methods=['GET', 'POST'])
