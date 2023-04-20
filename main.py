@@ -3,35 +3,56 @@ import random
 import json
 # from pyarabic.araby import normalize_ligature
 
-# with open('data/vocabulary.json') as f:
-    # vocabulary_list = json.load(f)
+mee_stem = "می‌"
 
-pronouns = {
-    "me": {
-        "written": "من",
-        "spoken": ""
-    },
-    "you": {
-        "written": "تو",
-        "spoken": ""
-    },
-    "he/she": {
-        "written": "او",
-        "spoken": "اون"
-    },
-    "we": {
-        "written": "ما",
-        "spoken": ""
-    },
-    "you (respectful)": {
-        "written": "شما",
-        "spoken": ""
-    },
-    "they/them": {
-        "written": "آنها",
-        "spoken": "اونا"
-    }
+pronouns = {"me": { "written": "من", "spoken": "" },
+            "you": { "written": "تو", "spoken": "" },
+            "he/she": { "written": "او", "spoken": "اون" },
+            "we": { "written": "ما", "spoken": "" },
+            "you (respectful)": { "written": "شما", "spoken": "" },
+            "they/them": { "written": "آنها", "spoken": "اونا" }
 }
+
+
+present_tense = {"me": { "written": "م", "spoken": "" },
+                "you": { "written": "ی", "spoken": "" },
+                "he/she": { "written": "د", "spoken": "ه" },
+                "we": { "written": "یم", "spoken": "" },
+                "you (respectful)": { "written": "ید", "spoken": "ین" },
+                "they/them": { "written": "ند", "spoken": "ن" }
+}
+
+# simple past same as present except for he/she
+past_tense = present_tense.copy()
+past_tense = past_tense["he/she"] = { "written": "", "spoken": "" }
+# past progressive simple to make as well
+
+present_perfect_tense = {"me": { "written": "ه‌ام", "spoken": "" },
+                    "you": { "written": "ه‌ای", "spoken": "ی" },
+                    "he/she": { "written": "ه‌اد", "spoken": "ه" },
+                    "we": { "written": "ه‌ایم", "spoken": "یم" },
+                    "you (respectful)": { "written": "ه‌اید", "spoken": "ین" },
+                    "they/them": { "written": "ه‌اند", "spoken": "ن" }
+}
+
+# NEED TO FIX THESE TWO  TENSES
+past_perfect_tense = {"me": { "written": "ه‌ام", "spoken": "" },
+                    "you": { "written": "ه‌ای", "spoken": "ی" },
+                    "he/she": { "written": "ه‌اد", "spoken": "ه" },
+                    "we": { "written": "ه‌ایم", "spoken": "یم" },
+                    "you (respectful)": { "written": "ه‌اید", "spoken": "ین" },
+                    "they/them": { "written": "ه‌اند", "spoken": "ن" }
+}
+
+future_tense = {"me": { "written": "ه‌ام", "spoken": "" },
+                    "you": { "written": "ه‌ای", "spoken": "ی" },
+                    "he/she": { "written": "ه‌اد", "spoken": "ه" },
+                    "we": { "written": "ه‌ایم", "spoken": "یم" },
+                    "you (respectful)": { "written": "ه‌اید", "spoken": "ین" },
+                    "they/them": { "written": "ه‌اند", "spoken": "ن" }
+}
+
+tenses = [present_tense, past_tense, past_tense, present_perfect_tense, past_perfect_tense, future_tense]
 
 verbs_list = [    
     {
@@ -61,46 +82,15 @@ verbs_list = [
 vocabulary_list = [
     {
         "english": "door",
-        "farsi": {
-            "written": "در",
-            "spoken": ""
-        }
+        "farsi": { "written": "در", "spoken": "" }
     },
         {
         "english": "door",
-        "farsi": {
-            "written": "در",
-            "spoken": ""
-        }
-    },
-    {
-        "english": "door",
-        "farsi": {
-            "written": "در",
-            "spoken": ""
-        }
-    },
-    {
-        "english": "door",
-        "farsi": {
-            "written": "در",
-            "spoken": ""
-        }
-    },
-    {
-        "english": "door",
-        "farsi": {
-            "written": "در",
-            "spoken": ""
-        }
+        "farsi": { "written": "در", "spoken": "" }
     }
 ]
 
 
-
-# present stem creation
-# present_tense = []
-# for verb in verb_list:
 
 # for item in verbs_list:
 #     print(item)
