@@ -44,77 +44,58 @@
         </div>
     </nav>
 
+    <!-- below nav bar -->
     <div id="background-black">
       <div id="background-setup">
         <br/>
-        <div class="container">
-          <div class="card mt-5" style="opacity: 0.92;">
-            <h4 class="card-body">Sort</h4>
-          </div>
-          <div class="card mt-5" style="opacity: 0.92;">
-            <div class="card-body">
-              <div class="card-title">
 
-                <!-- table -->
-                <table class="table">
-                  <!-- title -->
-                  <thead>
-                    <tr>
-                      <th scope="col">English</th>
-                      <th scope="col">Farsi</th>
-                    </tr>
-                  </thead>
+        <!-- container set up of page -->
+        <div class="container-fluid">
+          <!-- col need a row container -->
+          <div class="row">
 
-                  <!-- body of table -->
-                  <tbody>
-                    {% for item in vocabulary %}
-                    <!-- row -->
-                    <tr>
-                      <th scope="row">{{ item.english }}</th>
-                      <th scope="row">{{ item.infinitive }}</th>
-                    </tr>
-                  {% endfor %}
-                  </tbody>
-                </table>
-
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th colspan="2" scope="colgroup">Contact</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>John Doe</td>
-                      <td>Email:</td>
-                      <td>john.doe@example.com</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"></th>
-                      <td></td>
-                      <td>Phone:</td>
-                      <td>555-1234</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jane Smith</td>
-                      <td>Email:</td>
-                      <td>jane.smith@example.com</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"></th>
-                      <td></td>
-                      <td>Phone:</td>
-                      <td>555-5678</td>
-                    </tr>
-                  </tbody>
-                </table>
-                
+            <!-- verbs table setup -->
+            <div class="col-9">
+              <div class="card mt-5" style="opacity: 0.92;">
+                <div class="card-body">
+                  <div class="card-title">
+    
+                    <!-- table -->
+                    <table class="table">
+                      <!-- title -->
+                      <thead>
+                        <tr>
+                          <th scope="col">English</th>
+                          <th scope="col">Farsi</th>
+                        </tr>
+                      </thead>
+    
+                      <!-- body of table -->
+                      <tbody>
+                          {% for item in verbs %}
+                            <!-- row -->
+                            <tr>
+                                <th scope="row">{{ item.english }}</th>
+                                <th scope="row">{{ item.infinitive }}</th>
+                            </tr>
+                          {% endfor %}
+                      </tbody>
+    
+    
+                    </table>
+                    
+                  </div>
+                </div>
               </div>
             </div>
+
+            <!-- sorting/filtering/searching setup -->
+            <div class="col-3">
+                <div class="card mt-5" style="opacity: 0.92;">
+                    <h4 class="card-body">Sort</h4>
+                </div>
+            </div>
+            
           </div>
           
         </div>

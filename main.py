@@ -6,15 +6,56 @@ import json
 # with open('data/vocabulary.json') as f:
     # vocabulary_list = json.load(f)
 
-verb_list = [    
+pronouns = {
+    "me": {
+        "written": "من",
+        "spoken": ""
+    },
+    "you": {
+        "written": "تو",
+        "spoken": ""
+    },
+    "he/she": {
+        "written": "او",
+        "spoken": "اون"
+    },
+    "we": {
+        "written": "ما",
+        "spoken": ""
+    },
+    "you (respectful)": {
+        "written": "شما",
+        "spoken": ""
+    },
+    "they/them": {
+        "written": "آنها",
+        "spoken": "اونا"
+    }
+}
+
+verbs_list = [    
     {
         "english": "to think",
         "infinitive": "فکر کردن",
-        "present_root": [
-            "فکر", "ک"    # note that the first or zeroth object is from right to left
-        ]
-    }
+        "present_root": {"written": ["فکر", "ک"], "spoken": [] }   # note that the first or zeroth object is from right to left
+    },
+        {
+        "english": "to go",
+        "infinitive": "رفتن",
+        "present_root": {"written": ["رو"], "spoken": ["ر"] }
+    },
+        {
+        "english": "to go by foot/walk",
+        "infinitive": "پیاده رفتن",
+        "present_root": {"written": ["پیاده", "رو"], "spoken":  ["پیاده", "ر"] }
+    },
+        {
+        "english": "to go by foot (for people) \n to move (for automobiles)",
+        "infinitive": "ره رفتن",
+        "present_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }
+    },
 ]
+
 
 
 vocabulary_list = [
@@ -55,45 +96,16 @@ vocabulary_list = [
     }
 ]
 
-pronouns = {
-    "me": {
-        "written": "من",
-        "spoken": ""
-    },
-    "you": {
-        "written": "تو",
-        "spoken": ""
-    },
-    "he/she": {
-        "written": "او",
-        "spoken": "اون"
-    },
-    "we": {
-        "written": "ما",
-        "spoken": ""
-    },
-    "you (respectful)": {
-        "written": "شما",
-        "spoken": ""
-    },
-    "they/them": {
-        "written": "آنها",
-        "spoken": "اونا"
-    }
-}
+
 
 # present stem creation
 # present_tense = []
 # for verb in verb_list:
 
-
-
-
-
-
-
-
-
+# for item in verbs_list:
+#     print(item)
+#     print(item["english"])
+#     print(item.infinitive)
 
 
 
@@ -115,12 +127,15 @@ def test():
 def splash():
     return render_template("splash.html")
 
-
+print(verbs_list)
 @app.route('/vocabulary')
 def vocabulary():
     return render_template("vocabulary.html", vocabulary=vocabulary_list)
 
 
+@app.route('/verbs')
+def verbs():
+    return render_template("verbs.html", verbs=verbs_list)
 
 # @app.route('/book/new/', methods=['GET', 'POST'])
 # def newBook():
