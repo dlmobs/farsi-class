@@ -63,7 +63,7 @@ verbs_list = [
         "counter": 1,
         "english": "to think",
         "infinitive": "فکر کردن",
-        "present_root": {"written": ["فکر", "ک"], "spoken": [] },   # note that the first or zeroth object is from right to left
+        "present_root": {"written": ["فکر", "کن"], "spoken": [] },   # note that the first or zeroth object is from right to left
         "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }   
     },
     {
@@ -146,24 +146,25 @@ def single_verb(index):
     word_dict = ast.literal_eval(word_dict_str)
     word_conjugations = {}
 
-    print(word_dict["present_root"])
-
     # present tense set up
     present_tense_conjugations = {}
     for pronoun, pronoun_conj in present_tense.items():
-        new_pronoun_row = ""
-        print(pronoun)
+        # written and spoken conjugation
+        completed_conj = {}
         # key_w_s is "written" or "spoken"
+        # conjugation is the written and spoken endings, so it can be empty
         for key_w_s, conjugation in pronoun_conj.items():
-            print("key_w_s", key_w_s)
-            present_stem = word_dict["present_root"][key_w_s]
-            print("present_stem", present_stem)
-            print("test print", word_dict["present_root"])
-            ending = conjugation
+            completed_conj[key_w_s] = ""
 
-            # if the present stem has a form (some don't have specific spoken form)
-            if present_stem != "":
-                
+            # originally running under the assumption that if there is no spoken form of stem, there is no spoken form conjugation for any. false
+            # corner case: verb doesn't have spoken form but spoken for present for conjugation
+            # solution: only create stem if not empty (first item always written so never empty). keeps second empty item from replacing first
+            if word_dict["present_root"][key_w_s] != []:
+                present_stem = word_dict["present_root"][key_w_s]   # stem string (written or spoken stem)
+
+            # if the conjugation has a spoken form
+            fully_conj_verb = ""
+            if conjugation != "":
                 # performed this way to avoid adding a space at the end of full_conj_verb and run into issues with strip function and farsi characters
                 for i, word in enumerate(present_stem):
                     # add first word if a 2+ word verb
@@ -171,33 +172,26 @@ def single_verb(index):
                         fully_conj_verb = word + " "
                     # add second word
                     else:
-                        fully_conj_verb = mee_stem + word + ending
+                        fully_conj_verb = fully_conj_verb + mee_stem + word + conjugation
+                        # print("second word added", fully_conj_verb)
                 
-                # written form
-                if key_w_s == "written":
-                    new_pronoun_row += fully_conj_verb
-                # spoken form and not empty, add parenthesis
-                elif key_w_s == "spoken" and present_stem != []:
-                    new_pronoun_row = new_pronoun_row + " (" + fully_conj_verb + ")"
-                
-            print("updated string:", new_pronoun_row)
-
-            print()
-            print()
+                if key_w_s == "spoken":
+                    fully_conj_verb = "(" + fully_conj_verb + ")"
+                completed_conj[key_w_s] = fully_conj_verb
 
 
-        # new_pronoun_row is {'written': 'conjugated_verb', 'spoken': 'conjugated_verb'}
+
         # add it to the present tense conjugations
-        present_tense_conjugations[pronoun] = new_pronoun_row
+        present_tense_conjugations[pronoun] = completed_conj
 
     # update word_conjugations with present tense ones
     word_conjugations["present_t"] = present_tense_conjugations
+    print(completed_conj)
 
     word_dict["present_tense"] = present_tense_conjugations
-    # print(present_tense_conjugations)
 
 
-    return render_template('single_verb.html', word_dict=word_dict, pronouns_dict=pronouns)
+    return render_template('single_verb.html', word_dict=word_dict, pronouns_dict=html_pronouns)
 
 
 @app.route('/set_word_dict/<word_dict>')

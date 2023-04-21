@@ -62,7 +62,7 @@
           <!-- verb english and farsi -->
           <div class="row mt-5">
             <div class="col-md-3 mx-auto">
-              <div class="card">
+              <div class="card"  style="opacity: 0.92;">
                   <div class="card-body">
                       <div class="card-title text-center">
                           <h1>{{ word_dict["english"]|capitalize_each_word  }}</h1>
@@ -74,49 +74,513 @@
             </div>
           </div>
 
-          <div class="row">
-
+          <div class="row mt-5 justify-content-center">
             <!-- conjugation table setup -->
-            <div class="col-9">
+            <div class="col-6">
               <br><br>
 
               <!-- card -->
               <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
-              <div class="card mt-5 w-75 mx-auto" style="opacity: 0.92;">
+              <div class="card mx-3">
                 <div class="card-body">
                   <div class="card-title">
-    
+                    <h2>Present Tense</h2>
                     <!-- table -->
-                    <div class="container px-3 py-3">
-                    <table id="farsi-table" class="table table-bordered table-hover">
-    
+                    <!-- <div class="container px-3 py-3"> -->
+                      <table id="farsi-table" class="table table-bordered ">
 
-    
-                    </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                        <!-- body of table -->
+                        <tbody>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["we"]["written"] }}</h4>
+                              {% if word_dict["present_tense"]["we"]["spoken"] != "" %}
+                                <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["we"]["spoken"] }}</h4>
+                              {% endif %}
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["we"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">we</h4></td>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["me"]["written"] }}</h4>
+                              {% if word_dict["present_tense"]["you (respectful)"]["spoken"] != "" %}
+                                <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["you (respectful)"]["spoken"] }}</h4>
+                              {% endif %}
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["me"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">me</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["you (respectful)"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["you (respectful)"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you (respectful)"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you (respectful)</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["you"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["they/them"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["they/them"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["they/them"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">they/them</h4></td>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["he/she"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["he/she"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["he/she"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">he/she</h4></td>
+                          </tr>
+                          
+                        </tbody>
 
-            <!-- sorting/filtering/searching setup -->
-            <div class="col-3">
-              <br><br>
-              <div class="card mt-5 mx-5" style="opacity: 0.92;">
-                <div class="card-body">
-                  <div id="search-bar">
-                    <form class="form-inline">
-                        <div id="no-padding" class="col-12">
-                            <input id="full-width-search-bar" class="form-control" type="search" placeholder="Search" aria-label="Search">
-                        </div>
-                    </form>
+
+                      </table>
+                      <!-- </div> -->
                   </div>
                 </div>
               </div>
             </div>
             
+            <!-- conjugation table setup -->
+            <div class="col-6">
+              <br><br>
+
+              <!-- card -->
+              <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
+              <div class="card mx-3">
+                <div class="card-body">
+                  <div class="card-title">
+                    <h2>Present Tense</h2>
+                    <!-- table -->
+                    <!-- <div class="container px-3 py-3"> -->
+                      <table id="farsi-table" class="table table-bordered ">
+                        <!-- body of table -->
+                        <tbody>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["we"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["we"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">we</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["me"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["me"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">me</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["you (respectful)"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["you (respectful)"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you (respectful)"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you (respectful)</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["you"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["they/them"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["they/them"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["they/them"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">they/them</h4></td>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["he/she"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["he/she"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["he/she"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">he/she</h4></td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                      <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>        
           </div>
-          
+
+
+          <!-- row 2 -->
+          <div class="row mt-5 justify-content-center">
+            <!-- conjugation table setup -->
+            <div class="col-6">
+              <br><br>
+
+              <!-- card -->
+              <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
+              <div class="card mx-3">
+                <div class="card-body">
+                  <div class="card-title">
+                    <h2>Present Tense</h2>
+                    <!-- table -->
+                    <!-- <div class="container px-3 py-3"> -->
+                      <table id="farsi-table" class="table table-bordered ">
+                        <!-- body of table -->
+                        <tbody>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["we"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["we"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">we</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["me"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["me"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">me</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["you (respectful)"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["you (respectful)"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you (respectful)"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you (respectful)</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["you"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["they/them"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["they/them"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["they/them"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">they/them</h4></td>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["he/she"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["he/she"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["he/she"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">he/she</h4></td>
+                          </tr>
+                          
+                        </tbody>
+
+
+                      </table>
+                      <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- conjugation table setup -->
+            <div class="col-6">
+              <br><br>
+
+              <!-- card -->
+              <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
+              <div class="card mx-3">
+                <div class="card-body">
+                  <div class="card-title">
+                    <h2>Present Tense</h2>
+                    <!-- table -->
+                    <!-- <div class="container px-3 py-3"> -->
+                      <table id="farsi-table" class="table table-bordered ">
+                        <!-- body of table -->
+                        <tbody>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["we"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["we"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">we</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["me"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["me"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">me</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["you (respectful)"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["you (respectful)"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you (respectful)"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you (respectful)</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["you"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["they/them"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["they/them"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["they/them"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">they/them</h4></td>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["he/she"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["he/she"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["he/she"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">he/she</h4></td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                      <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+          </div>
+
+
+          <div class="row mt-5 justify-content-center">
+            <!-- conjugation table setup -->
+            <div class="col-6">
+              <br><br>
+
+              <!-- card -->
+              <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
+              <div class="card mx-3">
+                <div class="card-body">
+                  <div class="card-title">
+                    <h2>Present Tense</h2>
+                    <!-- table -->
+                    <!-- <div class="container px-3 py-3"> -->
+                      <table id="farsi-table" class="table table-bordered ">
+                        <!-- body of table -->
+                        <tbody>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["we"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["we"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">we</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["me"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["me"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">me</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["you (respectful)"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["you (respectful)"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you (respectful)"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you (respectful)</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["you"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["they/them"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["they/them"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["they/them"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">they/them</h4></td>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["he/she"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["he/she"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["he/she"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">he/she</h4></td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                      <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- conjugation table setup -->
+            <div class="col-6">
+              <br><br>
+
+              <!-- card -->
+              <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
+              <div class="card mx-3" >
+                <div class="card-body">
+                  <div class="card-title">
+                    <h2>Present Tense</h2>
+                    <!-- table -->
+                    <!-- <div class="container px-3 py-3"> -->
+                      <table id="farsi-table" class="table table-bordered ">
+                        <!-- body of table -->
+                        <tbody>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["we"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["we"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">we</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["me"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["me"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">me</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["you (respectful)"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["you (respectful)"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you (respectful)"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you (respectful)</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["you"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["they/them"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["they/them"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["they/them"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">they/them</h4></td>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["he/she"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["he/she"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["he/she"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">he/she</h4></td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                      <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-5 justify-content-center">
+            <!-- conjugation table setup -->
+            <div class="col-6">
+              <br><br>
+
+              <!-- card -->
+              <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
+              <div class="card mx-3">
+                <div class="card-body">
+                  <div class="card-title">
+                    <h2>Present Tense</h2>
+                    <!-- table -->
+                    <!-- <div class="container px-3 py-3"> -->
+                      <table id="farsi-table" class="table table-bordered ">
+                        <!-- body of table -->
+                        <tbody>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["we"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["we"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">we</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["me"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["me"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">me</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["you (respectful)"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["you (respectful)"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you (respectful)"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you (respectful)</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["you"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["they/them"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["they/them"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["they/them"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">they/them</h4></td>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["he/she"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["he/she"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["he/she"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">he/she</h4></td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                      <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- conjugation table setup -->
+            <div class="col-6">
+              <br><br>
+
+              <!-- card -->
+              <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
+              <div class="card mx-3" style="opacity: 0.92;">
+                <div class="card-body">
+                  <div class="card-title">
+                    <h2>Present Tense</h2>
+                    <!-- table -->
+                    <!-- <div class="container px-3 py-3"> -->
+                      <table id="farsi-table" class="table table-bordered ">
+                        <!-- body of table -->
+                        <tbody>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["we"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["we"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">we</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["me"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["me"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">me</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["you (respectful)"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["you (respectful)"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you (respectful)"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you (respectful)</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict["present_tense"]["you"]["written"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["you"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">you</h4></td>
+                          </tr>
+                          <!-- row -->
+                          <tr>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["they/them"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["they/them"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["they/them"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">they/them</h4></td>
+                            <td scope="row" class="text-center">
+                              <h4 id="unbolded-heading">{{ word_dict["present_tense"]["he/she"]["written"] }}</h4>
+                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict["present_tense"]["he/she"]["spoken"] }}</h4>
+                            </td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ pronouns_dict["he/she"] }}</h4></td>
+                            <td scope="row" class="text-center"><h4 id="unbolded-heading">he/she</h4></td>
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                      <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
