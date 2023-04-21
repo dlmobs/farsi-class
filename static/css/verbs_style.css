@@ -18,3 +18,9 @@ tbody tr.clickable-row:hover {
 #no-padding {
     padding: 0;
 }
+
+#page-title {
+    color: white;
+    font-size:75px;
+    font-weight: normal;
+}
