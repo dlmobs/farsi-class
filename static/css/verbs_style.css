@@ -1,0 +1,20 @@
+thead th:nth-child(1) {
+    width: 75%; /* Set the width of the first column to 50% */
+}
+  
+thead th:nth-child(2) {
+    width: 75%; /* Set the width of the second column to 50% */
+}
+
+tbody tr.clickable-row:hover {
+    cursor: pointer;
+}
+
+#full-width-search-bar {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#no-padding {
+    padding: 0;
+}

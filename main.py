@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 import random
 import json
+import ast
 # from pyarabic.araby import normalize_ligature
 
 mee_stem = "می‌"
@@ -10,8 +11,14 @@ pronouns = {"me": { "written": "من", "spoken": "" },
             "he/she": { "written": "او", "spoken": "اون" },
             "we": { "written": "ما", "spoken": "" },
             "you (respectful)": { "written": "شما", "spoken": "" },
-            "they/them": { "written": "آنها", "spoken": "اونا" }
-}
+            "they/them": { "written": "آنها", "spoken": "اونا" }}
+
+html_pronouns = {"me": "من",
+            "you": "تو",
+            "he/she": "او (اون)",
+            "we": "ما",
+            "you (respectful)": "شما",
+            "they/them": "آنها (اونا)"}
 
 
 present_tense = {"me": { "written": "م", "spoken": "" },
@@ -19,12 +26,11 @@ present_tense = {"me": { "written": "م", "spoken": "" },
                 "he/she": { "written": "د", "spoken": "ه" },
                 "we": { "written": "یم", "spoken": "" },
                 "you (respectful)": { "written": "ید", "spoken": "ین" },
-                "they/them": { "written": "ند", "spoken": "ن" }
-}
+                "they/them": { "written": "ند", "spoken": "ن" }}
 
 # simple past same as present except for he/she
 past_tense = present_tense.copy()
-past_tense = past_tense["he/she"] = { "written": "", "spoken": "" }
+past_tense["he/she"] = { "written": "", "spoken": "" }
 # past progressive simple to make as well
 
 present_perfect_tense = {"me": { "written": "ه‌ام", "spoken": "" },
@@ -32,8 +38,7 @@ present_perfect_tense = {"me": { "written": "ه‌ام", "spoken": "" },
                     "he/she": { "written": "ه‌اد", "spoken": "ه" },
                     "we": { "written": "ه‌ایم", "spoken": "یم" },
                     "you (respectful)": { "written": "ه‌اید", "spoken": "ین" },
-                    "they/them": { "written": "ه‌اند", "spoken": "ن" }
-}
+                    "they/them": { "written": "ه‌اند", "spoken": "ن" }}
 
 # NEED TO FIX THESE TWO  TENSES
 past_perfect_tense = {"me": { "written": "ه‌ام", "spoken": "" },
@@ -41,39 +46,46 @@ past_perfect_tense = {"me": { "written": "ه‌ام", "spoken": "" },
                     "he/she": { "written": "ه‌اد", "spoken": "ه" },
                     "we": { "written": "ه‌ایم", "spoken": "یم" },
                     "you (respectful)": { "written": "ه‌اید", "spoken": "ین" },
-                    "they/them": { "written": "ه‌اند", "spoken": "ن" }
-}
+                    "they/them": { "written": "ه‌اند", "spoken": "ن" }}
 
 future_tense = {"me": { "written": "ه‌ام", "spoken": "" },
                     "you": { "written": "ه‌ای", "spoken": "ی" },
                     "he/she": { "written": "ه‌اد", "spoken": "ه" },
                     "we": { "written": "ه‌ایم", "spoken": "یم" },
                     "you (respectful)": { "written": "ه‌اید", "spoken": "ین" },
-                    "they/them": { "written": "ه‌اند", "spoken": "ن" }
-}
+                    "they/them": { "written": "ه‌اند", "spoken": "ن" }}
 
-tenses = [present_tense, past_tense, past_tense, present_perfect_tense, past_perfect_tense, future_tense]
+tenses = {"Present Tense": present_tense, "Simple Past": past_tense, "Past Progressive": past_tense, 
+            "Present Perfect": present_perfect_tense, "Past Perfect": past_perfect_tense, "Future Tense": future_tense}
 
 verbs_list = [    
     {
+        "counter": 1,
         "english": "to think",
         "infinitive": "فکر کردن",
-        "present_root": {"written": ["فکر", "ک"], "spoken": [] }   # note that the first or zeroth object is from right to left
+        "present_root": {"written": ["فکر", "ک"], "spoken": [] },   # note that the first or zeroth object is from right to left
+        "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }   
     },
-        {
+    {
+        "counter": 2,
         "english": "to go",
         "infinitive": "رفتن",
-        "present_root": {"written": ["رو"], "spoken": ["ر"] }
+        "present_root": {"written": ["رو"], "spoken": ["ر"] },
+        "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }
     },
-        {
+    {
+        "counter": 3,
         "english": "to go by foot/walk",
         "infinitive": "پیاده رفتن",
-        "present_root": {"written": ["پیاده", "رو"], "spoken":  ["پیاده", "ر"] }
+        "present_root": {"written": ["پیاده", "رو"], "spoken":  ["پیاده", "ر"] },
+        "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }
     },
-        {
-        "english": "to go by foot (for people) \n to move (for automobiles)",
+    {
+        "counter": 4,
+        "english": "to go by foot (for people), \n\n to move (for automobiles)",
         "infinitive": "ره رفتن",
-        "present_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }
+        "present_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] },
+        "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }
     },
 ]
 
@@ -91,15 +103,15 @@ vocabulary_list = [
 ]
 
 
-
-# for item in verbs_list:
-#     print(item)
-#     print(item["english"])
-#     print(item.infinitive)
-
-
-
 app = Flask(__name__)
+app.secret_key = 'your_secret_key_here'
+
+
+def capitalize_each_word(s):
+    return ' '.join(word.capitalize() for word in s.split())
+
+app.jinja_env.filters['capitalize_each_word'] = capitalize_each_word
+
 
 
 @app.route('/test')
@@ -112,21 +124,89 @@ def test():
 
     return render_template("test.html", test_var = test_var)
 
-
+# splash page
 @app.route('/')
 def splash():
     return render_template("splash.html")
 
-print(verbs_list)
+# vocabulary list page
 @app.route('/vocabulary')
 def vocabulary():
     return render_template("vocabulary.html", vocabulary=vocabulary_list)
 
-
+# verbs list page
 @app.route('/verbs')
 def verbs():
     return render_template("verbs.html", verbs=verbs_list)
 
+# specific verb page with all the conjugations
+@app.route('/verbs/<int:index>')
+def single_verb(index):
+    word_dict_str = session.get('word_dict')
+    word_dict = ast.literal_eval(word_dict_str)
+    word_conjugations = {}
+
+    print(word_dict["present_root"])
+
+    # present tense set up
+    present_tense_conjugations = {}
+    for pronoun, pronoun_conj in present_tense.items():
+        new_pronoun_row = ""
+        print(pronoun)
+        # key_w_s is "written" or "spoken"
+        for key_w_s, conjugation in pronoun_conj.items():
+            print("key_w_s", key_w_s)
+            present_stem = word_dict["present_root"][key_w_s]
+            print("present_stem", present_stem)
+            print("test print", word_dict["present_root"])
+            ending = conjugation
+
+            # if the present stem has a form (some don't have specific spoken form)
+            if present_stem != "":
+                
+                # performed this way to avoid adding a space at the end of full_conj_verb and run into issues with strip function and farsi characters
+                for i, word in enumerate(present_stem):
+                    # add first word if a 2+ word verb
+                    if i == 0 and len(present_stem) > 1:
+                        fully_conj_verb = word + " "
+                    # add second word
+                    else:
+                        fully_conj_verb = mee_stem + word + ending
+                
+                # written form
+                if key_w_s == "written":
+                    new_pronoun_row += fully_conj_verb
+                # spoken form and not empty, add parenthesis
+                elif key_w_s == "spoken" and present_stem != []:
+                    new_pronoun_row = new_pronoun_row + " (" + fully_conj_verb + ")"
+                
+            print("updated string:", new_pronoun_row)
+
+            print()
+            print()
+
+
+        # new_pronoun_row is {'written': 'conjugated_verb', 'spoken': 'conjugated_verb'}
+        # add it to the present tense conjugations
+        present_tense_conjugations[pronoun] = new_pronoun_row
+
+    # update word_conjugations with present tense ones
+    word_conjugations["present_t"] = present_tense_conjugations
+
+    word_dict["present_tense"] = present_tense_conjugations
+    # print(present_tense_conjugations)
+
+
+    return render_template('single_verb.html', word_dict=word_dict, pronouns_dict=pronouns)
+
+
+@app.route('/set_word_dict/<word_dict>')
+def set_word_dict(word_dict):
+    session['word_dict'] = word_dict
+    word_dict_for_counter = ast.literal_eval(word_dict)
+    return redirect(url_for('single_verb', index=word_dict_for_counter["counter"]))
+
+ 
 # @app.route('/book/new/', methods=['GET', 'POST'])
 # def newBook():
 #     if request.method == 'POST':

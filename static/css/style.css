@@ -1,8 +1,16 @@
+/* #name is id */
+/* .name is class */
+/* nothing at front is tag */
+
 #background-setup {
     background-image: url("/static/images/tower2.jpg");
     background-size: cover;
     background-position: center center;
     height: calc(100vh - 60px);
+}
+
+#unbolded-heading {
+  font-weight: normal;
 }
 
 /* .container:first-of-type {
