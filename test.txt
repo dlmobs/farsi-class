@@ -1,0 +1,6 @@
+{"me": { "written": "م", "spoken": "" },
+                "you": { "written": "ی", "spoken": "" },
+                "he/she": { "written": "د", "spoken": "ه" },
+                "we": { "written": "یم", "spoken": "" },
+                "you (respectful)": { "written": "ید", "spoken": "ین" },
+                "they/them": { "written": "ند", "spoken": "ن" }}
