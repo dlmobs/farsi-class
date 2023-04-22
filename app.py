@@ -6,6 +6,7 @@ import ast
 
 mee_stem = "می‌"
 
+# may be deleted: 
 pronouns = {"me": { "written": "من", "spoken": "" },
             "you": { "written": "تو", "spoken": "" },
             "he/she": { "written": "او", "spoken": "اون" },
@@ -35,28 +36,26 @@ past_tense["he/she"] = { "written": "", "spoken": "" }
 
 present_perfect_tense = {"me": { "written": "ه‌ام", "spoken": "" },
                     "you": { "written": "ه‌ای", "spoken": "ی" },
-                    "he/she": { "written": "ه‌اد", "spoken": "ه" },
+                    "he/she": { "written": "ه است", "spoken": "ه" },
                     "we": { "written": "ه‌ایم", "spoken": "یم" },
                     "you (respectful)": { "written": "ه‌اید", "spoken": "ین" },
                     "they/them": { "written": "ه‌اند", "spoken": "ن" }}
 
-# NEED TO FIX THESE TWO  TENSES
-past_perfect_tense = {"me": { "written": "ه‌ام", "spoken": "" },
-                    "you": { "written": "ه‌ای", "spoken": "ی" },
-                    "he/she": { "written": "ه‌اد", "spoken": "ه" },
-                    "we": { "written": "ه‌ایم", "spoken": "یم" },
-                    "you (respectful)": { "written": "ه‌اید", "spoken": "ین" },
-                    "they/them": { "written": "ه‌اند", "spoken": "ن" }}
+past_perfect_tense = {"me": { "written": "ه بودم", "spoken": "" },
+                    "you": { "written": "ه بودی", "spoken": "" },
+                    "he/she": { "written": "ه بود", "spoken": "" },
+                    "we": { "written": "ه بودیم", "spoken": "" },
+                    "you (respectful)": { "written": "ه یودید", "spoken": "ه بودین" },
+                    "they/them": { "written": "ه بودند", "spoken": "ه بودن" }}
 
-future_tense = {"me": { "written": "ه‌ام", "spoken": "" },
-                    "you": { "written": "ه‌ای", "spoken": "ی" },
-                    "he/she": { "written": "ه‌اد", "spoken": "ه" },
-                    "we": { "written": "ه‌ایم", "spoken": "یم" },
-                    "you (respectful)": { "written": "ه‌اید", "spoken": "ین" },
-                    "they/them": { "written": "ه‌اند", "spoken": "ن" }}
+# optimized by removing spoken, since future only used in written
+future_tense = {"me": { "written": "خواهم" },
+                    "you": { "written": "خواهی" },
+                    "he/she": { "written": "خواهد" },
+                    "we": { "written": "خواهیم" },
+                    "you (respectful)": { "written": "خواهید" },
+                    "they/them": { "written": "خواهند" }}
 
-tenses = {"Present Tense": present_tense, "Simple Past": past_tense, "Past Progressive": past_tense, 
-            "Present Perfect": present_perfect_tense, "Past Perfect": past_perfect_tense, "Future Tense": future_tense}
 
 verbs_list = [    
     {
@@ -64,14 +63,14 @@ verbs_list = [
         "english": "to think",
         "infinitive": "فکر کردن",
         "present_root": {"written": ["فکر", "کن"], "spoken": [] },   # note that the first or zeroth object is from right to left
-        "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }   
+        "past_root": {"written": ["فکر", "کرد"], "spoken":  [] }   
     },
     {
         "counter": 2,
         "english": "to go",
         "infinitive": "رفتن",
         "present_root": {"written": ["رو"], "spoken": ["ر"] },
-        "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }
+        "past_root": {"written": ["رفت"], "spoken":  [""] }
     },
     {
         "counter": 3,
@@ -106,11 +105,93 @@ vocabulary_list = [
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 
+# root used for each tense
+roots = {"Present Tense": "present_root", "Simple Past": "past_root", "Past Progressive": "past_root", 
+            "Present Perfect": "past_root", "Past Perfect": "past_root", "Future Tense": "past_root"}
+
+tenses = {"Present Tense": present_tense, "Simple Past": past_tense, "Past Progressive": past_tense, 
+            "Present Perfect": present_perfect_tense, "Past Perfect": past_perfect_tense, "Future Tense": future_tense}
+
+html_tenses = [["Present Tense", "Simple Past"], ["Past Progressive", "Present Perfect"], ["Past Perfect", "Future Tense"]]
+
 
 def capitalize_each_word(s):
+    ''' perform capitalization for a given english phrase in frontend call '''
     return ' '.join(word.capitalize() for word in s.split())
 
 app.jinja_env.filters['capitalize_each_word'] = capitalize_each_word
+
+
+# example word_dict
+    # {
+    #     "counter": 1,
+    #     "english": "to think",
+    #     "infinitive": "فکر کردن",
+    #     "present_root": {"written": ["فکر", "کن"], "spoken": [] },    * note that the first or zeroth object is from right to left *
+    #     "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }   
+    # }
+
+def single_verb_conjugations(word_dict):
+    ''' conjugate a given verb '''
+
+    # loop through each tense
+    for tense_name, tense_conjugations in tenses.items():
+        # a single tense conjugation for all pronouns
+        verb_tense_conjugations = {}
+        root_needed = roots[tense_name]
+
+        # written and spoken form of the root
+        w_s_root = word_dict[root_needed]
+
+        # loop through each pronoun and it's ending
+        for pronoun, pronoun_endings in tense_conjugations.items():
+            # completed written and spoken conjugation
+            completed_conj = {"written": "", "spoken": ""}
+
+            # key_w_s is "written" or "spoken"
+            # conjugation is the written and spoken endings, so it can be empty
+            for key_w_s, conjugation in pronoun_endings.items():
+
+                # originally running under the assumption that if there is no spoken form of stem, there is no spoken form conjugation for any. false
+                # corner case: verb doesn't have spoken form but spoken for present for conjugation
+                # solution: only create stem if not empty (first item always written so never empty). keeps second empty item from replacing first
+                if w_s_root[key_w_s] != []:
+                    root = w_s_root[key_w_s]            # stem string (written or spoken stem)
+
+                    # root is a list of the root. sometimes two worded root
+
+                # if the conjugation doesn't have a spoken form, then conjugation is empty
+                fully_conj_verb = ""
+                if conjugation != "":
+                    # performed this way to avoid adding a space at the end of full_conj_verb and run into issues with strip function and farsi characters
+                    for i, word in enumerate(root):
+                        # add first word if a 2+ word verb
+                        if i == 0 and len(root) > 1:
+                            fully_conj_verb = word + " "
+                        # add second word
+                        else:
+                            if tense_name == "Present Tense" or tense_name == "Past Progressive":
+                                fully_conj_verb = fully_conj_verb + mee_stem + word + conjugation
+                            elif tense_name == "Future Tense":
+                                fully_conj_verb = fully_conj_verb + conjugation + " " + word
+                            # simple past, present perfect, past perfect
+                            else:
+                                fully_conj_verb = fully_conj_verb + word + conjugation
+
+                    # add parenthesis
+                    if key_w_s == "spoken":
+                        fully_conj_verb = "(" + fully_conj_verb + ")"
+                    completed_conj[key_w_s] = fully_conj_verb
+
+
+
+            # add it to the respective conjugations for the tense
+            verb_tense_conjugations[pronoun] = completed_conj
+
+        # update word_dict with present tense ones
+        word_dict[tense_name] = verb_tense_conjugations
+    
+    return word_dict
 
 
 
@@ -144,54 +225,9 @@ def verbs():
 def single_verb(index):
     word_dict_str = session.get('word_dict')
     word_dict = ast.literal_eval(word_dict_str)
-    word_conjugations = {}
+    word_dict_tenses = single_verb_conjugations(word_dict)
 
-    # present tense set up
-    present_tense_conjugations = {}
-    for pronoun, pronoun_conj in present_tense.items():
-        # written and spoken conjugation
-        completed_conj = {}
-        # key_w_s is "written" or "spoken"
-        # conjugation is the written and spoken endings, so it can be empty
-        for key_w_s, conjugation in pronoun_conj.items():
-            completed_conj[key_w_s] = ""
-
-            # originally running under the assumption that if there is no spoken form of stem, there is no spoken form conjugation for any. false
-            # corner case: verb doesn't have spoken form but spoken for present for conjugation
-            # solution: only create stem if not empty (first item always written so never empty). keeps second empty item from replacing first
-            if word_dict["present_root"][key_w_s] != []:
-                present_stem = word_dict["present_root"][key_w_s]   # stem string (written or spoken stem)
-
-            # if the conjugation has a spoken form
-            fully_conj_verb = ""
-            if conjugation != "":
-                # performed this way to avoid adding a space at the end of full_conj_verb and run into issues with strip function and farsi characters
-                for i, word in enumerate(present_stem):
-                    # add first word if a 2+ word verb
-                    if i == 0 and len(present_stem) > 1:
-                        fully_conj_verb = word + " "
-                    # add second word
-                    else:
-                        fully_conj_verb = fully_conj_verb + mee_stem + word + conjugation
-                        # print("second word added", fully_conj_verb)
-                
-                if key_w_s == "spoken":
-                    fully_conj_verb = "(" + fully_conj_verb + ")"
-                completed_conj[key_w_s] = fully_conj_verb
-
-
-
-        # add it to the present tense conjugations
-        present_tense_conjugations[pronoun] = completed_conj
-
-    # update word_conjugations with present tense ones
-    word_conjugations["present_t"] = present_tense_conjugations
-    print(completed_conj)
-
-    word_dict["present_tense"] = present_tense_conjugations
-
-
-    return render_template('single_verb.html', word_dict=word_dict, pronouns_dict=html_pronouns)
+    return render_template('single_verb.html', word_dict=word_dict_tenses, pronouns_dict=html_pronouns, tense_order = html_tenses)
 
 
 @app.route('/set_word_dict/<word_dict>')
@@ -199,64 +235,6 @@ def set_word_dict(word_dict):
     session['word_dict'] = word_dict
     word_dict_for_counter = ast.literal_eval(word_dict)
     return redirect(url_for('single_verb', index=word_dict_for_counter["counter"]))
-
- 
-# @app.route('/book/new/', methods=['GET', 'POST'])
-# def newBook():
-#     if request.method == 'POST':
-#         new_name = request.form['name']
-#         # check if there's a number missing between 1 through max
-#         max_num = list(range(1,len(books)+1))
-#         current_nums = []
-#         for book in books:
-#             current_nums.append(int(book['id']))
-        
-#         # get new id num
-#         diff = [x for x in max_num if x not in current_nums]
-#         if diff != []:
-#             new_id = diff[0]
-#         else:
-#             new_id = len(books) + 1
-        
-#         # add to books
-#         books.append({'title': new_name, 'id': str(new_id)})
-#         return redirect(url_for('showBook'))
-#     else:
-#         return render_template('newBook.html')
-
-
-
-# @app.route('/book/<int:book_id>/edit/', methods=['GET','POST'])
-# def editBook(book_id):
-#     if request.method == 'POST':
-#         new_name = request.form['name']
-#         for book in books:
-#             if int(book['id']) == int(book_id):
-#                 book['title'] = new_name
-#                 break
-#         return redirect(url_for('showBook'))
-#     else:
-#         single_book = {}
-#         for oneBook in books:
-#             if int(oneBook['id']) == int(book_id) :
-#                 single_book = oneBook
-#         return render_template('editBook.html', single_book = single_book)
-
-	
-# @app.route('/book/<int:book_id>/delete/', methods = ['GET', 'POST'])
-# def deleteBook(book_id):
-#     if request.method == 'POST':
-#         for book in books:
-#             if int(book['id']) == int(book_id):
-#                 books.remove(book)
-#                 break
-#         return redirect(url_for('showBook'))
-#     else:
-#         single_book = {}
-#         for oneBook in books:
-#             if int(oneBook['id']) == book_id :
-#                 single_book = oneBook
-#         return render_template('deleteBook.html', single_book = single_book)
 
 
 if __name__ == '__main__':
