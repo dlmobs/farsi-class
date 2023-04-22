@@ -3,6 +3,7 @@ import random
 import json
 import ast
 # from pyarabic.araby import normalize_ligature
+from verbs_vocab_list import verbs_list, vocabulary_list
 
 mee_stem = "می‌"
 
@@ -14,6 +15,7 @@ pronouns = {"me": { "written": "من", "spoken": "" },
             "you (respectful)": { "written": "شما", "spoken": "" },
             "they/them": { "written": "آنها", "spoken": "اونا" }}
 
+# for html files
 html_pronouns = {"me": "من",
             "you": "تو",
             "he/she": "او (اون)",
@@ -21,7 +23,9 @@ html_pronouns = {"me": "من",
             "you (respectful)": "شما",
             "they/them": "آنها (اونا)"}
 
+html_tenses = [["Present Tense", "Simple Past"], ["Past Progressive", "Present Perfect"], ["Past Perfect", "Future Tense"]]
 
+# tense set up
 present_tense = {"me": { "written": "م", "spoken": "" },
                 "you": { "written": "ی", "spoken": "" },
                 "he/she": { "written": "د", "spoken": "ه" },
@@ -32,7 +36,6 @@ present_tense = {"me": { "written": "م", "spoken": "" },
 # simple past same as present except for he/she
 past_tense = present_tense.copy()
 past_tense["he/she"] = { "written": "", "spoken": "" }
-# past progressive simple to make as well
 
 present_perfect_tense = {"me": { "written": "ه‌ام", "spoken": "" },
                     "you": { "written": "ه‌ای", "spoken": "ی" },
@@ -57,51 +60,6 @@ future_tense = {"me": { "written": "خواهم" },
                     "they/them": { "written": "خواهند" }}
 
 
-verbs_list = [    
-    {
-        "counter": 1,
-        "english": "to think",
-        "infinitive": "فکر کردن",
-        "present_root": {"written": ["فکر", "کن"], "spoken": [] },   # note that the first or zeroth object is from right to left
-        "past_root": {"written": ["فکر", "کرد"], "spoken":  [] }   
-    },
-    {
-        "counter": 2,
-        "english": "to go",
-        "infinitive": "رفتن",
-        "present_root": {"written": ["رو"], "spoken": ["ر"] },
-        "past_root": {"written": ["رفت"], "spoken":  [""] }
-    },
-    {
-        "counter": 3,
-        "english": "to go by foot/walk",
-        "infinitive": "پیاده رفتن",
-        "present_root": {"written": ["پیاده", "رو"], "spoken":  ["پیاده", "ر"] },
-        "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }
-    },
-    {
-        "counter": 4,
-        "english": "to go by foot (for people), \n\n to move (for automobiles)",
-        "infinitive": "ره رفتن",
-        "present_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] },
-        "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }
-    },
-]
-
-
-
-vocabulary_list = [
-    {
-        "english": "door",
-        "farsi": { "written": "در", "spoken": "" }
-    },
-        {
-        "english": "door",
-        "farsi": { "written": "در", "spoken": "" }
-    }
-]
-
-
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 
@@ -111,9 +69,6 @@ roots = {"Present Tense": "present_root", "Simple Past": "past_root", "Past Prog
 
 tenses = {"Present Tense": present_tense, "Simple Past": past_tense, "Past Progressive": past_tense, 
             "Present Perfect": present_perfect_tense, "Past Perfect": past_perfect_tense, "Future Tense": future_tense}
-
-html_tenses = [["Present Tense", "Simple Past"], ["Past Progressive", "Present Perfect"], ["Past Perfect", "Future Tense"]]
-
 
 def capitalize_each_word(s):
     ''' perform capitalization for a given english phrase in frontend call '''
@@ -183,8 +138,6 @@ def single_verb_conjugations(word_dict):
                         fully_conj_verb = "(" + fully_conj_verb + ")"
                     completed_conj[key_w_s] = fully_conj_verb
 
-
-
             # add it to the respective conjugations for the tense
             verb_tense_conjugations[pronoun] = completed_conj
 
@@ -194,7 +147,7 @@ def single_verb_conjugations(word_dict):
     return word_dict
 
 
-
+# app routes
 @app.route('/test')
 def test():
     stem = "رو"
@@ -240,5 +193,3 @@ def set_word_dict(word_dict):
 if __name__ == '__main__':
 	app.debug = True
 	app.run(host = '0.0.0.0', port = 5000)
-	
-
