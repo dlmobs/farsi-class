@@ -24,3 +24,11 @@ tbody tr.clickable-row:hover {
     font-size:75px;
     font-weight: normal;
 }
+
+input[type="checkbox"] {
+    transform: scale(1.25);
+}
+
+label {
+    font-size: 1.2em;
+}
