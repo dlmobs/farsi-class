@@ -1,6 +1,8 @@
 /* #name is id */
 /* .name is class */
-/* nothing at front is tag */
+/* nothing in front is tag */
+
+/* global style sheet */
 
 #background-setup {
     background-image: url("/static/images/tower2.jpg");
@@ -13,9 +15,6 @@
   font-weight: normal;
 }
 
-/* .container:first-of-type {
-  height:100vh
-} */
 
 body {
   background-color:black

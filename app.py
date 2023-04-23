@@ -163,6 +163,11 @@ def test():
 def splash():
     return render_template("splash.html")
 
+# about page
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
 # vocabulary list page
 @app.route('/vocabulary-list')
 def vocabulary():
@@ -182,7 +187,7 @@ def single_verb(index):
 
     return render_template('single_verb.html', word_dict=word_dict_tenses, pronouns_dict=html_pronouns, tense_order = html_tenses)
 
-
+# redirct/helper route for specific verb page
 @app.route('/set_word_dict/<word_dict>')
 def set_word_dict(word_dict):
     session['word_dict'] = word_dict
