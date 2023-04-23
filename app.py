@@ -161,15 +161,15 @@ def test():
 # splash page
 @app.route('/')
 def splash():
-    return render_template("splash.html")
+    return render_template("splash2.html")
 
 # vocabulary list page
-@app.route('/vocabulary')
+@app.route('/vocabulary-list')
 def vocabulary():
     return render_template("vocabulary.html", vocabulary=vocabulary_list)
 
 # verbs list page
-@app.route('/verbs')
+@app.route('/verb-list')
 def verbs():
     return render_template("verbs.html", verbs=verbs_list)
 

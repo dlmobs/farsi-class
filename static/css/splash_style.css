@@ -1,0 +1,15 @@
+button {
+    background-color: #C92C00 !important; 
+    color: #FFFFFF !important;
+    opacity: 92%;
+}
+
+button:hover {
+  background-color: #EF4309 !important;
+  transform: scale(1.05);
+}
+
+.dropdown-hover:hover .dropdown-menu {
+    display: block;
+    /* background-color: #ff632f !important; */
+}
