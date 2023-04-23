@@ -4,18 +4,31 @@
 
 /* global style sheet */
 
-#background-setup {
-    background-image: url("/static/images/tower2.jpg");
-    background-size: cover;
-    background-position: center center;
-    height: calc(100vh - 60px);
-}
-
 #unbolded-heading {
   font-weight: normal;
 }
 
-
-body {
-  background-color:black
+/* background image set up requirements */
+body, html {
+  margin: 0;
+  height: 100%;
 }
+
+/* button design */
+button {
+  background-color: #C92C00 !important; 
+  color: #FFFFFF !important;
+  opacity: 92%;
+}
+
+button:hover {
+background-color: #ff5f14 !important;
+transform: scale(1.05);
+}
+
+.dropdown-hover:hover .dropdown-menu {
+  display: block;
+  /* background-color: #ff632f !important; */
+}
+
+

@@ -1,3 +1,31 @@
+/* background */
+body, html {
+    margin: 0;
+    height: 100%;
+}
+
+#content {
+    min-height: 100%;
+    position: relative;
+}
+
+#background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Move the background below the content */
+    background-image: url("/static/images/blackbg2.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.inner-content {
+    padding: 20px;
+}
+
 /* table */
 thead th:nth-child(1) {
     width: 75%; /* Set the width of the first column to 50% */
