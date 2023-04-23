@@ -26,6 +26,14 @@ body, html {
     padding: 20px;
 }
 
+/* page title */
+#page-title {
+    color: white;
+    font-size:75px;
+    font-weight: normal;
+    text-align: center;
+}
+
 /* table */
 thead th:nth-child(1) {
     width: 75%; /* Set the width of the first column to 50% */
@@ -43,13 +51,6 @@ tbody tr.clickable-row:hover {
     cursor: pointer;
 }
 
-/* page title */
-#page-title {
-    color: white;
-    font-size:75px;
-    font-weight: normal;
-    text-align: center;
-}
 
 /* searching and filtering styles */
 .search-container {

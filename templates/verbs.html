@@ -15,6 +15,20 @@
         <!-- top -->
         <div class="row align-items-center">
           <div class="col-md-4">
+            <div class="btn-group" role="group">
+              <a href="/"><button type="button" class="btn mr-3 rounded-pill">Home</button></a>
+              <a href="/about"><button type="button" class="btn mr-3 rounded-pill">About</button></a>
+              <a href="/vocabulary-list"><button type="button" class="btn mr-3 rounded-pill">Vocabulary</button></a>
+              
+              <div class="btn-group dropdown-hover">
+                <button type="button" id="verbs-btn" class="btn dropdown-toggle rounded-pill" data-toggle="dropdown">Verbs</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/verb-list">Verb List</a>
+                  <a class="dropdown-item" href="/tenses">Conjugations</a>
+                  <a class="dropdown-item" href="/exceptions">Exceptions</a>
+                </div>
+              </div>                        
+            </div>
           </div>
 
           <!-- H1 tag in the center -->
@@ -24,20 +38,11 @@
 
           <!-- button group on the right -->
           <div class="col-md-4 d-flex justify-content-end">
-            <div class="btn-group" role="group">
-              <a href="/"><button type="button" class="btn mr-3 rounded-pill">Home</button></a>
-              <a href="/about"><button type="button" class="btn mr-3 rounded-pill">About</button></a>
-              <a href="/vocabulary-list"><button type="button" class="btn mr-3 rounded-pill">Vocabulary</button></a>
-              
-              <div class="btn-group dropdown-hover">
-                <button type="button" id="verbs-btn" class="btn dropdown-toggle rounded-pill" data-toggle="dropdown">Verbs</button>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="/verb-list">Verb List</a>
-                  <a class="dropdown-item" href="/tenses">Conjugations</a>
-                  <a class="dropdown-item" href="/exceptions">Exceptions</a>
-                </div>
-              </div>                        
-            </div>
+            <form class="form-inline">
+              <div id="no-padding" class="col-12">
+                <input id="full-width-search-bar" class="form-control" type="search" placeholder="Search" aria-label="Search">
+              </div>
+            </form>
           </div>
         </div>
       </div>
