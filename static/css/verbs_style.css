@@ -1,3 +1,4 @@
+/* table */
 thead th:nth-child(1) {
     width: 75%; /* Set the width of the first column to 50% */
 }
@@ -5,24 +6,36 @@ thead th:nth-child(1) {
 thead th:nth-child(2) {
     width: 75%; /* Set the width of the second column to 50% */
 }
+#farsi-table tbody tr {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
 
 tbody tr.clickable-row:hover {
     cursor: pointer;
 }
 
-#full-width-search-bar {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-#no-padding {
-    padding: 0;
-}
-
+/* page title */
 #page-title {
     color: white;
     font-size:75px;
     font-weight: normal;
+    text-align: center;
+}
+
+/* searching and filtering styles */
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.search-container button {
+    align-self: flex-start;
+}
+  
+.search-container input[type="text"] {
+    text-align: center;
 }
 
 input[type="checkbox"] {
@@ -31,4 +44,14 @@ input[type="checkbox"] {
 
 label {
     font-size: 1.2em;
+}
+
+/* unknown */
+#full-width-search-bar {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#no-padding {
+    padding: 0;
 }

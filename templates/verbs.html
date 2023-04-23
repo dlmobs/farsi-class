@@ -22,117 +22,91 @@
 
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-left: 5px;">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">Farsi Basics</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/verbs/verb-list">Verbs</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/exceptions">Exception Verbs</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/vocabulary">Vocabulary</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/conjugations">Conjugations</a>
-            </li>
-          </ul>
-        </div>
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
+<body style="background-color:rgb(46, 46, 46)">
+  <br>
+  <h1 id="page-title">Verb List</h1>
 
-    <!-- below nav bar -->
-    <div id="background-black">
-      <div id="background-setup">
-        <br/>
+  <!-- buttons and search bar -->
+  <div class="search-container">
+    <button>Button</button>
+    <input type="text" placeholder="Search...">
+  </div>
 
-        <!-- container set up of page -->
-        <div class="container-fluid text-center">
-          <br>
-          <h1 id="page-title">Verb List</h1>
 
-          <!-- col need a row container -->
-          <div class="row mt-3">
+  <div>
+    <!-- container set up of page -->
+    <div class="container-fluid text-center">
 
-            <!-- verbs table setup -->
-            <div class="col-9">
-              <br><br>
+      <!-- col need a row container -->
+      <div class="row mt-3">
 
-              <!-- card -->
-              <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
-              <div class="card w-75 mx-auto" style="opacity: 0.92;">
-                <div class="card-body">
-                  <div class="card-title">
-    
-                    <!-- table -->
-                    <div class="container px-3 py-3">
-                    <table id="farsi-table" class="table table-bordered table-hover">
-                      <!-- title -->
-                      <thead>
-                        <tr>
-                          <th scope="col"><h2>English</h2></th>
-                          <th scope="col"><h2>Farsi</h2></th>
-                        </tr>
-                      </thead>
-    
-                      <!-- body of table -->
-                      <tbody>
-                        {% for item in verbs %}
-                          <!-- row -->
-                          <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}">
-                              <td scope="row"><h4 id="unbolded-heading">{{ item.english }}</h4></td>
-                              <td scope="row"><h4 id="unbolded-heading">{{ item.infinitive }}</h4></td>
-                          </tr>
-                        {% endfor %}
-                      </tbody>
-    
-    
-                    </table>
-                  </div>
-                  </div>
-                </div>
+        <!-- verbs table setup -->
+        <div class="col-9">
+          <br><br>
+
+          <!-- card -->
+          <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
+          <div class="card w-75 mx-auto" style="opacity: 0.92;">
+            <div class="card-body">
+              <div class="card-title">
+
+                <!-- table -->
+                <div class="container px-3 py-3">
+                <table id="farsi-table" class="table table-bordered table-hover">
+                  <!-- title -->
+                  <thead>
+                    <tr>
+                      <th scope="col"><h2>English</h2></th>
+                      <th scope="col"><h2>Farsi</h2></th>
+                    </tr>
+                  </thead>
+
+                  <!-- body of table -->
+                  <tbody>
+                    {% for item in verbs %}
+                      <!-- row -->
+                      <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}">
+                          <td scope="row"><h4 id="unbolded-heading">{{ item.english }}</h4></td>
+                          <td scope="row"><h4 id="unbolded-heading">{{ item.infinitive }}</h4></td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+
+
+                </table>
+              </div>
               </div>
             </div>
-
-            <!-- sorting/filtering/searching setup -->
-            <div class="col-3">
-              <br><br>
-              <div class="card mx-5" style="opacity: 0.92;">
-                <div class="card-body">
-                  <div id="search-bar">
-                    <form class="form-inline">
-                        <div id="no-padding" class="col-12">
-                            <input id="full-width-search-bar" class="form-control" type="search" placeholder="Search" aria-label="Search">
-                        </div>
-                    </form>
-                  </div>
-
-                  <div class="mt-4" style="text-align: left;">
-                    <label>
-                      <input type="checkbox" name="spoken_only" value="yes">
-                      <span style="padding-left: 5px">Spoken Only</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
           </div>
-          
         </div>
+
+        <!-- sorting/filtering/searching setup -->
+        <div class="col-3">
+          <br><br>
+          <div class="card mx-5" style="opacity: 0.92;">
+            <div class="card-body">
+              <div id="search-bar">
+                <form class="form-inline">
+                    <div id="no-padding" class="col-12">
+                        <input id="full-width-search-bar" class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    </div>
+                </form>
+              </div>
+
+              <div class="mt-4" style="text-align: left;">
+                <label>
+                  <input type="checkbox" name="spoken_only" value="yes">
+                  <span style="padding-left: 5px">Spoken Only</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
+      
     </div>
+  </div>
     
 
   <script>
@@ -143,29 +117,12 @@
         });
     });
 
-    document.getElementById('full-width-search-bar').addEventListener('input', function() {
-        const searchValue = this.value.toLowerCase();
-        const table = document.getElementById('farsi-table');
-        const rows = table.getElementsByTagName('tr');
-
-        for (let i = 1; i < rows.length; i++) {
-            const cells = rows[i].getElementsByTagName('td');
-            let showRow = false;
-
-            for (let j = 0; j < cells.length; j++) {
-                const cell = cells[j];
-                const cellText = cell.textContent || cell.innerText;
-
-                if (cellText.toLowerCase().indexOf(searchValue) > -1) {
-                    showRow = true;
-                    break;
-                }
-            }
-
-            rows[i].style.display = showRow ? '' : 'none';
-        }
+    $(document).ready(function () {
+      $('#verbs-btn').click(function (event) {
+        event.stopPropagation();
+        window.location.href = "/verb-list";
+      });
     });
-
   </script>
 </body>
 
