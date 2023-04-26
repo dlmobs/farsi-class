@@ -22,3 +22,9 @@ body, html {
     font-weight: normal;
     text-align: center;
 }
+
+/* card styling */
+.card {
+    opacity: 0.92;
+    /* background-color: #04AAE1 !important; */
+  }

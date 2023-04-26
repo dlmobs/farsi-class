@@ -13,15 +13,17 @@
 }
 
 /* table */
-#farsi-table tbody tr {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
+#farsi-table {
+    background-color: white;
+}
 
 tbody tr.clickable-row:hover {
     cursor: pointer;
 }
 
+.table-hover tbody tr:hover {
+    background-color: #fbdfd5 !important; /* Replace with your desired color */
+  }
 
 /* filtering checkboxes */
 input[type="checkbox"] {
@@ -31,6 +33,24 @@ input[type="checkbox"] {
 label {
     font-size: 1.2em;
 }
+
+/* radio buttons */
+.btn-group-toggle .btn:not(.active) {
+    background-color: #C92C00;
+    color: white;
+}
+  
+.btn-group-toggle .btn.active {
+    background-color: #ff5f14;
+    color: white;
+}
+
+/* card styling */
+.custom-card-bg {
+    background-color: #84D5E6 !important;
+}
+
+
 
 /* global search bar */
 /* #full-width-search-bar {

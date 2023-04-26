@@ -50,102 +50,94 @@
           </div>
         </div>
         
-        <!-- cards -->
-        <div class="row mt-4">
-          <!-- verb table set up -->
-          <div class="col-9 d-flex justify-content-center">
-            <!-- card -->
-            <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
-            <div class="card bg-light" style="opacity: 0.92;">
-              <div class="card-body">
-                <div class="card-title">
+        <!-- verb table set up -->
+        <!-- card -->
+        <div class="card mt-5 custom-card-bg">
+          <div class="card-body">
 
-                  <!-- table -->
-                  <!-- <div class="container px-3 py-3"> -->
-                    <table id="farsi-table" class="table table-bordered table-hover">
-                      <!-- title -->
-                      <thead>
-                        <tr>
-                          <th scope="col"><h3>English</h3></th>
-                          <th scope="col"><h3>Infinitive</h3></th>
-                          <th scope="col"><h3>Present Stem</h3></th>
-                          <th scope="col"><h3>Past Stem</h3></th>
-                        </tr>
-                      </thead>
+            <!-- items in table, radio buttons, search bar -->
+            <div class="row mb-4">
 
-                      <!-- body of table -->
-                      <tbody>
-                        {% for item in verbs %}
-                          <!-- row -->
-                          <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}">
-                              <td scope="row"><h5 id="unbolded-heading">{{ item.english }}</h5></td>
-                              <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
-                              <td scope="row"><h5 id="unbolded-heading">{{ item.present_root }}</h5></td>
-                              <td scope="row"><h5 id="unbolded-heading">{{ item.past_root }}</h5></td>
-                          </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  <!-- </div> -->
-                </div>
+              <!-- # items in table -->
+              <div class="col-4 d-flex justify-content-start">
+                <label for="rows-per-page">Rows per page:</label>
+                <select id="rows-per-page">
+                  <option value="15">15</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                </select>
               </div>
-            </div>
-          </div>
 
-          <!-- search bar` and filtering -->
-          <div class="col-3 d-flex justify-content-center">
-            <div class="card" style="opacity: 0.92;">
-              <div class="card-body">
-                <div id="search-bar">
-                  <form class="form-inline">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                  </form>
-                </div>
-
-                <div class="mt-4" style="text-align: left;">
-                  <label>
-                    <!-- type also corresponds to css style -->
-                    <input type="checkbox" name="spoken_only" value="yes">
-                    <span style="padding-left: 5px">Spoken Only</span>
+              <!-- radio buttons -->
+              <div class="col-4 d-flex justify-content-center">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn active">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked>All
                   </label>
-                  <br/><br/>
-                  <label>
-                    <!-- type also corresponds to css style -->
-                    <input type="checkbox" name="transitive_only" value="yes">
-                    <span style="padding-left: 5px">Transitive Only</span>
+                  <label class="btn">
+                    <input type="radio" name="options" id="option2" autocomplete="off">Transitive
                   </label>
-                  <br/>
-                  <label>
-                    <!-- type also corresponds to css style -->
-                    <input type="checkbox" name="intransitive_only" value="yes">
-                    <span style="padding-left: 5px">Intransitive Only</span>
+                  <label class="btn">
+                    <input type="radio" name="options" id="option3" autocomplete="off">Intransitive
                   </label>
                 </div>
               </div>
+
+              <!-- search bar -->
+              <div class="col-4 d-flex justify-content-end">
+                <form class="form-inline">
+                  <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                </form>
+              </div>
+            </div>
+
+            <!-- table stuff -->
+            <div class="card-title">
+              <table id="farsi-table" class="table table-hover table-striped">
+                <!-- title -->
+                <thead>
+                  <tr>
+                    <th scope="col"><h4>English</h4></th>
+                    <th scope="col"><h4>Infinitive</h4></th>
+                    <th scope="col"><h4>Present Stem</h4></th>
+                    <th scope="col"><h4>Past Stem</h4></th>
+                  </tr>
+                </thead>
+
+                <!-- body of table -->
+                <tbody id="table-body">
+                  {% for item in verbs %}
+                    <!-- row -->
+                    <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}">
+                        <td scope="row"><h5 id="unbolded-heading">{{ item.english }}</h5></td>
+                        <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
+                        <td scope="row"><h5 id="unbolded-heading">{{ item.present_root }}</h5></td>
+                        <td scope="row"><h5 id="unbolded-heading">{{ item.past_root }}</h5></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
             </div>
           </div>
-
         </div>
-
+        <!-- pagination buttons -->
+        <div class="row justify-content-end mr-1 mt-3">
+          <nav>
+            <ul class="pagination">
+              <!-- Pagination items will be inserted here from javascript -->
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   </div>
 
-  <script>
-    $(document).ready(function() {
-        $('.clickable-row').click(function() {
-          const url = $(this).data('url')
-          window.location = url; // replace '#' with the URL you want to use
-        });
-    });
+  <!-- nav bar buttons for verb-list dropdown -->
+  <script src="{{ url_for('static', filename='js/verbs_button.js') }}"></script>
 
-    $(document).ready(function () {
-      $('#verbs-btn').click(function (event) {
-        event.stopPropagation();
-        window.location.href = "/verb-list";
-      });
-    });
-  </script>
+  <!-- specific js page import -->
+  <script src="{{ url_for('static', filename='js/verb_list.js') }}"></script>
+
 
 </body>
 
