@@ -52,15 +52,15 @@
         
         <!-- verb table set up -->
         <!-- card -->
-        <div class="card mt-5 custom-card-bg">
-          <div class="card-body">
-
+        <!-- <div class="card mt-5 custom-card-bg"> -->
+          <!-- <div class="card-body"> -->
+          <div class="container-fluid">
             <!-- items in table, radio buttons, search bar -->
-            <div class="row mb-4">
+            <div class="row mb-4 mt-5">
 
               <!-- # items in table -->
               <div class="col-4 d-flex justify-content-start">
-                <label for="rows-per-page">Rows per page:</label>
+                <label for="rows-per-page" style="color: white">Rows per page:</label>
                 <select id="rows-per-page">
                   <option value="15">15</option>
                   <option value="25">25</option>
@@ -118,8 +118,9 @@
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
+          <!-- </div> -->
+        <!-- </div> -->
+
         <!-- pagination buttons -->
         <div class="row justify-content-end mr-1 mt-3">
           <nav>
@@ -128,6 +129,10 @@
             </ul>
           </nav>
         </div>
+
+        <!-- to remove container, remove this div -->
+      </div> 
+
       </div>
     </div>
   </div>

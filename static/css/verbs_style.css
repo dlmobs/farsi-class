@@ -22,7 +22,8 @@ tbody tr.clickable-row:hover {
 }
 
 .table-hover tbody tr:hover {
-    background-color: #fbdfd5 !important; /* Replace with your desired color */
+    /* old color (light orange): fbdfd5 */
+    background-color: #ddf8ff !important; /* Replace with your desired color */
   }
 
 /* filtering checkboxes */
@@ -47,7 +48,8 @@ label {
 
 /* card styling */
 .custom-card-bg {
-    background-color: #84D5E6 !important;
+    /* blue 84D5E6 */
+    background-color: #222222 !important;
 }
 
 
