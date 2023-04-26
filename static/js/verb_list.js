@@ -1,27 +1,53 @@
-
-// make a row clickable
 $(document).ready(function() {
-    $('.clickable-row').click(function() {
-      const url = $(this).data('url')
-      window.location = url;
-    });
-});
+  // Make a row clickable
+  $('.clickable-row').click(function() {
+    const url = $(this).data('url');
+    window.location = url;
+  });
 
-// pagination
-$(document).ready(function () {
+  // Transitive/intransitive filtering
+  $('input[type=radio][name=options]').on('change', function() {
+    filterTable();
+  });
+
+  // Search bar
+  $('#search-input').on('keyup', function() {
+    filterTable();
+  });
+
+  // Pagination
   var currentPage = 1;
   var rowsPerPage = 15;
   var totalPages;
 
   var rows = $('#table-body tr');
 
-  function renderTable() {
-    rows.hide();
-    var startIndex = (currentPage - 1) * rowsPerPage;
-    var endIndex = startIndex + rowsPerPage;
-    rows.slice(startIndex, endIndex).show();
+  function filterTable() {
+    let verbType = $('input[type=radio][name=options]:checked').val();
+    let searchText = $('#search-input').val().toLowerCase();
 
-    totalPages = Math.ceil(rows.length / rowsPerPage);
+    rows.hide();
+    rows.each(function() {
+      let rowVerbType = $(this).data('verb-type');
+      let englishText = $(this).find('td:first-child h5').text().toLowerCase();
+
+      if ((verbType === 'All' || rowVerbType === verbType) && englishText.indexOf(searchText) !== -1) {
+        $(this).show();
+      }
+    });
+
+    renderTable();
+  }
+
+  function renderTable() {
+    let visibleRows = rows.filter(':visible');
+    let startIndex = (currentPage - 1) * rowsPerPage;
+    let endIndex = startIndex + rowsPerPage;
+
+    visibleRows.hide();
+    visibleRows.slice(startIndex, endIndex).show();
+
+    totalPages = Math.ceil(visibleRows.length / rowsPerPage);
     renderPagination();
   }
 
@@ -38,56 +64,17 @@ $(document).ready(function () {
     }
   }
 
-  $('#rows-per-page').on('change', function () {
+  $('#rows-per-page').on('change', function() {
     rowsPerPage = parseInt($(this).val(), 10);
     currentPage = 1;
     renderTable();
   });
 
-  $('body').on('click', '.page-link', function (e) {
+  $('body').on('click', '.page-link', function(e) {
     e.preventDefault();
     currentPage = parseInt($(this).text(), 10);
     renderTable();
   });
 
-  renderTable();
+  filterTable();
 });
-
-
-// transitive/intransitive filtering
-$(document).ready(function() {
-  $('input[type=radio][name=options]').on('change', function() {
-    let verbType = $(this).val();
-    filterTableRows(verbType);
-  });
-});
-
-function filterTableRows(verbType) {
-  $('#table-body tr').each(function() {
-    let rowVerbType = $(this).data('verb-type');
-    if (verbType === 'All' || rowVerbType === verbType) {
-      $(this).show();
-    } else {
-      $(this).hide();
-    }
-  });
-}
-
-// search bar
-$(document).ready(function() {
-  $('#search-input').on('keyup', function() {
-    let searchText = $(this).val().toLowerCase();
-    filterTableRowsBySearch(searchText);
-  });
-});
-
-function filterTableRowsBySearch(searchText) {
-  $('#table-body tr').each(function() {
-    let englishText = $(this).find('td:first-child h5').text().toLowerCase();
-    if (englishText.indexOf(searchText) !== -1) {
-      $(this).show();
-    } else {
-      $(this).hide();
-    }
-  });
-}
