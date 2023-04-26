@@ -11,10 +11,12 @@
     <div id="background-image"></div>
     <!-- all page content -->
     <div class="inner-content">
+
       <div class="container-fluid">
-        <!-- top -->
+        <!-- top row -->
         <div class="row align-items-center">
-          <div class="col-md-4">
+          <!-- button group on the left -->
+          <div class="col-md-4 mt-4">
             <div class="btn-group" role="group">
               <a href="/"><button type="button" class="btn mr-3 rounded-pill">Home</button></a>
               <a href="/about"><button type="button" class="btn mr-3 rounded-pill">About</button></a>
@@ -30,49 +32,43 @@
               </div>                        
             </div>
           </div>
-
-          <!-- H1 tag in the center -->
-          <div class="col-md-4">
-              <h1 id="page-title">Verb List</h1>
-          </div>
-
-          <!-- button group on the right -->
-          <div class="col-md-4 d-flex justify-content-end">
+          <!-- search bar on the right -->
+          <!-- <div class="col-md-4 d-flex justify-content-end">
             <form class="form-inline">
               <div id="no-padding" class="col-12">
                 <input id="full-width-search-bar" class="form-control" type="search" placeholder="Search" aria-label="Search">
               </div>
             </form>
+          </div> -->
+        </div>
+
+        <div class="row align-items-center mt-3">
+          <!-- H1 tag in the center -->
+          <div class="col">
+            <h1 id="page-title">Verb List</h1>
           </div>
         </div>
-      </div>
+        
+        <!-- cards -->
+        <div class="row mt-4">
+          <!-- verb table set up -->
+          <div class="col-9 d-flex justify-content-center">
+            <!-- card -->
+            <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
+            <div class="card bg-light" style="opacity: 0.92;">
+              <div class="card-body">
+                <div class="card-title">
 
-
-      <div>
-        <!-- container set up of page -->
-        <div class="container-fluid text-center">
-
-          <!-- col need a row container -->
-          <div class="row mt-3">
-
-            <!-- verbs table setup -->
-            <div class="col-9">
-              <br><br>
-
-              <!-- card -->
-              <!-- adds padding mx-auto, then mt-5 top margin, w-75 controls width of the card -->
-              <div class="card w-75 mx-auto" style="opacity: 0.92;">
-                <div class="card-body">
-                  <div class="card-title">
-
-                    <!-- table -->
-                    <div class="container px-3 py-3">
+                  <!-- table -->
+                  <!-- <div class="container px-3 py-3"> -->
                     <table id="farsi-table" class="table table-bordered table-hover">
                       <!-- title -->
                       <thead>
                         <tr>
-                          <th scope="col"><h2>English</h2></th>
-                          <th scope="col"><h2>Farsi</h2></th>
+                          <th scope="col"><h3>English</h3></th>
+                          <th scope="col"><h3>Infinitive</h3></th>
+                          <th scope="col"><h3>Present Stem</h3></th>
+                          <th scope="col"><h3>Past Stem</h3></th>
                         </tr>
                       </thead>
 
@@ -81,45 +77,57 @@
                         {% for item in verbs %}
                           <!-- row -->
                           <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}">
-                              <td scope="row"><h4 id="unbolded-heading">{{ item.english }}</h4></td>
-                              <td scope="row"><h4 id="unbolded-heading">{{ item.infinitive }}</h4></td>
+                              <td scope="row"><h5 id="unbolded-heading">{{ item.english }}</h5></td>
+                              <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
+                              <td scope="row"><h5 id="unbolded-heading">{{ item.present_root }}</h5></td>
+                              <td scope="row"><h5 id="unbolded-heading">{{ item.past_root }}</h5></td>
                           </tr>
                         {% endfor %}
                       </tbody>
-
-
                     </table>
-                  </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- sorting/filtering/searching setup -->
-            <div class="col-3">
-              <br><br>
-              <div class="card mx-5" style="opacity: 0.92;">
-                <div class="card-body">
-                  <div id="search-bar">
-                    <form class="form-inline">
-                        <div id="no-padding" class="col-12">
-                            <input id="full-width-search-bar" class="form-control" type="search" placeholder="Search" aria-label="Search">
-                        </div>
-                    </form>
-                  </div>
-
-                  <div class="mt-4" style="text-align: left;">
-                    <label>
-                      <input type="checkbox" name="spoken_only" value="yes">
-                      <span style="padding-left: 5px">Spoken Only</span>
-                    </label>
-                  </div>
+                  <!-- </div> -->
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- search bar` and filtering -->
+          <div class="col-3 d-flex justify-content-center">
+            <div class="card" style="opacity: 0.92;">
+              <div class="card-body">
+                <div id="search-bar">
+                  <form class="form-inline">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                  </form>
+                </div>
+
+                <div class="mt-4" style="text-align: left;">
+                  <label>
+                    <!-- type also corresponds to css style -->
+                    <input type="checkbox" name="spoken_only" value="yes">
+                    <span style="padding-left: 5px">Spoken Only</span>
+                  </label>
+                  <br/><br/>
+                  <label>
+                    <!-- type also corresponds to css style -->
+                    <input type="checkbox" name="transitive_only" value="yes">
+                    <span style="padding-left: 5px">Transitive Only</span>
+                  </label>
+                  <br/>
+                  <label>
+                    <!-- type also corresponds to css style -->
+                    <input type="checkbox" name="intransitive_only" value="yes">
+                    <span style="padding-left: 5px">Intransitive Only</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
+
       </div>
+    </div>
   </div>
 
   <script>
@@ -141,4 +149,3 @@
 </body>
 
 {% endblock %}
-</html>

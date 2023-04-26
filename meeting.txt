@@ -1,0 +1,10 @@
+verb list page 
+- add columns that have the spoken and written present stem and include past stem
+- farsi to infinitive
+- add filtering for different types of verbs - like verbs of contact, verbs that are to know, etc
+- transitive vs intransitive (di transitive?? - requires two objects)
+- font can be a little smaller
+
+don't forget about pdf download
+
+specific page on prepositions (to, with, etc)

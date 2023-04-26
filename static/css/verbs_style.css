@@ -35,13 +35,6 @@ body, html {
 }
 
 /* table */
-thead th:nth-child(1) {
-    width: 75%; /* Set the width of the first column to 50% */
-}
-  
-thead th:nth-child(2) {
-    width: 75%; /* Set the width of the second column to 50% */
-}
 #farsi-table tbody tr {
     padding-top: 0;
     padding-bottom: 0;
@@ -52,21 +45,7 @@ tbody tr.clickable-row:hover {
 }
 
 
-/* searching and filtering styles */
-.search-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-  
-.search-container button {
-    align-self: flex-start;
-}
-  
-.search-container input[type="text"] {
-    text-align: center;
-}
-
+/* filtering checkboxes */
 input[type="checkbox"] {
     transform: scale(1.25);
 }
@@ -75,12 +54,12 @@ label {
     font-size: 1.2em;
 }
 
-/* unknown */
-#full-width-search-bar {
+/* global search bar */
+/* #full-width-search-bar {
     width: 100%;
     box-sizing: border-box;
 }
 
 #no-padding {
     padding: 0;
-}
+} */
