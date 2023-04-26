@@ -72,13 +72,13 @@
               <div class="col-4 d-flex justify-content-center">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                   <label class="btn active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" checked>All
+                    <input type="radio" name="options" id="option1" autocomplete="off" value="All" checked>All
                   </label>
                   <label class="btn">
-                    <input type="radio" name="options" id="option2" autocomplete="off">Transitive
+                    <input type="radio" name="options" id="option2" autocomplete="off" value="transitive">Transitive
                   </label>
                   <label class="btn">
-                    <input type="radio" name="options" id="option3" autocomplete="off">Intransitive
+                    <input type="radio" name="options" id="option3" autocomplete="off" value="intransitive">Intransitive
                   </label>
                 </div>
               </div>
@@ -86,9 +86,10 @@
               <!-- search bar -->
               <div class="col-4 d-flex justify-content-end">
                 <form class="form-inline">
-                  <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                  <input class="form-control" type="search" placeholder="Search" id="search-input">
                 </form>
               </div>
+
             </div>
 
             <!-- table stuff -->
@@ -108,7 +109,7 @@
                 <tbody id="table-body">
                   {% for item in verbs %}
                     <!-- row -->
-                    <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}">
+                    <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}" data-verb-type="{{ item.verb_type }}">
                         <td scope="row"><h5 id="unbolded-heading">{{ item.english }}</h5></td>
                         <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
                         <td scope="row"><h5 id="unbolded-heading">{{ item.present_root }}</h5></td>

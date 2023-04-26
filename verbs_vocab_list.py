@@ -13,23 +13,23 @@ verbs_list = [
         "infinitive": "رفتن",
         "present_root": {"written": ["رو"], "spoken": ["ر"] },
         "past_root": {"written": ["رفت"], "spoken":  [""] },
-        "verb_type": "both"   
+        "verb_type": "intransitive"   
     },
     {
         "counter": 3,
         "english": "to go by foot/walk",
         "infinitive": "پیاده رفتن",
-        "present_root": {"written": ["پیاده", "رو"], "spoken":  ["پیاده", "ر"] },
-        "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] },
-        "verb_type": "both" 
+        "present_root": {"written": ["پیاده", "رو"], "spoken": ["پیاده", "ر"] },
+        "past_root": {"written": ["پیاده", "رفت"], "spoken":  [] },
+        "verb_type": "intransitive" 
     },
     {
         "counter": 4,
         "english": "to go by foot (for people), \n\n to move (for automobiles)",
         "infinitive": "ره رفتن",
-        "present_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] },
-        "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] },
-        "verb_type": "both" 
+        "present_root": {"written": ["ره", "رو"], "spoken": ["ره", "ر"] },
+        "past_root": {"written": ["ره", "رفت"], "spoken": [] },
+        "verb_type": "intransitive" 
     },
         {
         "counter": 5,
@@ -51,7 +51,7 @@ verbs_list = [
         "counter": 7,
         "english": "to go by foot/walk",
         "infinitive": "پیاده رفتن",
-        "present_root": {"written": ["پیاده", "رو"], "spoken":  ["پیاده", "ر"] },
+        "present_root": {"written": ["پیاده", "رو"], "spoken": ["پیاده", "ر"] },
         "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] },
         "verb_type": "both" 
     },
@@ -59,7 +59,7 @@ verbs_list = [
         "counter": 8,
         "english": "to go by foot (for people), \n\n to move (for automobiles)",
         "infinitive": "ره رفتن",
-        "present_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] },
+        "present_root": {"written": ["ره", "رو"], "spoken": ["ره", "ر"] },
         "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] },
         "verb_type": "both" 
     },
@@ -83,7 +83,7 @@ verbs_list = [
         "counter": 11,
         "english": "to go by foot/walk",
         "infinitive": "پیاده رفتن",
-        "present_root": {"written": ["پیاده", "رو"], "spoken":  ["پیاده", "ر"] },
+        "present_root": {"written": ["پیاده", "رو"], "spoken": ["پیاده", "ر"] },
         "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] },
         "verb_type": "both" 
     },
@@ -91,7 +91,7 @@ verbs_list = [
         "counter": 12,
         "english": "to go by foot (for people), \n\n to move (for automobiles)",
         "infinitive": "ره رفتن",
-        "present_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] },
+        "present_root": {"written": ["ره", "رو"], "spoken": ["ره", "ر"] },
         "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] },
         "verb_type": "both" 
     }

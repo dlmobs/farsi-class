@@ -52,3 +52,42 @@ $(document).ready(function () {
 
   renderTable();
 });
+
+
+// transitive/intransitive filtering
+$(document).ready(function() {
+  $('input[type=radio][name=options]').on('change', function() {
+    let verbType = $(this).val();
+    filterTableRows(verbType);
+  });
+});
+
+function filterTableRows(verbType) {
+  $('#table-body tr').each(function() {
+    let rowVerbType = $(this).data('verb-type');
+    if (verbType === 'All' || rowVerbType === verbType) {
+      $(this).show();
+    } else {
+      $(this).hide();
+    }
+  });
+}
+
+// search bar
+$(document).ready(function() {
+  $('#search-input').on('keyup', function() {
+    let searchText = $(this).val().toLowerCase();
+    filterTableRowsBySearch(searchText);
+  });
+});
+
+function filterTableRowsBySearch(searchText) {
+  $('#table-body tr').each(function() {
+    let englishText = $(this).find('td:first-child h5').text().toLowerCase();
+    if (englishText.indexOf(searchText) !== -1) {
+      $(this).show();
+    } else {
+      $(this).hide();
+    }
+  });
+}
