@@ -1,0 +1,13 @@
+/* background img */
+#background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Move the background below the content */
+    background-image: url("/static/images/blackbg5.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

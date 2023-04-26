@@ -1,0 +1,24 @@
+/* secondary global style page (all pages except splash) */
+
+/* background */
+body, html {
+    margin: 0;
+    height: 100%;
+}
+
+#content {
+    min-height: 100%;
+    position: relative;
+}
+
+.inner-content {
+    padding: 20px;
+}
+
+/* page title */
+#page-title {
+    color: white;
+    font-size:75px;
+    font-weight: normal;
+    text-align: center;
+}

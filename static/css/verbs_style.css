@@ -1,14 +1,4 @@
-/* background */
-body, html {
-    margin: 0;
-    height: 100%;
-}
-
-#content {
-    min-height: 100%;
-    position: relative;
-}
-
+/* background img */
 #background-image {
     position: absolute;
     top: 0;
@@ -20,18 +10,6 @@ body, html {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-}
-
-.inner-content {
-    padding: 20px;
-}
-
-/* page title */
-#page-title {
-    color: white;
-    font-size:75px;
-    font-weight: normal;
-    text-align: center;
 }
 
 /* table */
