@@ -128,7 +128,7 @@
                   {% for item in verbs %}
                     <!-- row -->
                     <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}" data-verb-type="{{ item.verb_type }}">
-                      <td scope="row"><h5 id="unbolded-heading">{{ item.english|capitalize_each_word }}</h5></td>
+                      <td scope="row"><h5 id="unbolded-heading">{{ item.english|capitalize_first_word }}</h5></td>
                       <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
                       <td scope="row">
                         <h5 id="unbolded-heading" style="display: inline;">{{ item["present_root"]["written"]|combine_written }}</h5>

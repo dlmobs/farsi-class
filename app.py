@@ -4,7 +4,7 @@ import json
 import ast
 # from pyarabic.araby import normalize_ligature
 from verbs_vocab_list import verbs_list, vocabulary_list
-from html_helpers import capitalize_each_word, combine_written
+from html_helpers import capitalize_each_word, combine_written, capitalize_first_word
 
 mee_stem = "می‌"
 
@@ -65,6 +65,7 @@ app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 app.jinja_env.filters['capitalize_each_word'] = capitalize_each_word
 app.jinja_env.filters['combine_written'] = combine_written
+app.jinja_env.filters['capitalize_first_word'] = capitalize_first_word
 
 # root used for each tense
 roots = {"Present Tense": "present_root", "Simple Past": "past_root", "Past Progressive": "past_root", 

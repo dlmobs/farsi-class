@@ -3,6 +3,10 @@ def capitalize_each_word(s):
     return ' '.join(word.capitalize() for word in s.split())
 
 
+def capitalize_first_word(s):
+    return s[0].upper() + s[1:]
+
+
 def combine_written(l):
     ''' combine the words in a given list for written '''
     combined = ""
