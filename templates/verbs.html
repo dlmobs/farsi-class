@@ -36,8 +36,8 @@
           <!-- search bar on the right -->
           <!-- <div class="col-md-4 d-flex justify-content-end">
             <form class="form-inline">
-              <div id="no-padding" class="col-12">
-                <input id="full-width-search-bar" class="form-control" type="search" placeholder="Search" aria-label="Search">
+              <div>
+                <input class="form-control" type="search" placeholder="Search">
               </div>
             </form>
           </div> -->
@@ -54,18 +54,15 @@
         <!-- card -->
         <!-- <div class="card mt-5 custom-card-bg"> -->
           <!-- <div class="card-body"> -->
-          <div class="container-fluid">
+          <div class="container-fluid w-75">
             <!-- items in table, radio buttons, search bar -->
             <div class="row mb-4 mt-5">
 
               <!-- # items in table -->
               <div class="col-4 d-flex justify-content-start">
-                <label for="rows-per-page" style="color: white">Rows per page:</label>
-                <select id="rows-per-page">
-                  <option value="15">15</option>
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                </select>
+                <form class="form-inline">
+                  <input class="form-control" type="search" placeholder="Search" id="search-input">
+                </form>
               </div>
 
               <!-- radio buttons -->
@@ -85,9 +82,18 @@
 
               <!-- search bar -->
               <div class="col-4 d-flex justify-content-end">
-                <form class="form-inline">
-                  <input class="form-control" type="search" placeholder="Search" id="search-input">
-                </form>
+                <div class="input-group justify-content-end">
+                  <!-- <div class="input-group-prepend">
+                    <label class="input-group-text" for="rows-per-page"># Rows</label>
+                  </div> -->
+                  <div class="custom-width-select-wrapper">
+                    <select class="custom-select" id="rows-per-page">
+                      <option value="15">15 Rows</option>
+                      <option value="25">25 Rows</option>
+                      <option value="50">50 Rows</option>
+                    </select>
+                  </div>
+                </div>
               </div>
 
             </div>
@@ -98,10 +104,22 @@
                 <!-- title -->
                 <thead>
                   <tr>
-                    <th scope="col"><h4>English</h4></th>
-                    <th scope="col"><h4>Infinitive</h4></th>
-                    <th scope="col"><h4>Present Stem</h4></th>
-                    <th scope="col"><h4>Past Stem</h4></th>
+                    <th scope="col" class="col-4">
+                      <h4>English</h4>
+                      <br/>
+                    </th>
+                    <th scope="col" class="col-2"><h4>Infinitive</h4><br/></th>
+                    <th scope="col" class="col-2">
+                      <h4>Present Stem</h4>
+                      <div class="custom-control custom-checkbox align-self-center">
+                        <input type="checkbox" class="custom-control-input" id="exampleCheck">
+                        <label class="custom-control-label d-flex align-items-center" for="exampleCheck">
+                          <small>Spoken Only</small>
+                        </label>
+                      </div>
+                    </th>
+                    <th scope="col" class="col-2"><h4>Past Stem</h4><br/></th>
+                    <th scope="col" class="col-2"><h4>Type</h4><br/></th>
                   </tr>
                 </thead>
 
@@ -110,10 +128,18 @@
                   {% for item in verbs %}
                     <!-- row -->
                     <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}" data-verb-type="{{ item.verb_type }}">
-                        <td scope="row"><h5 id="unbolded-heading">{{ item.english }}</h5></td>
-                        <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
-                        <td scope="row"><h5 id="unbolded-heading">{{ item.present_root }}</h5></td>
-                        <td scope="row"><h5 id="unbolded-heading">{{ item.past_root }}</h5></td>
+                      <td scope="row"><h5 id="unbolded-heading">{{ item.english|capitalize_each_word }}</h5></td>
+                      <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
+                      <td scope="row">
+                        <h5 id="unbolded-heading" style="display: inline;">{{ item["present_root"]["written"]|combine_written }}</h5>
+                        {% if item["present_root"]["spoken"] != [] %}
+                          <h5 id="unbolded-heading" style="display: inline; color: rgb(3, 187, 3)">({{ item["present_root"]["spoken"][-1] }})</h5>
+                        {% endif %}
+                      </td>
+                      <td scope="row">
+                        <h5 id="unbolded-heading">{{ item["past_root"]["written"]|combine_written }}</h5>
+                      </td>
+                      <td scope="row"><h5 id="unbolded-heading">{{ item.verb_type|capitalize_each_word }}</h5></td>
                     </tr>
                   {% endfor %}
                 </tbody>

@@ -52,14 +52,6 @@ label {
     background-color: #222222 !important;
 }
 
-
-
-/* global search bar */
-/* #full-width-search-bar {
-    width: 100%;
-    box-sizing: border-box;
+.custom-width-select-wrapper {
+    width: 32%
 }
-
-#no-padding {
-    padding: 0;
-} */
