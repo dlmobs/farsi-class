@@ -8,181 +8,80 @@
 
 {% block content %}
 <body>
-  <div id="content">
-    <div id="background-image"></div>
-    <!-- all page content -->
-    <div class="inner-content">
-
-      <div class="container-fluid">
-        <!-- top row -->
-        <div class="row align-items-center">
-          <!-- button group on the left -->
-          <div class="col-md-4 mt-4">
-            <div class="btn-group" role="group">
-              <a href="/"><button type="button" class="btn mr-3 rounded-pill">Home</button></a>
-              <a href="/about"><button type="button" class="btn mr-3 rounded-pill">About</button></a>
-              <a href="/vocabulary-list"><button type="button" class="btn mr-3 rounded-pill">Vocabulary</button></a>
-              
-              <div class="btn-group dropdown-hover">
-                <button type="button" id="verbs-btn" class="btn dropdown-toggle rounded-pill" data-toggle="dropdown">Verbs</button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="/verb-list">Verb List</a>
-                  <a class="dropdown-item" href="/tenses">Conjugations</a>
-                  <a class="dropdown-item" href="/exceptions">Exceptions</a>
-                </div>
-              </div>                        
-            </div>
-          </div>
-          <!-- search bar on the right -->
-          <!-- <div class="col-md-4 d-flex justify-content-end">
-            <form class="form-inline">
-              <div id="no-padding" class="col-12">
-                <input id="full-width-search-bar" class="form-control" type="search" placeholder="Search" aria-label="Search">
-              </div>
-            </form>
-          </div> -->
-        </div>
-
-  <!-- below nav bar -->
-  <div id="background-black">
-    <div id="background-setup">
-      <br/>
-
-      <!-- container set up of page -->
-      <div class="container-fluid">
-        <!-- verb english and farsi -->
-        <div class="row mt-5">
-          <div class="col-md-3 mx-auto">
-            <div class="card"  style="opacity: 0.92;">
-                <div class="card-body">
-                    <div class="card-title text-center">
-                        <h1>{{ word_dict["english"]|capitalize_each_word  }}</h1>
-                        <br>
-                        <h1>{{ word_dict["infinitive"] }}</h1>
-                    </div>
-                </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- each row -->
-        {% for row in tense_order %}
-          <div class="row mt-5 justify-content-center">
+  <div class="container-fluid">
+    <!-- top row -->
+    <div class="row align-items-center">
+      <!-- button group on the left -->
+      <div class="col-md-4 mt-4">
+        <div class="btn-group" role="group">
+          <a href="/"><button type="button" class="btn mr-3 rounded-pill">Home</button></a>
+          <a href="/about"><button type="button" class="btn mr-3 rounded-pill">About</button></a>
+          <a href="/vocabulary-list"><button type="button" class="btn mr-3 rounded-pill">Vocabulary</button></a>
           
-          <!-- each table -->
-          {% for tense_name in row %}
-            <!-- conjugation table setup -->
-            <div class="col-6">
-              <br><br>
-
-              <!-- card -->
-              <!-- adds padding mx-auto, w-75 controls width of the card -->
-              <div class="card mx-3">
-                <div class="card-body">
-                  <div class="card-title">
-                    <h2 style="text-align: center;">{{ tense_name }}</h2>
-                    <!-- table -->
-                    <!-- <div class="container px-3 py-3"> -->
-                      <table id="farsi-table" class="table table-bordered ">
-
-                        <!-- body of table -->
-                        <tbody>
-                          <!-- row -->
-                          <tr>
-                            <td scope="row" class="text-center">
-                              <h4 id="unbolded-heading">{{ word_dict[tense_name]["we"]["written"] }}</h4>
-                              {% if word_dict[tense_name]["we"]["spoken"] != "" %}
-                                <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict[tense_name]["we"]["spoken"] }}</h4>
-                              {% endif %}
-                            </td>
-                            <td scope="row" class="text-center">
-                              <h4 id="unbolded-heading">{{ pronouns_dict["we"] }}</h4>
-                              <h4 id="unbolded-heading">we</h4>
-                            </td>
-                            <td scope="row" class="text-center">
-                              <h4 id="unbolded-heading">{{ word_dict[tense_name]["me"]["written"] }}</h4>
-                              {% if word_dict[tense_name]["you (respectful)"]["spoken"] != "" %}
-                                <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict[tense_name]["you (respectful)"]["spoken"] }}</h4>
-                              {% endif %}
-                            </td>
-                            <td scope="row" class="text-center">
-                              <h4 id="unbolded-heading">{{ pronouns_dict["me"] }}</h4>
-                              <h4 id="unbolded-heading">me</h4>
-                            </td>
-                          </tr>
-                          <!-- row -->
-                          <tr>
-                            <td scope="row" class="text-center">
-                              <h4 id="unbolded-heading">{{ word_dict[tense_name]["you (respectful)"]["written"] }}</h4>
-                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict[tense_name]["you (respectful)"]["spoken"] }}</h4>
-                            </td>
-                            <td scope="row" class="text-center">
-                              <h4 id="unbolded-heading">{{ pronouns_dict["you (respectful)"] }}</h4>
-                              <h4 id="unbolded-heading">you (respectful)</h4>
-                            </td>
-                            <td scope="row" class="text-center"><h4 id="unbolded-heading">{{ word_dict[tense_name]["you"]["written"] }}</h4></td>
-                            <td scope="row" class="text-center">
-                              <h4 id="unbolded-heading">{{ pronouns_dict["you"] }}</h4>
-                              <h4 id="unbolded-heading">you</h4>
-                            </td>
-                          </tr>
-                          <!-- row -->
-                          <tr>
-                            <td scope="row" class="text-center">
-                              <h4 id="unbolded-heading">{{ word_dict[tense_name]["they/them"]["written"] }}</h4>
-                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict[tense_name]["they/them"]["spoken"] }}</h4>
-                            </td>
-                            <td scope="row" class="text-center">
-                              <h4 id="unbolded-heading">{{ pronouns_dict["they/them"] }}</h4>
-                              <h4 id="unbolded-heading">they/them</h4>
-                            </td>
-                            <td scope="row" class="text-center">
-                              <h4 id="unbolded-heading">{{ word_dict[tense_name]["he/she"]["written"] }}</h4>
-                              <h4 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict[tense_name]["he/she"]["spoken"] }}</h4>
-                            </td>
-                            <td scope="row" class="text-center">
-                              <h4 id="unbolded-heading">{{ pronouns_dict["he/she"] }}</h4>
-                              <h4 id="unbolded-heading">he/she</h4>
-                            </td>
-                          </tr>
-                          
-                        </tbody>
-
-
-                      </table>
-                      <!-- </div> -->
-                  </div>
-                </div>
-              </div>
+          <div class="btn-group dropdown-hover">
+            <button type="button" id="verbs-btn" class="btn dropdown-toggle rounded-pill" data-toggle="dropdown">Verbs</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/verb-list">Verb List</a>
+              <a class="dropdown-item" href="/tenses">Conjugations</a>
+              <a class="dropdown-item" href="/exceptions">Exceptions</a>
             </div>
-
-          {% endfor %}
-          
-          </div>
-
-        {% endfor %}
-
+          </div>                        
+        </div>
       </div>
     </div>
+
+    <div class="container mt-5">
+    <!-- below nav bar -->
+    <table id="farsi-table" class="table table-striped">
+      <thead>
+        <tr>
+          {% for eng_pronoun, farsi_pronoun in pronouns_dict.items() %}
+            {% if eng_pronoun == "me" %}
+              <th scope="row" class=" text-center" style="border-bottom: solid">
+            {% else %}
+              <th scope="row" class=" text-center" style="border-bottom: solid">
+            {% endif %}
+                <h4 id="unbolded-heading">
+                  {{ farsi_pronoun["written"] }}
+                  {% if farsi_pronoun["spoken"] != "" %}
+                    / <span style="color: rgb(3, 187, 3)"> {{ farsi_pronoun["spoken"] }}</span>
+                  {% endif %}
+                </h4>
+                <p id="unbolded-heading">{{ eng_pronoun }}</p>
+            </th>
+          {% endfor %}
+          <th class="text-center" id="top-right-corner">
+            <h4 style="color: #0416e1">{{ word_dict["infinitive"] }}</h4>
+            {% if word_dict["present_root"]["spoken"] != [] %}
+              <p id="unbolded-heading" style="display: inline-block; color: rgb(3, 187, 3)">{{ word_dict["present_root"]["spoken"][-1] }}</p>
+            {% endif %}
+            <p id="unbolded-heading" style="display: inline-block ">{{ word_dict["present_root"]["written"]|combine_list }}</p>
+            <!-- <p id="unbolded-heading" style="display: inline-block;">:PS</p> -->
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tense_name in tense_order %}
+          <tr>
+            {% for eng_pronoun in pronouns_dict %}
+              <td scope="row" class="text-center">
+                <h5 id="unbolded-heading">{{ word_dict[tense_name][eng_pronoun]["written"] }}</h5>
+                <h5 id="unbolded-heading" style="color: rgb(3, 187, 3)">{{ word_dict[tense_name][eng_pronoun]["spoken"] }}</h5>
+              </td>
+            {% endfor %}
+            <td scope="row" class="text-center" style="background-color: white; border-top: none; border-left: solid;">
+              <h5>{{ tense_name }}</h5>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+
   </div>
-</div>
-</div>
-</div>
 
 </body>
-<script>
-  $(document).ready(function() {
-      $('.clickable-row').click(function() {
-        const url = $(this).data('url')
-        window.location = url; // replace '#' with the URL you want to use
-      });
-  });
 
-  $(document).ready(function () {
-    $('#verbs-btn').click(function (event) {
-      event.stopPropagation();
-      window.location.href = "/verb-list";
-    });
-  });
-</script>
+<script src="{{ url_for('static', filename='js/nav_buttons.js') }}"></script>
+
 {% endblock %}

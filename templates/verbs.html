@@ -55,7 +55,7 @@
         <!-- <div class="card mt-5 custom-card-bg"> -->
           <!-- <div class="card-body"> -->
           <div class="container-fluid w-75">
-            <!-- items in table and search bar -->
+            <!-- # rows in table and search bar -->
             <div class="row mb-4 mt-5">
 
               <!-- # items in table -->
@@ -81,7 +81,7 @@
             </div>
 
             <!-- table stuff -->
-            <div class="card-title">
+            <!-- <div class="card-title"> -->
               <table id="farsi-table" class="table table-hover table-striped">
                 <!-- title -->
                 <thead>
@@ -113,7 +113,7 @@
                       <td scope="row"><h5 id="unbolded-heading">{{ item.english|capitalize_first_word }}</h5></td>
                       <td scope="row"><h5 id="unbolded-heading">{{ item.example }}</h5></td>
                       <td scope="row">
-                        <h5 id="unbolded-heading" style="display: inline;">{{ item["present_root"]["written"]|combine_written }}</h5>
+                        <h5 id="unbolded-heading" style="display: inline;">{{ item["present_root"]["written"]|combine_list }}</h5>
                         {% if item["present_root"]["spoken"] != [] %}
                           <h5 id="unbolded-heading" style="display: inline; color: rgb(3, 187, 3)">({{ item["present_root"]["spoken"][-1] }})</h5>
                         {% endif %}
@@ -123,7 +123,7 @@
                   {% endfor %}
                 </tbody>
               </table>
-            </div>
+            <!-- </div> -->
           <!-- </div> -->
         <!-- </div> -->
 

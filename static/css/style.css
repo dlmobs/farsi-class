@@ -1,6 +1,11 @@
 /* #name is id */
 /* .name is class */
 /* nothing in front is tag */
+/*  In general, use id attributes to uniquely identify a single element on the page, 
+    and class attributes to apply a style to a group of elements that share a common 
+    characteristic or behavior. */
+
+
 
 /* global style sheet */
 

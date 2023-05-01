@@ -4,27 +4,18 @@ import json
 import ast
 # from pyarabic.araby import normalize_ligature
 from verbs_vocab_list import verbs_list, vocabulary_list
-from html_helpers import capitalize_each_word, combine_written, capitalize_first_word
+from html_helpers import capitalize_each_word, combine_list, capitalize_first_word
 
 mee_stem = "می‌"
 
-# may be deleted: 
-pronouns = {"me": { "written": "من", "spoken": "" },
-            "you": { "written": "تو", "spoken": "" },
-            "he/she": { "written": "او", "spoken": "اون" },
-            "we": { "written": "ما", "spoken": "" },
+pronouns = {"they/them": { "written": "آنها", "spoken": "اونا" },
             "you (respectful)": { "written": "شما", "spoken": "" },
-            "they/them": { "written": "آنها", "spoken": "اونا" }}
+            "we": { "written": "ما", "spoken": "" },
+            "he/she": { "written": "او", "spoken": "اون" },
+            "you": { "written": "تو", "spoken": "" },
+            "me": { "written": "من", "spoken": "" }}
 
-# for html files
-html_pronouns = {"me": "من",
-            "you": "تو",
-            "he/she": "او (اون)",
-            "we": "ما",
-            "you (respectful)": "شما",
-            "they/them": "آنها (اونا)"}
-
-html_tenses = [["Present Tense", "Simple Past"], ["Past Progressive", "Present Perfect"], ["Past Perfect", "Future Tense"]]
+html_tenses = ["Present Tense", "Simple Past", "Past Progressive", "Present Perfect", "Past Perfect", "Future Tense"]
 
 # tense set up
 present_tense = {"me": { "written": "م", "spoken": "" },
@@ -64,7 +55,7 @@ future_tense = {"me": { "written": "خواهم" },
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
 app.jinja_env.filters['capitalize_each_word'] = capitalize_each_word
-app.jinja_env.filters['combine_written'] = combine_written
+app.jinja_env.filters['combine_list'] = combine_list
 app.jinja_env.filters['capitalize_first_word'] = capitalize_first_word
 
 # root used for each tense
@@ -142,6 +133,8 @@ def single_verb_conjugations(word_dict):
         # update word_dict with present tense ones
         word_dict[tense_name] = verb_tense_conjugations
     
+    for key, value in word_dict.items():
+        print(key, value)
     return word_dict
 
 
@@ -183,7 +176,7 @@ def single_verb(index):
     word_dict = ast.literal_eval(word_dict_str)
     word_dict_tenses = single_verb_conjugations(word_dict)
 
-    return render_template('single_verb.html', word_dict=word_dict_tenses, pronouns_dict=html_pronouns, tense_order = html_tenses)
+    return render_template('single_verb.html', word_dict=word_dict_tenses, tense_order=html_tenses, pronouns_dict=pronouns)
 
 # redirct/helper route for specific verb page
 @app.route('/set_word_dict/<word_dict>')

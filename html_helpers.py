@@ -7,8 +7,8 @@ def capitalize_first_word(s):
     return s[0].upper() + s[1:]
 
 
-def combine_written(l):
-    ''' combine the words in a given list for written '''
+def combine_list(l):
+    ''' combine the words in a given list '''
     combined = ""
     for word in l:
         combined = combined + word + " "
