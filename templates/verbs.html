@@ -55,37 +55,19 @@
         <!-- <div class="card mt-5 custom-card-bg"> -->
           <!-- <div class="card-body"> -->
           <div class="container-fluid w-75">
-            <!-- items in table, radio buttons, search bar -->
+            <!-- items in table and search bar -->
             <div class="row mb-4 mt-5">
 
               <!-- # items in table -->
-              <div class="col-4 d-flex justify-content-start">
+              <div class="col-6 d-flex justify-content-start">
                 <form class="form-inline">
                   <input class="form-control" type="search" placeholder="Search" id="search-input">
                 </form>
               </div>
 
-              <!-- radio buttons -->
-              <div class="col-4 d-flex justify-content-center">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                  <label class="btn active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" value="All" checked>All
-                  </label>
-                  <label class="btn">
-                    <input type="radio" name="options" id="option2" autocomplete="off" value="transitive">Transitive
-                  </label>
-                  <label class="btn">
-                    <input type="radio" name="options" id="option3" autocomplete="off" value="intransitive">Intransitive
-                  </label>
-                </div>
-              </div>
-
               <!-- search bar -->
-              <div class="col-4 d-flex justify-content-end">
+              <div class="col-6 d-flex justify-content-end">
                 <div class="input-group justify-content-end">
-                  <!-- <div class="input-group-prepend">
-                    <label class="input-group-text" for="rows-per-page"># Rows</label>
-                  </div> -->
                   <div class="custom-width-select-wrapper">
                     <select class="custom-select" id="rows-per-page">
                       <option value="15">15 Rows</option>
@@ -108,7 +90,7 @@
                       <h4>English</h4>
                       <br/>
                     </th>
-                    <th scope="col" class="col-2"><h4>Infinitive</h4><br/></th>
+                    <th scope="col" class="col-4"><h4>Common Use</h4><br/></th>
                     <th scope="col" class="col-2">
                       <h4>Present Stem</h4>
                       <div class="custom-control custom-checkbox align-self-center">
@@ -118,8 +100,7 @@
                         </label>
                       </div>
                     </th>
-                    <th scope="col" class="col-2"><h4>Past Stem</h4><br/></th>
-                    <th scope="col" class="col-2"><h4>Type</h4><br/></th>
+                    <th scope="col" class="col-2"><h4>Infinitive</h4><br/></th>
                   </tr>
                 </thead>
 
@@ -127,19 +108,17 @@
                 <tbody id="table-body">
                   {% for item in verbs %}
                     <!-- row -->
-                    <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}" data-verb-type="{{ item.verb_type }}">
+                    <!-- <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}" data-verb-type="{{ item.verb_type }}"> -->
+                    <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}">
                       <td scope="row"><h5 id="unbolded-heading">{{ item.english|capitalize_first_word }}</h5></td>
-                      <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
+                      <td scope="row"><h5 id="unbolded-heading">{{ item.example }}</h5></td>
                       <td scope="row">
                         <h5 id="unbolded-heading" style="display: inline;">{{ item["present_root"]["written"]|combine_written }}</h5>
                         {% if item["present_root"]["spoken"] != [] %}
                           <h5 id="unbolded-heading" style="display: inline; color: rgb(3, 187, 3)">({{ item["present_root"]["spoken"][-1] }})</h5>
                         {% endif %}
                       </td>
-                      <td scope="row">
-                        <h5 id="unbolded-heading">{{ item["past_root"]["written"]|combine_written }}</h5>
-                      </td>
-                      <td scope="row"><h5 id="unbolded-heading">{{ item.verb_type|capitalize_each_word }}</h5></td>
+                      <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
                     </tr>
                   {% endfor %}
                 </tbody>
@@ -165,7 +144,7 @@
   </div>
 
   <!-- nav bar buttons for verb-list dropdown -->
-  <script src="{{ url_for('static', filename='js/verbs_button.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/nav_buttons.js') }}"></script>
 
   <!-- specific js page import -->
   <script src="{{ url_for('static', filename='js/verb_list.js') }}"></script>

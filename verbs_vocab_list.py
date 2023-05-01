@@ -5,7 +5,7 @@ verbs_list = [
         "infinitive": "فکر کردن",
         "present_root": {"written": ["فکر", "کن"], "spoken": [] },
         "past_root": {"written": ["فکر", "کرد"], "spoken":  [] },
-        "verb_type": "both"   
+        "example": "fill"
     },
     {
         "counter": 2,
@@ -13,7 +13,7 @@ verbs_list = [
         "infinitive": "رفتن",
         "present_root": {"written": ["رو"], "spoken": ["ر"] },
         "past_root": {"written": ["رفت"], "spoken":  [""] },
-        "verb_type": "intransitive"   
+        "example": "fill"  
     },
     {
         "counter": 3,
@@ -21,15 +21,15 @@ verbs_list = [
         "infinitive": "پیاده رفتن",
         "present_root": {"written": ["پیاده", "رو"], "spoken": ["پیاده", "ر"] },
         "past_root": {"written": ["پیاده", "رفت"], "spoken":  [] },
-        "verb_type": "intransitive" 
+        "example": "fill"
     },
     {
         "counter": 4,
         "english": "to go by foot (for people), to move (for automobiles)",
-        "infinitive": "ره رفتن",
-        "present_root": {"written": ["ره", "رو"], "spoken": ["ره", "ر"] },
-        "past_root": {"written": ["ره", "رفت"], "spoken": [] },
-        "verb_type": "intransitive" 
+        "infinitive": "راه رفتن",
+        "present_root": {"written": ["راه", "رو"], "spoken": ["راه", "ر"] },
+        "past_root": {"written": ["راه", "رفت"], "spoken": [] },
+        "example": "fill"
     },
         {
         "counter": 5,
@@ -37,7 +37,7 @@ verbs_list = [
         "infinitive": "آمدن",
         "present_root": {"written": ["آی"], "spoken": ["آ"] },
         "past_root": {"written": ["آمد"], "spoken":  [] },
-        "verb_type": "intransitive"    
+        "example": "fill"  
     },
     {
         "counter": 6,
@@ -45,7 +45,7 @@ verbs_list = [
         "infinitive": "رسیدن",
         "present_root": {"written": ["رس"], "spoken": [] },
         "past_root": {"written": ["رسید"], "spoken":  [] },
-        "verb_type": "intransitive" 
+        "example": "fill"
     },
     {
         "counter": 7,
@@ -53,7 +53,7 @@ verbs_list = [
         "infinitive": "برداشتن",
         "present_root": {"written": ["دار", "بر"], "spoken": [] },
         "past_root": {"written": ["برداشت"], "spoken": [] },
-        "verb_type": "transitive" 
+        "example": "fill"
     },
     {
         "counter": 8,
@@ -61,7 +61,7 @@ verbs_list = [
         "infinitive": "آوردن",
         "present_root": {"written": ["آور"], "spoken": ["آر"] },
         "past_root": {"written": ["آورد"], "spoken": [] },
-        "verb_type": "transitive" 
+        "example": "fill"
     },
         {
         "counter": 9,
@@ -69,7 +69,7 @@ verbs_list = [
         "infinitive": "بردن",
         "present_root": {"written": ["بر"], "spoken": [] },
         "past_root": {"written": ["برد"], "spoken": [] },
-        "verb_type": "transitive"    # not sure
+        "example": "fill"
     },
     {
         "counter": 10,
@@ -77,7 +77,7 @@ verbs_list = [
         "infinitive": "بردن",
         "present_root": {"written": ["بر"], "spoken": [] },
         "past_root": {"written": ["برد"], "spoken": [] },
-        "verb_type": "both"         # not sure
+        "example": "fill"
     },
     {
         "counter": 11,
@@ -85,7 +85,7 @@ verbs_list = [
         "infinitive": "باختن",
         "present_root": {"written": ["باز"], "spoken": [] },
         "past_root": {"written": ["باخت"], "spoken": [] },
-        "verb_type": "both"         # not sure
+        "example": "fill"
     },
     {
         "counter": 12,
@@ -93,7 +93,7 @@ verbs_list = [
         "infinitive": "پیروز شدن",
         "present_root": {"written": ["پیروز", "شو"], "spoken": ["پیروز", "ش"] },
         "past_root": {"written": ["پیروز", "شد"], "spoken": [] },
-        "verb_type": "both" 
+        "example": "fill"
     }
 ]
 

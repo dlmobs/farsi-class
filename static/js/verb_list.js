@@ -23,15 +23,17 @@ $(document).ready(function() {
   var rows = $('#table-body tr');
 
   function filterTable() {
-    let verbType = $('input[type=radio][name=options]:checked').val();
+    // let verbType = $('input[type=radio][name=options]:checked').val();
     let searchText = $('#search-input').val().toLowerCase();
 
     rows.hide();
     rows.each(function() {
-      let rowVerbType = $(this).data('verb-type');
+      // let rowVerbType = $(this).data('verb-type');
       let englishText = $(this).find('td:first-child h5').text().toLowerCase();
+      let farsiText = $(this).find('td:nth-child(3), td:nth-child(4) h5').text();
 
-      if ((verbType === 'All' || rowVerbType === verbType) && englishText.indexOf(searchText) !== -1) {
+      // if ((verbType === 'All' || rowVerbType === verbType) && englishText.indexOf(searchText) !== -1) {
+      if ( englishText.indexOf(searchText) !== -1 || farsiText.indexOf(searchText) !== -1 ) {
         $(this).show();
       }
     });
