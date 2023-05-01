@@ -29,7 +29,7 @@ present_tense = {"me": { "written": "م", "spoken": "" },
 past_tense = present_tense.copy()
 past_tense["he/she"] = { "written": "", "spoken": "" }
 
-present_perfect_tense = {"me": { "written": "ه‌ام", "spoken": "" },
+present_perfect_tense = {"me": { "written": "ه‌ام", "spoken": "م" },
                     "you": { "written": "ه‌ای", "spoken": "ی" },
                     "he/she": { "written": "ه است", "spoken": "ه" },
                     "we": { "written": "ه‌ایم", "spoken": "یم" },
@@ -85,7 +85,7 @@ def single_verb_conjugations(word_dict):
         root_needed = roots[tense_name]
 
         # written and spoken form of the root
-        w_s_root = word_dict[root_needed]
+        w_s_roots = word_dict[root_needed]
 
         # loop through each pronoun and it's ending
         for pronoun, pronoun_endings in tense_conjugations.items():
@@ -99,22 +99,27 @@ def single_verb_conjugations(word_dict):
                 # originally running under the assumption that if there is no spoken form of stem, there is no spoken form conjugation for any. false
                 # corner case: verb doesn't have spoken form but spoken for present for conjugation
                 # solution: only create stem if not empty (first item always written so never empty). keeps second empty item from replacing first
-                if w_s_root[key_w_s] != []:
-                    root = w_s_root[key_w_s]            # stem string (written or spoken stem)
-
+                if w_s_roots[key_w_s] != []:
+                    root = w_s_roots[key_w_s]            # stem string (written or spoken stem)
                     # root is a list of the root. sometimes two worded root
 
                 # if the conjugation doesn't have a spoken form, then conjugation is empty
+                # if no conjugation and stem spoken form, then full conjugation stays as ""
                 fully_conj_verb = ""
-                if conjugation != "":
-                    # performed this way to avoid adding a space at the end of full_conj_verb and run into issues with strip function and farsi characters
+                if conjugation != "" or w_s_roots[key_w_s] != []:
+                    # loop through each word in a given root. some can be two words
                     for i, word in enumerate(root):
                         # add first word if a 2+ word verb
                         if i == 0 and len(root) > 1:
                             fully_conj_verb = word + " "
                         # add second word
                         else:
-                            if tense_name == "Present Tense" or tense_name == "Past Progressive":
+                            if tense_name == "Present Tense":
+                                # present stem has spoken form, need to use the written endings for conjugation
+                                if conjugation == "":
+                                    conjugation = pronoun_endings["written"]
+                                fully_conj_verb = fully_conj_verb + mee_stem + word + conjugation
+                            elif tense_name == "Past Progressive":
                                 fully_conj_verb = fully_conj_verb + mee_stem + word + conjugation
                             elif tense_name == "Future Tense":
                                 fully_conj_verb = fully_conj_verb + conjugation + " " + word
@@ -122,9 +127,6 @@ def single_verb_conjugations(word_dict):
                             else:
                                 fully_conj_verb = fully_conj_verb + word + conjugation
 
-                    # add parenthesis
-                    if key_w_s == "spoken":
-                        fully_conj_verb = "(" + fully_conj_verb + ")"
                     completed_conj[key_w_s] = fully_conj_verb
 
             # add it to the respective conjugations for the tense
@@ -133,8 +135,6 @@ def single_verb_conjugations(word_dict):
         # update word_dict with present tense ones
         word_dict[tense_name] = verb_tense_conjugations
     
-    for key, value in word_dict.items():
-        print(key, value)
     return word_dict
 
 

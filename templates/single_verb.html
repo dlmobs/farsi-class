@@ -51,11 +51,11 @@
             </th>
           {% endfor %}
           <th class="text-center" id="top-right-corner">
-            <h4 style="color: #0416e1">{{ word_dict["infinitive"] }}</h4>
+            <h3 style="color: #ff5f14">{{ word_dict["infinitive"] }}</h3>
             {% if word_dict["present_root"]["spoken"] != [] %}
-              <p id="unbolded-heading" style="display: inline-block; color: rgb(3, 187, 3)">{{ word_dict["present_root"]["spoken"][-1] }}</p>
+              <h5 id="unbolded-heading" style="display: inline-block; color: rgb(3, 187, 3)">{{ word_dict["present_root"]["spoken"][-1] }}</h5>
             {% endif %}
-            <p id="unbolded-heading" style="display: inline-block ">{{ word_dict["present_root"]["written"]|combine_list }}</p>
+            <h5 id="unbolded-heading" style="display: inline-block ">{{ word_dict["present_root"]["written"]|combine_list }}</h5>
             <!-- <p id="unbolded-heading" style="display: inline-block;">:PS</p> -->
           </th>
         </tr>
