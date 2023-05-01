@@ -22,7 +22,7 @@
               <a href="/"><button type="button" class="btn mr-3 rounded-pill">Home</button></a>
               <a href="/about"><button type="button" class="btn mr-3 rounded-pill">About</button></a>
               <a href="/vocabulary-list"><button type="button" class="btn mr-3 rounded-pill">Vocabulary</button></a>
-              
+
               <div class="btn-group dropdown-hover">
                 <button type="button" id="verbs-btn" class="btn dropdown-toggle rounded-pill" data-toggle="dropdown">Verbs</button>
                 <div class="dropdown-menu">
@@ -30,17 +30,9 @@
                   <a class="dropdown-item" href="/tenses">Conjugations</a>
                   <a class="dropdown-item" href="/exceptions">Exceptions</a>
                 </div>
-              </div>                        
+              </div>
             </div>
           </div>
-          <!-- search bar on the right -->
-          <!-- <div class="col-md-4 d-flex justify-content-end">
-            <form class="form-inline">
-              <div>
-                <input class="form-control" type="search" placeholder="Search">
-              </div>
-            </form>
-          </div> -->
         </div>
 
         <div class="row align-items-center mt-3">
@@ -51,105 +43,94 @@
         </div>
         
         <!-- verb table set up -->
-        <!-- card -->
-        <!-- <div class="card mt-5 custom-card-bg"> -->
-          <!-- <div class="card-body"> -->
-          <div class="container-fluid w-75">
-            <!-- # rows in table and search bar -->
-            <div class="row mb-4 mt-5">
+        <div class="container-fluid w-75">
+          <!-- # rows in table and search bar -->
+          <div class="row mb-4 mt-5">
 
-              <!-- # items in table -->
-              <div class="col-6 d-flex justify-content-start">
-                <form class="form-inline">
-                  <input class="form-control" type="search" placeholder="Search" id="search-input">
-                </form>
-              </div>
-
-              <!-- search bar -->
-              <div class="col-6 d-flex justify-content-end">
-                <div class="input-group justify-content-end">
-                  <div class="custom-width-select-wrapper">
-                    <select class="custom-select" id="rows-per-page">
-                      <option value="15">15 Rows</option>
-                      <option value="25">25 Rows</option>
-                      <option value="50">50 Rows</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
+            <!-- # items in table -->
+            <div class="col-6 d-flex justify-content-start">
+              <form class="form-inline">
+                <input class="form-control" type="search" placeholder="Search" id="search-input">
+              </form>
             </div>
 
-            <!-- table stuff -->
-            <!-- <div class="card-title"> -->
-              <table id="farsi-table" class="table table-hover table-striped">
-                <!-- title -->
-                <thead>
-                  <tr>
-                    <th scope="col" class="col-4">
-                      <h4>English</h4>
-                      <br/>
-                    </th>
-                    <th scope="col" class="col-4"><h4>Common Use</h4><br/></th>
-                    <th scope="col" class="col-2">
-                      <h4>Present Stem</h4>
-                      <div class="custom-control custom-checkbox align-self-center">
-                        <input type="checkbox" class="custom-control-input" id="exampleCheck">
-                        <label class="custom-control-label d-flex align-items-center" for="exampleCheck">
-                          <small>Spoken Only</small>
-                        </label>
-                      </div>
-                    </th>
-                    <th scope="col" class="col-2"><h4>Infinitive</h4><br/></th>
-                  </tr>
-                </thead>
+            <!-- search bar -->
+            <div class="col-6 d-flex justify-content-end">
+              <div class="input-group justify-content-end">
+                <div class="custom-width-select-wrapper">
+                  <select class="custom-select" id="rows-per-page">
+                    <option value="15">15 Rows</option>
+                    <option value="25">25 Rows</option>
+                    <option value="50">50 Rows</option>
+                  </select>
+                </div>
+              </div>
+            </div>
 
-                <!-- body of table -->
-                <tbody id="table-body">
-                  {% for item in verbs %}
-                    <!-- row -->
-                    <!-- <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}" data-verb-type="{{ item.verb_type }}"> -->
-                    <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}">
-                      <td scope="row"><h5 id="unbolded-heading">{{ item.english|capitalize_first_word }}</h5></td>
-                      <td scope="row"><h5 id="unbolded-heading">{{ item.example }}</h5></td>
-                      <td scope="row">
-                        <h5 id="unbolded-heading" style="display: inline;">{{ item["present_root"]["written"]|combine_list }}</h5>
-                        {% if item["present_root"]["spoken"] != [] %}
-                          <h5 id="unbolded-heading" style="display: inline; color: rgb(3, 187, 3)">({{ item["present_root"]["spoken"][-1] }})</h5>
-                        {% endif %}
-                      </td>
-                      <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            <!-- </div> -->
-          <!-- </div> -->
-        <!-- </div> -->
+          </div>
 
-        <!-- pagination buttons -->
-        <div class="row justify-content-end mr-1 mt-3">
-          <nav>
-            <ul class="pagination">
-              <!-- Pagination items will be inserted here from javascript -->
-            </ul>
-          </nav>
+          <!-- table stuff -->
+          <table id="farsi-table" class="table table-hover table-striped">
+            <!-- title -->
+            <thead>
+              <tr>
+                <th scope="col" class="col-4">
+                  <h4>English</h4>
+                  <br/>
+                </th>
+                <th scope="col" class="col-4"><h4>Common Use</h4><br/></th>
+                <th scope="col" class="col-2">
+                  <h4>Present Stem</h4>
+                  <div class="custom-control custom-checkbox align-self-center">
+                    <input type="checkbox" class="custom-control-input" id="exampleCheck">
+                    <label class="custom-control-label d-flex align-items-center" for="exampleCheck">
+                      <small>Spoken Only</small>
+                    </label>
+                  </div>
+                </th>
+                <th scope="col" class="col-2"><h4>Infinitive</h4><br/></th>
+              </tr>
+            </thead>
+
+            <!-- body of table -->
+            <tbody id="table-body">
+              {% for item in verbs %}
+                <!-- row -->
+                <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}">
+                  <td scope="row"><h5 id="unbolded-heading">{{ item.english|capitalize_first_word }}</h5></td>
+                  <td scope="row"><h5 id="unbolded-heading">{{ item.example }}</h5></td>
+                  <td scope="row">
+                    <h5 id="unbolded-heading" style="display: inline;">{{ item["present_root"]["written"]|combine_list }}</h5>
+                    {% if item["present_root"]["spoken"] != [] %}
+                      <h5 id="unbolded-heading" style="display: inline; color: rgb(3, 187, 3)">({{ item["present_root"]["spoken"][-1] }})</h5>
+                    {% endif %}
+                  </td>
+                  <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <!-- pagination buttons -->
+          <div class="row justify-content-end mr-1 mt-3">
+            <nav>
+              <ul class="pagination">
+                <!-- Pagination items will be inserted here from javascript -->
+              </ul>
+            </nav>
+          </div>
+
         </div>
-
-        <!-- to remove container, remove this div -->
-      </div> 
 
       </div>
     </div>
   </div>
-
-  <!-- nav bar buttons for verb-list dropdown -->
-  <script src="{{ url_for('static', filename='js/nav_buttons.js') }}"></script>
-
-  <!-- specific js page import -->
-  <script src="{{ url_for('static', filename='js/verb_list.js') }}"></script>
-
-
 </body>
+
+<!-- nav bar buttons for verb-list dropdown -->
+<script src="{{ url_for('static', filename='js/nav_buttons.js') }}"></script>
+
+<!-- specific js page import -->
+<script src="{{ url_for('static', filename='js/verb_list.js') }}"></script>
 
 {% endblock %}
