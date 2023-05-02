@@ -3,15 +3,13 @@
 {% block head %}
   <title>Farsi Verbs</title>
   <link rel="stylesheet" href="/static/css/verbs_style.css">
-  <link rel="stylesheet" href="/static/css/sub_style.css">
 {% endblock %}
 
 {% block content %}
 <body>
   <div id="content">
-    <div id="background-image"></div>
     <!-- all page content -->
-    <div class="inner-content">
+    <div id="inner-content">
 
       <div class="container-fluid">
         <!-- top row -->
@@ -57,7 +55,7 @@
             <!-- search bar -->
             <div class="col-6 d-flex justify-content-end">
               <div class="input-group justify-content-end">
-                <div class="custom-width-select-wrapper">
+                <div id="dropdown-width">
                   <select class="custom-select" id="rows-per-page">
                     <option value="15">15 Rows</option>
                     <option value="25">25 Rows</option>
@@ -97,15 +95,15 @@
               {% for item in verbs %}
                 <!-- row -->
                 <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}">
-                  <td scope="row"><h5 id="unbolded-heading">{{ item.english|capitalize_first_word }}</h5></td>
-                  <td scope="row"><h5 id="unbolded-heading">{{ item.example }}</h5></td>
+                  <td scope="row"><h5 class="unbolded-heading">{{ item.english|capitalize_first_word }}</h5></td>
+                  <td scope="row"><h5 class="unbolded-heading">{{ item.example }}</h5></td>
                   <td scope="row">
-                    <h5 id="unbolded-heading" style="display: inline;">{{ item["present_root"]["written"]|combine_list }}</h5>
+                    <h5 class="unbolded-heading display-inline">{{ item["present_root"]["written"]|combine_list }}</h5>
                     {% if item["present_root"]["spoken"] != [] %}
-                      <h5 id="unbolded-heading" style="display: inline; color: rgb(3, 187, 3)">({{ item["present_root"]["spoken"][-1] }})</h5>
+                      <h5 class="unbolded-heading display-inline green-color">{{ item["present_root"]["spoken"][-1] }}</h5>
                     {% endif %}
                   </td>
-                  <td scope="row"><h5 id="unbolded-heading">{{ item.infinitive }}</h5></td>
+                  <td scope="row"><h5 class="unbolded-heading">{{ item.infinitive }}</h5></td>
                 </tr>
               {% endfor %}
             </tbody>
@@ -126,9 +124,6 @@
     </div>
   </div>
 </body>
-
-<!-- nav bar buttons for verb-list dropdown -->
-<script src="{{ url_for('static', filename='js/nav_buttons.js') }}"></script>
 
 <!-- specific js page import -->
 <script src="{{ url_for('static', filename='js/verb_list.js') }}"></script>

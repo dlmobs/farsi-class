@@ -4,3 +4,26 @@
   background-position: center center;
   height: 100%;
 }
+
+#search-bar-style {
+  padding-top: 2%;
+  text-align: right;
+}
+
+#first-text-line {
+  color: white;
+  margin: 0;
+  text-align: center;
+  padding-top: 5%;
+  font-weight: normal;
+  font-size: 4.5rem;
+}
+
+#second-text-line {
+  color: white;
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  font-weight: normal;
+  font-size: 1.5rem;
+}

@@ -5,11 +5,9 @@
     and class attributes to apply a style to a group of elements that share a common 
     characteristic or behavior. */
 
-
-
 /* global style sheet */
 
-#unbolded-heading {
+.unbolded-heading {
   font-weight: normal;
 }
 
@@ -36,3 +34,30 @@ transform: scale(1.05);
   /* background-color: #ff632f !important; */
 }
 
+/* page title */
+#page-title {
+  color: white;
+  font-size:75px;
+  font-weight: normal;
+  text-align: center;
+}
+
+/* card styling */
+.card {
+  opacity: 0.92;
+  /* background-color: #04AAE1 !important; */
+}
+
+/* display text in the same line */
+.display-inline {
+  display: inline;
+}
+
+/* green color for spoken */
+.green-color {
+  color: rgb(3, 187, 3)
+}
+
+.lighter-primary-color {
+  color: #ff5f14;
+}

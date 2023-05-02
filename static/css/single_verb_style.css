@@ -18,3 +18,17 @@ body {
     /* border-bottom-width: 2px;  */
     border-bottom-color: rgba(169, 169, 169, 0.5);
 }
+
+.display-inline-block {
+    display: inline-block;
+}
+
+#tense-col {
+    background-color: white;
+    border-top: none;
+    border-left: solid;
+}
+
+.header-style {
+    border-bottom: solid !important;
+}

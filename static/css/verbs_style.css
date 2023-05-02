@@ -1,15 +1,16 @@
 /* background img */
-#background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1; /* Move the background below the content */
+#content {
+    min-height: 100%;
+    position: relative;
     background-image: url("/static/images/blackbg2.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+  }
+  
+#inner-content {
+    position: relative;
+    z-index: 1; /* Move the inner content above the background */
 }
 
 /* table */
@@ -35,23 +36,7 @@ label {
     font-size: 1.2em;
 }
 
-/* radio buttons */
-.btn-group-toggle .btn:not(.active) {
-    background-color: #C92C00;
-    color: white;
-}
-  
-.btn-group-toggle .btn.active {
-    background-color: #ff5f14;
-    color: white;
-}
-
-/* card styling */
-.custom-card-bg {
-    /* blue 84D5E6 */
-    background-color: #222222 !important;
-}
-
-.custom-width-select-wrapper {
+/* num of rows present in table */
+#dropdown-width {
     width: 21%
 }
