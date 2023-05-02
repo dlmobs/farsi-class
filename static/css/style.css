@@ -6,6 +6,10 @@
     characteristic or behavior. */
 
 /* global style sheet */
+#inner-content {
+  position: relative;
+  z-index: 1; /* Move the inner content above the background */
+}
 
 .unbolded-heading {
   font-weight: normal;

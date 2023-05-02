@@ -1,0 +1,97 @@
+{% extends 'splash.html' %}
+
+{% block head %}
+  <title>Farsi Tenses</title>
+  <link rel="stylesheet" href="/static/css/conjugations.css">
+{% endblock %}
+
+{% block content %}
+<body>
+  <div id="content">
+    <!-- all page content -->
+    <div id="inner-content">
+      <div class="container-fluid">
+        <!-- top row -->
+        <div class="row align-items-center">
+          <!-- button group on the left -->
+          <div class="col-md-4 mt-4">
+            <div class="btn-group" role="group">
+              <a href="/"><button type="button" class="btn mr-3 rounded-pill">Home</button></a>
+              <a href="/about"><button type="button" class="btn mr-3 rounded-pill">About</button></a>
+              <a href="/vocabulary-list"><button type="button" class="btn mr-3 rounded-pill">Vocabulary</button></a>
+
+              <div class="btn-group dropdown-hover">
+                <button type="button" id="verbs-btn" class="btn dropdown-toggle rounded-pill" data-toggle="dropdown">Verbs</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/verb-list">Verb List</a>
+                  <a class="dropdown-item" href="/tenses">Conjugations</a>
+                  <a class="dropdown-item" href="/exceptions">Exceptions</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container mt-5">
+          {% for tense_name, tense_conj_formula in conj_formulas.items() %}
+            <div class="card mt-4 mb-4">
+              <div class="card-body">
+                <!-- tense name -->
+                <div class="card-header">
+                  <h5>{{ tense_name }}</h5>
+                </div>
+                
+                <!-- table of conjugations -->
+                <table class="table">
+                  <thead>
+                    <tr>
+                      {% for eng_pronoun, farsi_pronoun in pronouns.items() %}
+                        <th scope="row" class=" text-center">
+                          <h5 class="unbolded-heading">
+                            {{ farsi_pronoun["written"] }}
+                            {% if farsi_pronoun["spoken"] != "" %}
+                              / <span class="green-color"> {{ farsi_pronoun["spoken"] }}</span>
+                            {% endif %}
+                          </h5>
+                          <p class="unbolded-heading">{{ eng_pronoun }}</p>
+                        </th>
+                      {% endfor %}
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      {% for pronoun, w_s_formula in tense_conj_formula.items() %}
+                        <td>
+                          <!-- <p class="unbolded-heading text-center">
+                            {% if w_s_formula["spoken"] != "" %}
+                              <span class="green-color"> {{ w_s_formula["spoken"] }}</span>
+                            {% endif %}
+                            {{ w_s_formula["written"] }}
+                          </p> -->
+                          {% if w_s_formula["spoken"] != "" %}
+                            <p class="unbolded-heading display-inline green-color">{{ w_s_formula["spoken"] }}</p>
+                          {% endif %}
+                          <p class="unbolded-heading display-inline text-center">{{ w_s_formula["written"] }}</h5>
+
+                        </td>
+                      {% endfor %}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+
+        </br>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!-- specific js page import -->
+<script src="{{ url_for('static', filename='js/verb_list.js') }}"></script>
+
+{% endblock %}

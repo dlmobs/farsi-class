@@ -7,6 +7,7 @@ from verbs_vocab_list import verbs_list, vocabulary_list
 from html_helpers import capitalize_each_word, combine_list, capitalize_first_word
 
 mee_stem = "می‌"
+b_stem = "ب"
 
 pronouns = {"they/them": { "written": "آنها", "spoken": "اونا" },
             "you (respectful)": { "written": "شما", "spoken": "" },
@@ -15,7 +16,7 @@ pronouns = {"they/them": { "written": "آنها", "spoken": "اونا" },
             "you": { "written": "تو", "spoken": "" },
             "me": { "written": "من", "spoken": "" }}
 
-html_tenses = ["Present Tense", "Simple Past", "Past Progressive", "Present Perfect", "Past Perfect", "Future Tense"]
+html_tenses = ["Present Tense", "Simple Past", "Past Progressive", "Present Perfect", "Past Perfect", "Future Tense", "Imperative", "Subjunctive"]
 
 # tense set up
 present_tense = {"me": { "written": "م", "spoken": "" },
@@ -51,6 +52,11 @@ future_tense = {"me": { "written": "خواهم" },
                     "you (respectful)": { "written": "خواهید" },
                     "they/them": { "written": "خواهند" }}
 
+# imperative same as present except for you
+imperative_tense = present_tense.copy()
+imperative_tense["you"] = { "written": "", "spoken": "" }
+
+# subjunctive conjugations is the same as present tense
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'
@@ -59,11 +65,18 @@ app.jinja_env.filters['combine_list'] = combine_list
 app.jinja_env.filters['capitalize_first_word'] = capitalize_first_word
 
 # root used for each tense
-roots = {"Present Tense": "present_root", "Simple Past": "past_root", "Past Progressive": "past_root", 
-            "Present Perfect": "past_root", "Past Perfect": "past_root", "Future Tense": "past_root"}
+roots = {"Present Tense": "Pres. Stem", "Simple Past": "Past Stem", "Past Progressive": "Past Stem", 
+            "Present Perfect": "Past Stem", "Past Perfect": "Past Stem", "Future Tense": "Past Stem",
+            "Imperative": "Pres. Stem", "Subjunctive": "Pres. Stem"}
 
+# beginning used for each tense
+beginnings = {"Present Tense": mee_stem, "Simple Past": "", "Past Progressive": mee_stem, "Present Perfect": "", 
+              "Past Perfect": "", "Future Tense": "", "Imperative": b_stem, "Subjunctive": b_stem}
+
+# all tense conjugations
 tenses = {"Present Tense": present_tense, "Simple Past": past_tense, "Past Progressive": past_tense, 
-            "Present Perfect": present_perfect_tense, "Past Perfect": past_perfect_tense, "Future Tense": future_tense}
+            "Present Perfect": present_perfect_tense, "Past Perfect": past_perfect_tense, "Future Tense": future_tense,
+            "Imperative": imperative_tense, "Subjunctive": present_tense}
 
 
 # example word_dict
@@ -71,8 +84,8 @@ tenses = {"Present Tense": present_tense, "Simple Past": past_tense, "Past Progr
     #     "counter": 1,
     #     "english": "to think",
     #     "infinitive": "فکر کردن",
-    #     "present_root": {"written": ["فکر", "کن"], "spoken": [] },    * note that the first or zeroth object is from right to left *
-    #     "past_root": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }   
+    #     "Pres. Stem": {"written": ["فکر", "کن"], "spoken": [] },    * note that the first or zeroth object is from right to left *
+    #     "Past Stem": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }   
     # }
 
 def single_verb_conjugations(word_dict):
@@ -115,10 +128,20 @@ def single_verb_conjugations(word_dict):
                         # add second word
                         else:
                             if tense_name == "Present Tense":
-                                # present stem has spoken form, need to use the written endings for conjugation
+                                # if Pres. Stem has spoken form, need to use the written endings for conjugation
                                 if conjugation == "":
                                     conjugation = pronoun_endings["written"]
                                 fully_conj_verb = fully_conj_verb + mee_stem + word + conjugation
+                            elif tense_name == "Imperative":
+                                # do not use spoken stem for you conj. no you spoken for imperative
+                                if pronoun == "you" and key_w_s == "spoken":
+                                    break
+                                fully_conj_verb = fully_conj_verb + b_stem + word + conjugation
+                            elif tense_name == "Subjunctive":
+                                # if Pres. Stem has spoken form, need to use the written endings for conjugation
+                                if conjugation == "":
+                                    conjugation = pronoun_endings["written"]
+                                fully_conj_verb = fully_conj_verb + b_stem + word + conjugation
                             elif tense_name == "Past Progressive":
                                 fully_conj_verb = fully_conj_verb + mee_stem + word + conjugation
                             elif tense_name == "Future Tense":
@@ -136,6 +159,36 @@ def single_verb_conjugations(word_dict):
         word_dict[tense_name] = verb_tense_conjugations
     
     return word_dict
+
+
+def conjugation_formulas():
+    formulas = {}
+
+    # loop through each tense
+    for tense_name, tense_conjs in tenses.items():
+        needed_root = roots[tense_name]
+        needed_beg = beginnings[tense_name]
+
+        tense_formulas = {}
+
+        # loop through each pronoun and its dict of conjugations (w,s)
+        for pronoun, w_s_conj in tense_conjs.items():
+            w_s_conj_formula = w_s_conj.copy()
+            ending = w_s_conj["written"]
+
+            if tense_name == "Future Tense":
+                single_formula = ending + " " + needed_root
+            else:
+                single_formula = ending + " + " + needed_root + " + " + needed_beg
+
+            single_formula = single_formula.strip(' + ')
+            w_s_conj_formula["written"] = single_formula
+
+            tense_formulas[pronoun] = w_s_conj_formula
+
+        formulas[tense_name] = dict(list(reversed(list(tense_formulas.items()))))
+    
+    return formulas
 
 
 # app routes
@@ -184,6 +237,13 @@ def set_word_dict(word_dict):
     session['word_dict'] = word_dict
     word_dict_for_counter = ast.literal_eval(word_dict)
     return redirect(url_for('single_verb', index=word_dict_for_counter["counter"]))
+
+# conjugations page
+@app.route('/tenses')
+def tenses_page():
+    # word_dict_tenses = single_verb_conjugations(verbs_list[1])
+    conj_formulas = conjugation_formulas()
+    return render_template("conjugations.html", conj_formulas=conj_formulas, tenses=html_tenses, pronouns=pronouns)
 
 
 if __name__ == '__main__':

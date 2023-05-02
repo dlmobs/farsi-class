@@ -79,7 +79,7 @@
                 </th>
                 <th scope="col" class="col-4"><h4>Common Use</h4><br/></th>
                 <th scope="col" class="col-2">
-                  <h4>Present Stem</h4>
+                  <h4>Pres. Stem</h4>
                   <div class="custom-control custom-checkbox align-self-center">
                     <input type="checkbox" class="custom-control-input" id="exampleCheck">
                     <label class="custom-control-label d-flex align-items-center" for="exampleCheck">
@@ -99,9 +99,9 @@
                   <td scope="row"><h5 class="unbolded-heading">{{ item.english|capitalize_first_word }}</h5></td>
                   <td scope="row"><h5 class="unbolded-heading">{{ item.example }}</h5></td>
                   <td scope="row">
-                    <h5 class="unbolded-heading display-inline">{{ item["present_root"]["written"]|combine_list }}</h5>
-                    {% if item["present_root"]["spoken"] != [] %}
-                      <h5 class="unbolded-heading display-inline green-color">{{ item["present_root"]["spoken"][-1] }}</h5>
+                    <h5 class="unbolded-heading display-inline">{{ item["Pres. Stem"]["written"]|combine_list }}</h5>
+                    {% if item["Pres. Stem"]["spoken"] != [] %}
+                      <h5 class="unbolded-heading display-inline green-color">{{ item["Pres. Stem"]["spoken"][-1] }}</h5>
                     {% endif %}
                   </td>
                   <td scope="row"><h5 class="unbolded-heading">{{ item.infinitive }}</h5></td>

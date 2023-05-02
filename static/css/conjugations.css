@@ -1,0 +1,24 @@
+/* background img */
+#content {
+    min-height: 100%;
+    position: relative;
+    background-image: url("/static/images/blackbg1.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+thead tr th,
+tbody tr td {
+  padding-top: 5px !important; /* Adjust the value as desired */
+  padding-bottom: 5px !important; /* Adjust the value as desired */
+}
+
+/* display text in the same line */
+.display-inline {
+    display: inline;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
