@@ -48,11 +48,6 @@ transform: scale(1.05);
   /* background-color: #04AAE1 !important; */
 }
 
-/* display text in the same line */
-.display-inline {
-  display: inline;
-}
-
 /* green color for spoken */
 .green-color {
   color: rgb(3, 187, 3)
