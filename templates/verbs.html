@@ -42,19 +42,23 @@
         </div>
         
         <!-- verb table set up -->
-        <div class="container-fluid w-75">
+        <div class="container-fluid w-75 align-items-center">
           <!-- # rows in table and search bar -->
           <div class="row mb-4 mt-5">
-
-            <!-- # items in table -->
+            <!-- search bar -->
             <div class="col-6 d-flex justify-content-start">
               <form class="form-inline">
                 <input class="form-control" type="search" placeholder="Search" id="search-input">
               </form>
             </div>
 
-            <!-- search bar -->
-            <div class="col-6 d-flex justify-content-end">
+            <!-- title of page -->
+            <!-- <div class="col-4 align-items-center">
+              <h1 class="white-text d-flex justify-content-center">Verb List</h1>
+            </div> -->
+
+            <!-- # items in table -->
+            <div class="col-6 d-flex justify-content-end align-items-center">
               <div class="input-group justify-content-end">
                 <div id="dropdown-width">
                   <select class="custom-select" id="rows-per-page">
@@ -74,12 +78,12 @@
             <thead>
               <tr>
                 <th scope="col" class="col-4">
-                  <h4>English</h4>
+                  <h5>English</h5>
                   <br/>
                 </th>
-                <th scope="col" class="col-4"><h4>Common Use</h4><br/></th>
+                <th scope="col" class="col-4"><h5>Common Use</h5><br/></th>
                 <th scope="col" class="col-2">
-                  <h4>Pres. Stem</h4>
+                  <h5>Pres. Stem</h5>
                   <div class="custom-control custom-checkbox align-self-center">
                     <input type="checkbox" class="custom-control-input" id="exampleCheck">
                     <label class="custom-control-label d-flex align-items-center" for="exampleCheck">
@@ -87,7 +91,7 @@
                     </label>
                   </div>
                 </th>
-                <th scope="col" class="col-2"><h4>Infinitive</h4><br/></th>
+                <th scope="col" class="col-2"><h5>Infinitive</h5><br/></th>
               </tr>
             </thead>
 

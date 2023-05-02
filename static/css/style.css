@@ -60,3 +60,8 @@ transform: scale(1.05);
 .lighter-primary-color {
   color: #ff5f14;
 }
+
+/* white text */
+.white-text {
+  color: white !important;
+}

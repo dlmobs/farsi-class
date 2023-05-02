@@ -2,7 +2,8 @@
 
 {% block head %}
   <title>Farsi Tenses</title>
-  <link rel="stylesheet" href="/static/css/conjugations.css">
+  <link rel="stylesheet" href="/static/css/conjugations_style.css">
+  <link rel="stylesheet" href="/static/css/lists_style.css">
 {% endblock %}
 
 {% block content %}
@@ -34,15 +35,11 @@
 
         <div class="container mt-5">
           {% for tense_name, tense_conj_formula in conj_formulas.items() %}
-            <div class="card mt-4 mb-4">
-              <div class="card-body">
                 <!-- tense name -->
-                <div class="card-header">
-                  <h5>{{ tense_name }}</h5>
-                </div>
+                <h5 class="white-text">{{ tense_name }}</h5>
                 
                 <!-- table of conjugations -->
-                <table class="table">
+                <table class="table" id="farsi-table">
                   <thead>
                     <tr>
                       {% for eng_pronoun, farsi_pronoun in pronouns.items() %}
@@ -79,8 +76,7 @@
                     </tr>
                   </tbody>
                 </table>
-              </div>
-            </div>
+
           {% endfor %}
         </div>
 
