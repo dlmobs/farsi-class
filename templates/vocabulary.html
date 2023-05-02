@@ -1,126 +1,115 @@
-<!DOCTYPE html>
-<html>
+{% extends 'splash.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-    <title>UT PRS</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
+{% block head %}
+  <title>Farsi Vocabulary</title>
+  <link rel="stylesheet" href="/static/css/lists_style.css">
+  <link rel="stylesheet" href="/static/css/vocab_style.css">
+{% endblock %}
 
+{% block content %}
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-left: 5px;">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">Farsi Basics</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="/verbs">Verbs</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/exceptions">Exception Verbs</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/vocabulary">Vocabulary</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/conjugations">Conjugations</a>
-              </li>
-            </ul>
-        </div>
-    </nav>
+  <div id="content">
+    <!-- all page content -->
+    <div id="inner-content">
 
-    <div id="background-black">
-      <div id="background-setup">
-        <br/>
-        <div class="container">
-          <div class="card mt-5" style="opacity: 0.92;">
-            <h4 class="card-body">Sort</h4>
-          </div>
-          <div class="card mt-5" style="opacity: 0.92;">
-            <div class="card-body">
-              <div class="card-title">
+      <div class="container-fluid">
+        <!-- top row -->
+        <div class="row align-items-center">
+          <!-- button group on the left -->
+          <div class="col-md-4 mt-4">
+            <div class="btn-group" role="group">
+              <a href="/"><button type="button" class="btn mr-3 rounded-pill">Home</button></a>
+              <a href="/about"><button type="button" class="btn mr-3 rounded-pill">About</button></a>
+              <a href="/vocabulary-list"><button type="button" class="btn mr-3 rounded-pill">Vocabulary</button></a>
 
-                <!-- table -->
-                <table class="table">
-                  <!-- title -->
-                  <thead>
-                    <tr>
-                      <th scope="col">English</th>
-                      <th scope="col">Farsi</th>
-                    </tr>
-                  </thead>
-
-                  <!-- body of table -->
-                  <tbody>
-                    {% for item in vocabulary %}
-                    <!-- row -->
-                    <tr>
-                      <th scope="row">{{ item.english }}</th>
-                      <th scope="row">{{ item.infinitive }}</th>
-                    </tr>
-                  {% endfor %}
-                  </tbody>
-                </table>
-
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th colspan="2" scope="colgroup">Contact</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>John Doe</td>
-                      <td>Email:</td>
-                      <td>john.doe@example.com</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"></th>
-                      <td></td>
-                      <td>Phone:</td>
-                      <td>555-1234</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jane Smith</td>
-                      <td>Email:</td>
-                      <td>jane.smith@example.com</td>
-                    </tr>
-                    <tr>
-                      <th scope="row"></th>
-                      <td></td>
-                      <td>Phone:</td>
-                      <td>555-5678</td>
-                    </tr>
-                  </tbody>
-                </table>
-                
+              <div class="btn-group dropdown-hover">
+                <button type="button" id="verbs-btn" class="btn dropdown-toggle rounded-pill" data-toggle="dropdown">Verbs</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/verb-list">Verb List</a>
+                  <a class="dropdown-item" href="/tenses">Conjugations</a>
+                  <a class="dropdown-item" href="/exceptions">Exceptions</a>
+                </div>
               </div>
             </div>
           </div>
-          
         </div>
+
+        <div class="row align-items-center mt-3">
+          <!-- H1 tag in the center -->
+          <div class="col">
+            <h1 id="page-title">Vocabulary List</h1>
+          </div>
+        </div>
+        
+        <!-- verb table set up -->
+        <div class="container-fluid w-50">
+          <!-- # rows in table and search bar -->
+          <div class="row mb-4 mt-5">
+            <!-- # items in table -->
+            <div class="col-6 d-flex justify-content-start">
+              <form class="form-inline">
+                <input class="form-control" type="search" placeholder="Search" id="search-input">
+              </form>
+            </div>
+
+            <!-- search bar -->
+            <div class="col-6 d-flex justify-content-end">
+              <div class="input-group justify-content-end">
+                <div id="dropdown-width">
+                  <select class="custom-select" id="rows-per-page">
+                    <option value="15">15 Rows</option>
+                    <option value="25">25 Rows</option>
+                    <option value="50">50 Rows</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- table stuff -->
+          <table id="farsi-table" class="table table-hover table-striped">
+            <!-- title -->
+            <thead>
+              <tr>
+                <th scope="col" class="col-6"><h4>English</h4></th>
+                <th scope="col" class="col-6"><h4>Farsi</h4></th>
+              </tr>
+            </thead>
+
+            <!-- body of table -->
+            <tbody id="table-body">
+              {% for item in vocabulary %}
+                <!-- row -->
+                <tr>
+                  <td scope="row"><h5 class="unbolded-heading">{{ item["english"]|capitalize_first_word }}</h5></td>
+                  <td scope="row">
+                    <h5 class="unbolded-heading display-inline">{{ item["farsi"]["written"] }}</h5>
+                    {% if item["farsi"]["spoken"] != "" %}
+                      <h5 class="unbolded-heading display-inline green-color">{{ item["farsi"]["spoken"] }}</h5>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <!-- pagination buttons -->
+          <div class="row justify-content-end mr-1 mt-3">
+            <nav>
+              <ul class="pagination">
+                <!-- Pagination items will be inserted here from javascript -->
+              </ul>
+            </nav>
+          </div>
+
+        </div>
+
       </div>
     </div>
-    
+  </div>
 </body>
 
-</html>
+<!-- specific js page import -->
+<script src="{{ url_for('static', filename='js/vocab_list.js') }}"></script>
+
+{% endblock %}

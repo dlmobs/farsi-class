@@ -1,7 +1,7 @@
 {% extends 'splash.html' %}
 
 {% block head %}
-  <title>Farsi Verbs</title>
+  <title>{{ word_dict["english"]|capitalize_each_word }}</title>
   <link rel="stylesheet" href="/static/css/single_verb_style.css">
 {% endblock %}
 
@@ -29,6 +29,7 @@
       </div>
     </div>
 
+    </br>
     <div class="container mt-5">
     <!-- below nav bar -->
     <table id="farsi-table" class="table table-striped">

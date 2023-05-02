@@ -1,23 +1,6 @@
-/* background img */
-#content {
-    min-height: 100%;
-    position: relative;
-    background-image: url("/static/images/blackbg2.jpg");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-  
-#inner-content {
-    position: relative;
-    z-index: 1; /* Move the inner content above the background */
-}
+/* verb list page styling */
 
 /* table */
-#farsi-table {
-    background-color: white;
-}
-
 tbody tr.clickable-row:hover {
     cursor: pointer;
 }
@@ -40,8 +23,3 @@ label {
 #dropdown-width {
     width: 21%
 }
-
-/* display text in the same line */
-.display-inline {
-    display: inline;
-  }

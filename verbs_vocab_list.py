@@ -103,8 +103,12 @@ vocabulary_list = [
         "english": "door",
         "farsi": { "written": "در", "spoken": "" }
     },
-        {
-        "english": "door",
-        "farsi": { "written": "در", "spoken": "" }
+    {
+        "english": "home",
+        "farsi": { "written": "خانه", "spoken": "خونه" }
+    },
+    {
+        "english": "dog",
+        "farsi": { "written": "سگ", "spoken": "" }
     }
 ]

@@ -5,10 +5,10 @@ $(document).ready(function() {
     window.location = url;
   });
 
-  // Transitive/intransitive filtering
-  $('input[type=radio][name=options]').on('change', function() {
-    filterTable();
-  });
+  // // Transitive/intransitive filtering
+  // $('input[type=radio][name=options]').on('change', function() {
+  //   filterTable();
+  // });
 
   // Search bar
   $('#search-input').on('keyup', function() {

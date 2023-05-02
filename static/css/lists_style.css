@@ -1,0 +1,26 @@
+/* styling for the vocab and verb list pages */
+
+/* background img */
+#content {
+    min-height: 100%;
+    position: relative;
+    background-image: url("/static/images/blackbg2.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  
+#inner-content {
+    position: relative;
+    z-index: 1; /* Move the inner content above the background */
+}
+
+/* table */
+#farsi-table {
+    background-color: white;
+}
+
+/* display text in the same line */
+.display-inline {
+    display: inline;
+}
