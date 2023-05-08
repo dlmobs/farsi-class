@@ -22,6 +22,50 @@ $(document).ready(function() {
 
   var rows = $('#table-body tr');
 
+  // Sorting
+  // Add these variables to store the current sort order
+  var engSortOrder = 1;
+  var farsiSortOrder = 1;
+
+  // Add this click event listener for the English sort button
+  $('#eng-sort-btn').click(function() {
+    engSortOrder = -engSortOrder;
+    sortTable(0, engSortOrder);
+  });
+
+  // Add this click event listener for the Farsi sort button
+  $('#farsi-sort-btn').click(function() {
+    farsiSortOrder = -farsiSortOrder;
+    sortTable(3, farsiSortOrder);
+  });
+
+  // sort the table by the specified column
+  function sortTable(columnIndex, sortOrder) {
+    var rows = $('#table-body tr').get();
+    rows.sort(function(a, b) {
+      var valueA = $(a).find('td:nth-child(' + (columnIndex + 1) + ') h5').text();
+      var valueB = $(b).find('td:nth-child(' + (columnIndex + 1) + ') h5').text();
+
+      if (columnIndex === 0) {
+        valueA = valueA.toLowerCase();
+        valueB = valueB.toLowerCase();
+      }
+      
+      if (valueA < valueB) {
+        return -sortOrder;
+      } else if (valueA > valueB) {
+        return sortOrder;
+      } else {
+        return 0;
+      }
+    });
+
+    // Re-append the sorted rows to the table
+    for (var i = 0; i < rows.length; i++) {
+      $('#table-body').append(rows[i]);
+    }
+  }
+
   function filterTable() {
     // let verbType = $('input[type=radio][name=options]:checked').val();
     let searchText = $('#search-input').val().toLowerCase();
@@ -79,4 +123,5 @@ $(document).ready(function() {
   });
 
   filterTable();
+  sortTable(0, engSortOrder);
 });
