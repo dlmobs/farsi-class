@@ -1,8 +1,11 @@
-#background-setup {
+/* background img */
+#content {
+  min-height: 100%;
+  position: relative;
   background-image: url("/static/images/tower2.jpg");
   background-size: cover;
   background-position: center center;
-  height: 100%;
+  background-repeat: no-repeat;
 }
 
 #search-bar-style {

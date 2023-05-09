@@ -38,6 +38,18 @@ transform: scale(1.05);
   /* background-color: #ff632f !important; */
 }
 
+/* login button */
+.blue-button {
+  background-color: #007CBC !important; 
+  color: #FFFFFF !important;
+  opacity: 92%;
+}
+
+.blue-button:hover {
+background-color: #04AAE1 !important;
+transform: scale(1.05);
+}
+
 /* page title */
 #page-title {
   color: white;
