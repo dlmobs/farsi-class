@@ -5,11 +5,6 @@ $(document).ready(function() {
     window.location = url;
   });
 
-  // // Transitive/intransitive filtering
-  // $('input[type=radio][name=options]').on('change', function() {
-  //   filterTable();
-  // });
-
   // Search bar
   $('#search-input').on('keyup', function() {
     filterTable();
@@ -23,20 +18,25 @@ $(document).ready(function() {
   var rows = $('#table-body tr');
 
   // Sorting
-  // Add these variables to store the current sort order
+  // store the current sort order
   var engSortOrder = 1;
   var farsiSortOrder = 1;
 
-  // Add this click event listener for the English sort button
+  // event listener for the English sort button
   $('#eng-sort-btn').click(function() {
     engSortOrder = -engSortOrder;
     sortTable(0, engSortOrder);
   });
 
-  // Add this click event listener for the Farsi sort button
+  // event listener for the Farsi sort button
   $('#farsi-sort-btn').click(function() {
     farsiSortOrder = -farsiSortOrder;
     sortTable(3, farsiSortOrder);
+  });
+
+  // event listener for the checkbox
+  $('#spoken-checkbox').on('change', function() {
+    filterTable();
   });
 
   // sort the table by the specified column
@@ -67,21 +67,23 @@ $(document).ready(function() {
   }
 
   function filterTable() {
-    // let verbType = $('input[type=radio][name=options]:checked').val();
+    let checkboxChecked = $('#spoken-checkbox').prop('checked');
     let searchText = $('#search-input').val().toLowerCase();
-
+  
     rows.hide();
     rows.each(function() {
-      // let rowVerbType = $(this).data('verb-type');
       let englishText = $(this).find('td:first-child h5').text().toLowerCase();
       let farsiText = $(this).find('td:nth-child(3), td:nth-child(4) h5').text();
-
-      // if ((verbType === 'All' || rowVerbType === verbType) && englishText.indexOf(searchText) !== -1) {
-      if ( englishText.indexOf(searchText) !== -1 || farsiText.indexOf(searchText) !== -1 ) {
+      let spokenText = $(this).find('td:nth-child(3) h5.green-color').text().trim();
+  
+      if (
+        (englishText.indexOf(searchText) !== -1 || farsiText.indexOf(searchText) !== -1) &&
+        (!checkboxChecked || (checkboxChecked && spokenText !== ""))
+      ) {
         $(this).show();
       }
     });
-
+  
     renderTable();
   }
 
