@@ -1,3 +1,5 @@
+current_counter = 12
+
 verbs_list = [    
     {
         "counter": 1,
@@ -94,21 +96,5 @@ verbs_list = [
         "Pres. Stem": {"written": ["پیروز", "شو"], "spoken": ["پیروز", "ش"] },
         "Past Stem": {"written": ["پیروز", "شد"], "spoken": [] },
         "example": "fill"
-    }
-]
-
-
-vocabulary_list = [
-    {
-        "english": "door",
-        "farsi": { "written": "در", "spoken": "" }
-    },
-    {
-        "english": "home",
-        "farsi": { "written": "خانه", "spoken": "خونه" }
-    },
-    {
-        "english": "dog",
-        "farsi": { "written": "سگ", "spoken": "" }
     }
 ]

@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session
+from flask import Flask, render_template, redirect, url_for, session, request
 import random
 import json
 import ast
 # from pyarabic.araby import normalize_ligature
-from verbs_vocab_list import verbs_list, vocabulary_list
+from verbs_list import verbs_list, current_counter
+from vocab_list import vocabulary_list
 from html_helpers import capitalize_each_word, combine_list, capitalize_first_word
 
 mee_stem = "می‌"
@@ -58,12 +59,6 @@ imperative_tense["you"] = { "written": "", "spoken": "" }
 
 # subjunctive conjugations is the same as present tense
 
-app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'
-app.jinja_env.filters['capitalize_each_word'] = capitalize_each_word
-app.jinja_env.filters['combine_list'] = combine_list
-app.jinja_env.filters['capitalize_first_word'] = capitalize_first_word
-
 # root used for each tense
 roots = {"Present Tense": "Pres. Stem", "Simple Past": "Past Stem", "Past Progressive": "Past Stem", 
             "Present Perfect": "Past Stem", "Past Perfect": "Past Stem", "Future Tense": "Past Stem",
@@ -79,14 +74,13 @@ tenses = {"Present Tense": present_tense, "Simple Past": past_tense, "Past Progr
             "Imperative": imperative_tense, "Subjunctive": present_tense}
 
 
-# example word_dict
-    # {
-    #     "counter": 1,
-    #     "english": "to think",
-    #     "infinitive": "فکر کردن",
-    #     "Pres. Stem": {"written": ["فکر", "کن"], "spoken": [] },    * note that the first or zeroth object is from right to left *
-    #     "Past Stem": {"written": ["ره", "رو"], "spoken":  ["ره", "ر"] }   
-    # }
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key_here'
+app.jinja_env.filters['capitalize_each_word'] = capitalize_each_word
+app.jinja_env.filters['combine_list'] = combine_list
+app.jinja_env.filters['capitalize_first_word'] = capitalize_first_word
+
 
 def single_verb_conjugations(word_dict):
     ''' conjugate a given verb '''
@@ -163,6 +157,7 @@ def single_verb_conjugations(word_dict):
 
 
 def conjugation_formulas():
+    ''' conjugation formulas for conjugation page '''
     formulas = {}
 
     # loop through each tense
@@ -195,13 +190,7 @@ def conjugation_formulas():
 # app routes
 @app.route('/test')
 def test():
-    stem = "رو"
-    beginning = "می‌"
-    end = "م"
-
-    test_var = beginning + stem + end
-
-    return render_template("test.html", test_var = test_var)
+    return render_template("test.html")
 
 # splash page
 @app.route('/')

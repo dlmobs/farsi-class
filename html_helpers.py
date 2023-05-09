@@ -1,3 +1,5 @@
+# helper functions for html files
+
 def capitalize_each_word(s):
     ''' perform capitalization for a given english phrase in frontend call '''
     return ' '.join(word.capitalize() for word in s.split())
