@@ -22,13 +22,13 @@ body, html {
 }
 
 /* nav button design */
-button {
+.orange-button {
   background-color: #C92C00 !important; 
   color: #FFFFFF !important;
   opacity: 92%;
 }
 
-button:hover {
+.orange-button:hover {
 background-color: #ff5f14 !important;
 transform: scale(1.05);
 }
