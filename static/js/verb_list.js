@@ -17,7 +17,6 @@ $(document).ready(function() {
 
   var rows = $('#table-body tr');
 
-  // Sorting
   // store the current sort order
   var engSortOrder = 1;
   var farsiSortOrder = 1;
@@ -68,12 +67,12 @@ $(document).ready(function() {
 
   function filterTable() {
     let checkboxChecked = $('#spoken-checkbox').prop('checked');
-    let searchText = $('#search-input').val().toLowerCase();
+    let searchText = $('#search-input').val().toLowerCase().trim();
   
     rows.hide();
     rows.each(function() {
       let englishText = $(this).find('td:first-child h5').text().toLowerCase();
-      let farsiText = $(this).find('td:nth-child(3), td:nth-child(4) h5').text();
+      let farsiText = $(this).find('td:nth-child(3), td:nth-child(4)').text();
       let spokenText = $(this).find('td:nth-child(3) h5.green-color').text().trim();
   
       if (

@@ -3,6 +3,7 @@
 {% block head %}
   <title>Farsi Vocabulary</title>
   <link rel="stylesheet" href="/static/css/lists_style.css">
+  <link rel="stylesheet" href="/static/css/verbs_style.css">
   <link rel="stylesheet" href="/static/css/vocab_style.css">
 {% endblock %}
 
@@ -44,15 +45,15 @@
         <!-- verb table set up -->
         <div class="container-fluid w-50">
           <!-- # rows in table and search bar -->
+          <!-- search bar -->
           <div class="row mb-4 mt-5">
-            <!-- # items in table -->
             <div class="col-6 d-flex justify-content-start">
               <form class="form-inline">
                 <input class="form-control" type="search" placeholder="Search" id="search-input">
               </form>
             </div>
 
-            <!-- search bar -->
+            <!-- # items in table -->
             <div class="col-6 d-flex justify-content-end">
               <div class="input-group justify-content-end">
                 <div id="dropdown-width">
@@ -71,8 +72,30 @@
             <!-- title -->
             <thead>
               <tr>
-                <th scope="col" class="col-6"><h4>English</h4></th>
-                <th scope="col" class="col-6"><h4>Farsi</h4></th>
+                <th scope="col" class="col-6">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5>English</h5>
+                    <button id="eng-sort-btn" class="btn btn-link btn-sm">
+                      <i class="fas fa-sort"></i>
+                    </button>
+                  </div>
+                  <br/>
+                </th>
+                <th scope="col" class="col-6">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5>Farsi</h5>
+                    <button id="farsi-sort-btn" class="btn btn-link btn-sm">
+                      <i class="fas fa-sort"></i>
+                    </button>
+                  </div>
+                  <div class="custom-control custom-checkbox align-self-center">
+                    <input type="checkbox" class="custom-control-input" id="spoken-checkbox">
+                    <label class="custom-control-label d-flex align-items-center" for="spoken-checkbox" id="spoken-label">
+                      <small>Spoken Only</small>
+                    </label>
+                  </div>
+                  <br/>
+                </th>
               </tr>
             </thead>
 

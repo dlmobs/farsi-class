@@ -15,7 +15,7 @@ tbody tr.clickable-row:hover {
     transform: scale(1.25);
 }
 
-label {
+#spoken-label {
     font-size: 1.2em;
 }
 
