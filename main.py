@@ -188,10 +188,6 @@ def conjugation_formulas():
 
 
 # app routes
-@app.route('/test')
-def test():
-    return render_template("test.html")
-
 # splash page
 @app.route('/')
 def splash():
