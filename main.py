@@ -173,7 +173,7 @@ def conjugation_formulas():
             ending = w_s_conj["written"]
 
             if tense_name == "Future Tense":
-                single_formula = needed_root + " " + ending
+                single_formula =  ending + " " + needed_root
             else:
                 single_formula = ending + " + " + needed_root + " + " + needed_beg
 
