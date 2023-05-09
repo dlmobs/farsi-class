@@ -2,7 +2,7 @@
 
 {% block head %}
   <title>{{ word_dict["english"]|capitalize_each_word }}</title>
-  <link rel="stylesheet" href="/static/css/single_verb_style.css">
+  <link rel="stylesheet" href="/static/css/conjugations_style.css">
 {% endblock %}
 
 {% block content %}
@@ -33,47 +33,47 @@
         </div>
         </br>
         <div class="container mt-4">
-        <!-- below nav bar -->
-        <table id="farsi-table" class="table table-striped">
-          <thead>
-            <tr>
-              {% for eng_pronoun, farsi_pronoun in pronouns_dict.items() %}
-                  <th scope="row" class=" text-center header-style">
-                    <h4 class="unbolded-heading">
-                      {{ farsi_pronoun["written"] }}
-                      {% if farsi_pronoun["spoken"] != "" %}
-                        / <span class="green-color"> {{ farsi_pronoun["spoken"] }}</span>
-                      {% endif %}
-                    </h4>
-                    <p class="unbolded-heading">{{ eng_pronoun }}</p>
-                </th>
-              {% endfor %}
-              <th class="text-center" id="top-right-corner">
-                <h3 class="lighter-primary-color">{{ word_dict["infinitive"] }}</h3>
-                {% if word_dict["Pres. Stem"]["spoken"] != [] %}
-                  <h5 class="unbolded-heading green-color display-inline-block">{{ word_dict["Pres. Stem"]["spoken"][-1] }}</h5>
-                {% endif %}
-                <h5 class="unbolded-heading display-inline-block">{{ word_dict["Pres. Stem"]["written"]|combine_list }}</h5>
-                <!-- <p class="unbolded-heading display-inline-block">:PS</p> -->
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for tense_name in tense_order %}
-              <tr class="custom-row-padding">
-                {% for eng_pronoun in pronouns_dict %}
-                  <td scope="row" class="text-center">
-                    <h5 class="unbolded-heading">{{ word_dict[tense_name][eng_pronoun]["written"] }}</h5>
-                    <h5 class="unbolded-heading green-color">{{ word_dict[tense_name][eng_pronoun]["spoken"] }}</h5>
-                  </td>
+          <!-- below nav bar -->
+          <table id="farsi-table" class="table table-striped">
+            <thead>
+              <tr>
+                {% for eng_pronoun, farsi_pronoun in pronouns_dict.items() %}
+                    <th scope="row" class=" text-center header-style">
+                      <h4 class="unbolded-heading">
+                        {{ farsi_pronoun["written"] }}
+                        {% if farsi_pronoun["spoken"] != "" %}
+                          / <span class="green-color"> {{ farsi_pronoun["spoken"] }}</span>
+                        {% endif %}
+                      </h4>
+                      <p class="unbolded-heading">{{ eng_pronoun }}</p>
+                  </th>
                 {% endfor %}
-                <td scope="row" id="tense-col" class="text-center">
-                  <h5>{{ tense_name }}</h5>
-                </td>
+                <th class="text-center" id="top-right-corner">
+                  <h3 class="lighter-primary-color">{{ word_dict["infinitive"] }}</h3>
+                  {% if word_dict["Pres. Stem"]["spoken"] != [] %}
+                    <h5 class="unbolded-heading green-color display-inline-block">{{ word_dict["Pres. Stem"]["spoken"][-1] }}</h5>
+                  {% endif %}
+                  <h5 class="unbolded-heading display-inline-block">{{ word_dict["Pres. Stem"]["written"]|combine_list }}</h5>
+                  <!-- <p class="unbolded-heading display-inline-block">:PS</p> -->
+                </th>
               </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {% for tense_name in tense_order %}
+                <tr class="custom-row-padding">
+                  {% for eng_pronoun in pronouns_dict %}
+                    <td scope="row" class="text-center">
+                      <h5 class="unbolded-heading">{{ word_dict[tense_name][eng_pronoun]["written"] }}</h5>
+                      <h5 class="unbolded-heading green-color">{{ word_dict[tense_name][eng_pronoun]["spoken"] }}</h5>
+                    </td>
+                  {% endfor %}
+                  <td scope="row" id="tense-col" class="text-center">
+                    <h5>{{ tense_name }}</h5>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
 
       </div>

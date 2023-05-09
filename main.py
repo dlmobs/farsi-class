@@ -41,7 +41,7 @@ past_perfect_tense = {"me": { "written": "ه بودم", "spoken": "" },
                     "you": { "written": "ه بودی", "spoken": "" },
                     "he/she": { "written": "ه بود", "spoken": "" },
                     "we": { "written": "ه بودیم", "spoken": "" },
-                    "you (respectful)": { "written": "ه یودید", "spoken": "ه بودین" },
+                    "you (respectful)": { "written": "ه بودید", "spoken": "ه بودین" },
                     "they/them": { "written": "ه بودند", "spoken": "ه بودن" }}
 
 # optimized by removing spoken, since future only used in written
@@ -156,6 +156,7 @@ def single_verb_conjugations(word_dict):
             verb_tense_conjugations[pronoun] = completed_conj
 
         # update word_dict with present tense ones
+        # word_dict[tense_name] = dict(list(reversed(list(verb_tense_conjugations.items()))))
         word_dict[tense_name] = verb_tense_conjugations
     
     return word_dict
@@ -228,7 +229,6 @@ def single_verb(index):
     word_dict_str = session.get('word_dict')
     word_dict = ast.literal_eval(word_dict_str)
     word_dict_tenses = single_verb_conjugations(word_dict)
-
     return render_template('single_verb.html', word_dict=word_dict_tenses, tense_order=html_tenses, pronouns_dict=pronouns)
 
 # redirct/helper route for specific verb page
@@ -241,7 +241,6 @@ def set_word_dict(word_dict):
 # conjugations page
 @app.route('/tenses')
 def tenses_page():
-    # word_dict_tenses = single_verb_conjugations(verbs_list[1])
     conj_formulas = conjugation_formulas()
     return render_template("conjugations.html", conj_formulas=conj_formulas, tenses=html_tenses, pronouns=pronouns)
 
