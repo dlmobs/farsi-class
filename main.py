@@ -202,6 +202,11 @@ def splash():
 def about():
     return render_template("about.html")
 
+# login page
+@app.route('/login')
+def login_page():
+    return render_template("login.html")
+
 # vocabulary list page
 @app.route('/vocabulary-list')
 def vocabulary():
@@ -232,6 +237,11 @@ def set_word_dict(word_dict):
 def tenses_page():
     conj_formulas = conjugation_formulas()
     return render_template("conjugations.html", conj_formulas=conj_formulas, tenses=html_tenses, pronouns=pronouns)
+
+# exceptions page
+@app.route('/exceptions')
+def exceptions_page():
+    return render_template("exceptions.html")
 
 
 if __name__ == '__main__':
