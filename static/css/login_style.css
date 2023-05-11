@@ -1,0 +1,16 @@
+/* background img */
+#content {
+    min-height: 100%;
+    position: relative;
+    background-image: url("/static/images/tower2.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+/* .login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */

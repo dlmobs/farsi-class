@@ -200,8 +200,27 @@ def about():
 
 # login page
 @app.route('/login')
-def login_page():
-    return render_template("login.html")
+def login():
+    incorrect_password = session.pop('incorrect_password', False)
+    print(incorrect_password)
+    return render_template("login.html", incorrect_password=incorrect_password)
+
+# check password of login attempt
+@app.route('/submit-login', methods=['POST'])
+def check_password():
+    password = request.form['password']
+    correct_password = "password"
+
+    if password == correct_password:
+        return redirect(url_for('edit_table'))
+    else:
+        session['incorrect_password'] = True
+        return redirect(url_for('login'))
+    
+# edit table page
+@app.route('/edit-table')
+def edit_table():
+    return render_template('edit.html')
 
 # vocabulary list page
 @app.route('/vocabulary-list')
