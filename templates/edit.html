@@ -1,3 +1,124 @@
-<html>
-    <h1>Success</h1>
-</html>
+{% extends 'splash.html' %}
+
+{% block head %}
+  <title>Edit Farsi Verbs and Vocabulary</title>
+  <link rel="stylesheet" href="/static/css/login_style.css">
+  <link rel="stylesheet" href="/static/css/edit_style.css">
+{% endblock %}
+
+{% block content %}
+<body>
+  <div id="content">
+    <!-- all page content -->
+    <div id="inner-content">
+      <div class="container-fluid">
+        <!-- top row -->
+        <div class="row align-items-center">
+          <!-- button group on the left -->
+          <div class="col-md-4 mt-4">
+            <div class="btn-group" role="group">
+              <a href="/"><button type="button" class="btn mr-3 rounded-pill orange-button">Home</button></a>
+              <a href="/about"><button type="button" class="btn mr-3 rounded-pill orange-button">About</button></a>
+              <a href="/vocabulary-list"><button type="button" class="btn mr-3 rounded-pill orange-button">Vocabulary</button></a>
+
+              <div class="btn-group dropdown-hover">
+                <button type="button" id="verbs-btn" class="btn dropdown-toggle rounded-pill orange-button" data-toggle="dropdown">Verbs</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/verb-list">Verb List</a>
+                  <a class="dropdown-item" href="/tenses">Conjugations</a>
+                  <a class="dropdown-item" href="/exceptions">Exceptions</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- cards -->
+        <br/>
+        <div class="container mt-5">
+          <div class="card">
+            <form action="/submit-login" method="POST">
+              <div class="card-body">
+                <!-- search input -->
+                <div class="form-row">
+                  <div class="col">
+                    <!-- <label for="search">Search for a Farsi Infinitive or English/Farsi Word:</label> -->
+                    <div class="form-row">
+                      <div class="col-5">
+                        <input type="search" class="form-control" id="search" placeholder="Search for a Farsi Infinitive or English/Farsi Word">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="container mt-5 px-5">
+                  <br/>
+                  <!-- verb edit or new card -->
+                  <div class="card px-3 mx-5 gray-card" id="verb">
+                    <div class="card-body px-5 py-5">
+                      <form>
+                        <!-- english and infinitive row -->
+                        <div class="row">
+                          <div class="col">
+                            <label for="english">English <span class="red-text">*</span></label>
+                            <!-- <a tabindex="0" class="btn btn-link" role="button" data-toggle="popover" data-trigger="hover" data-content="Some content about the field">
+                              <i class="fas fa-question-circle"></i>
+                            </a> -->
+                            <input type="text" class="form-control" id="english" required>
+                          </div>
+                          <div class="col">
+                            <label for="infinitive">Infinitive <span class="red-text">*</span></label>
+                            <input type="text" class="form-control" id="infinitive" required>
+                          </div>
+                        </div>
+
+                        <!-- common use row -->
+                        <div class="row mt-4">
+                          <div class="col">
+                            <label for="commonuse-1">Common Use (1) <span class="red-text">*</span></label>
+                            <input type="text" class="form-control" id="commonuse-1" required>
+                          </div>
+                          <div class="col">
+                            <label for="commonuse-2">Common Use (2)</label>
+                            <input type="text" class="form-control" id="commonuse-2">
+                          </div>
+                        </div>
+
+                        <!-- written and spoken row -->
+                        <div class="row mt-4">
+                          <div class="col">
+                            <label for="written">Written <span class="red-text">*</span></label>
+                            <input type="text" class="form-control" id="written" required>
+                          </div>
+                          <div class="col">
+                            <label for="spoken">Spoken</label>
+                            <input type="text" class="form-control" id="spoken">
+                          </div>
+                        </div>
+
+                        <!-- submit button or reset button -->
+                        <div class="row mt-5">
+                          <div class="col d-flex justify-content-center">
+                            <button class="btn btn-primary mr-2" type="submit">Submit</button>
+                            <button type="reset" class="btn btn-danger"><i class="fas fa-rotate-right"></i></button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!-- specific js page import -->
+<script src="{{ url_for('static', filename='js/edit.js') }}"></script>
+
+{% endblock %}

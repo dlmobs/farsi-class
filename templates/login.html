@@ -35,20 +35,20 @@
         <!-- sign in part -->
         <form action="/submit-login" method="POST" data-incorrect-password="{{ incorrect_password }}">
           <div class="form-row align-items-center justify-content-center mt-5">
-              <div class="col-auto">
-                  <!-- <label for="password">Password:</label> -->
-                  <input type="password" class="form-control" id="password" name="password" required placeholder="Enter Password">
-              </div>
-              <div class="col-auto">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
+            <div class="col-auto">
+              <!-- <label for="password">Password:</label> -->
+              <input type="password" class="form-control" id="password" name="password" required placeholder="Enter Password">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
           </div>
           <div class="form-row justify-content-center mt-2">
-              <div class="col-auto">
-                  <div class="incorrect-password" role="alert" style="display: none; color: red;">
-                      Incorrect password.
-                  </div>
+            <div class="col-auto">
+              <div class="incorrect-password" role="alert" style="display: none; color: red;">
+                Incorrect password.
               </div>
+            </div>
           </div>
         </form>
       
