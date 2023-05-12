@@ -1,8 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, session, request
 import random
 import json
-import ast
-# from pyarabic.araby import normalize_ligature
 from html_helpers import capitalize_each_word, combine_list, capitalize_first_word
 
 # get lists
@@ -77,7 +75,6 @@ beginnings = {"Present Tense": mee_stem, "Simple Past": "", "Past Progressive": 
 tenses = {"Present Tense": present_tense, "Simple Past": past_tense, "Past Progressive": past_tense, 
             "Present Perfect": present_perfect_tense, "Past Perfect": past_perfect_tense, "Future Tense": future_tense,
             "Imperative": imperative_tense, "Subjunctive": present_tense}
-
 
 
 app = Flask(__name__)
@@ -244,12 +241,12 @@ def vocabulary():
 # verbs list page
 @app.route('/verb-list')
 def verbs():
-    return render_template("verbs.html", verbs=verbs_list)
+    return render_template("verbs.html", verbs=verb_list)
 
 # specific verb page with all the conjugations
 @app.route('/verbs/<int:counter>')
 def single_verb(counter):
-    word_dict = verb_list[counter]
+    word_dict = verb_list[str(counter)]
     word_dict_tenses = single_verb_conjugations(word_dict)
     return render_template('single_verb.html', word_dict=word_dict_tenses, tense_order=html_tenses, pronouns_dict=pronouns)
 
