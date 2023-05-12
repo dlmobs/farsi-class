@@ -1,4 +1,4 @@
-vocabulary_list = [
+[
     {
         "english": "door",
         "farsi": { "written": "در", "spoken": "" }

@@ -118,7 +118,7 @@
             <tbody id="table-body">
               {% for item in verbs %}
                 <!-- row -->
-                <tr class="clickable-row" data-url="{{ url_for ('set_word_dict', word_dict=item)}}">
+                <tr class="clickable-row" data-url="{{ url_for ('single_verb', counter=item["counter"])}}">
                   <td scope="row"><h5 class="unbolded-heading">{{ item.english|capitalize_first_word }}</h5></td>
                   <td scope="row"><h5 class="unbolded-heading">{{ item.example }}</h5></td>
                   <td scope="row">

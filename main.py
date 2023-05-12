@@ -3,9 +3,14 @@ import random
 import json
 import ast
 # from pyarabic.araby import normalize_ligature
-from verbs_list import verbs_list, current_counter
-from vocab_list import vocabulary_list
 from html_helpers import capitalize_each_word, combine_list, capitalize_first_word
+
+# get lists
+with open('verb_list.json', 'r', encoding='utf-8') as my_file:
+    verb_list = json.load(my_file)
+
+with open('vocab_list.json', 'r', encoding='utf-8') as my_file:
+    vocabulary_list = json.load(my_file)
 
 mee_stem = "می‌"
 b_stem = "ب"
@@ -187,6 +192,15 @@ def conjugation_formulas():
     return formulas
 
 
+@app.route('/test')
+def test():
+    with open('test.json', 'r', encoding='utf-8') as my_file:
+        data = json.load(my_file)
+    
+    print(data)
+    return render_template('test.html', data=data)
+
+
 # app routes
 # splash page
 @app.route('/')
@@ -233,19 +247,11 @@ def verbs():
     return render_template("verbs.html", verbs=verbs_list)
 
 # specific verb page with all the conjugations
-@app.route('/verbs/<int:index>')
-def single_verb(index):
-    word_dict_str = session.get('word_dict')
-    word_dict = ast.literal_eval(word_dict_str)
+@app.route('/verbs/<int:counter>')
+def single_verb(counter):
+    word_dict = verb_list[counter]
     word_dict_tenses = single_verb_conjugations(word_dict)
     return render_template('single_verb.html', word_dict=word_dict_tenses, tense_order=html_tenses, pronouns_dict=pronouns)
-
-# redirct/helper route for specific verb page
-@app.route('/set_word_dict/<word_dict>')
-def set_word_dict(word_dict):
-    session['word_dict'] = word_dict
-    word_dict_for_counter = ast.literal_eval(word_dict)
-    return redirect(url_for('single_verb', index=word_dict_for_counter["counter"]))
 
 # conjugations page
 @app.route('/tenses')

@@ -1,7 +1,5 @@
-current_counter = 12
-
-verbs_list = [    
-    {
+{    
+    "1": {
         "counter": 1,
         "english": "to think",
         "infinitive": "فکر کردن",
@@ -9,7 +7,7 @@ verbs_list = [
         "Past Stem": {"written": ["فکر", "کرد"], "spoken":  [] },
         "example": "fill"
     },
-    {
+    "2": {
         "counter": 2,
         "english": "to go",
         "infinitive": "رفتن",
@@ -17,7 +15,7 @@ verbs_list = [
         "Past Stem": {"written": ["رفت"], "spoken":  [""] },
         "example": "fill"  
     },
-    {
+    "3": {
         "counter": 3,
         "english": "to go by foot, to walk",
         "infinitive": "پیاده رفتن",
@@ -25,7 +23,7 @@ verbs_list = [
         "Past Stem": {"written": ["پیاده", "رفت"], "spoken":  [] },
         "example": "fill"
     },
-    {
+    "4": {
         "counter": 4,
         "english": "to go by foot (for people), to move (for automobiles)",
         "infinitive": "راه رفتن",
@@ -33,7 +31,7 @@ verbs_list = [
         "Past Stem": {"written": ["راه", "رفت"], "spoken": [] },
         "example": "fill"
     },
-        {
+    "5": {
         "counter": 5,
         "english": "to come",
         "infinitive": "آمدن",
@@ -41,7 +39,7 @@ verbs_list = [
         "Past Stem": {"written": ["آمد"], "spoken":  [] },
         "example": "fill"  
     },
-    {
+    "6": {
         "counter": 6,
         "english": "to arrive",
         "infinitive": "رسیدن",
@@ -49,7 +47,7 @@ verbs_list = [
         "Past Stem": {"written": ["رسید"], "spoken":  [] },
         "example": "fill"
     },
-    {
+    "7": {
         "counter": 7,
         "english": "to pick up",
         "infinitive": "برداشتن",
@@ -57,7 +55,7 @@ verbs_list = [
         "Past Stem": {"written": ["برداشت"], "spoken": [] },
         "example": "fill"
     },
-    {
+    "8": {
         "counter": 8,
         "english": "to bring",
         "infinitive": "آوردن",
@@ -65,7 +63,7 @@ verbs_list = [
         "Past Stem": {"written": ["آورد"], "spoken": [] },
         "example": "fill"
     },
-        {
+    "9": {
         "counter": 9,
         "english": "to take",
         "infinitive": "بردن",
@@ -73,7 +71,7 @@ verbs_list = [
         "Past Stem": {"written": ["برد"], "spoken": [] },
         "example": "fill"
     },
-    {
+    "10": {
         "counter": 10,
         "english": "to win a game",
         "infinitive": "بردن",
@@ -81,7 +79,7 @@ verbs_list = [
         "Past Stem": {"written": ["برد"], "spoken": [] },
         "example": "fill"
     },
-    {
+    "11": {
         "counter": 11,
         "english": "to lose a game",
         "infinitive": "باختن",
@@ -89,7 +87,7 @@ verbs_list = [
         "Past Stem": {"written": ["باخت"], "spoken": [] },
         "example": "fill"
     },
-    {
+    "12": {
         "counter": 12,
         "english": "to win, to conquer",
         "infinitive": "پیروز شدن",
@@ -97,4 +95,4 @@ verbs_list = [
         "Past Stem": {"written": ["پیروز", "شد"], "spoken": [] },
         "example": "fill"
     }
-]
+}
