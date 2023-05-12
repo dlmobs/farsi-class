@@ -37,39 +37,58 @@
         <br/>
         <div class="container mt-5">
           <div class="card">
-            <form action="/submit-login" method="POST">
-              <div class="card-body">
+            <div class="card-body">
+              <!-- search input and edit buttons -->
+              <div class="row">
                 <!-- search input -->
-                <div class="form-row">
-                  <div class="col">
-                    <!-- <label for="search">Search for a Farsi Infinitive or English/Farsi Word:</label> -->
-                    <div class="form-row">
-                      <div class="col-5">
-                        <input type="search" class="form-control" id="search" placeholder="Search for a Farsi Infinitive or English/Farsi Word">
-                      </div>
-                    </div>
-                  </div>
+                <div class="col-5">
+
                 </div>
 
+                <!-- edit buttons -->
+                <div class="col-7 text-right">
+                  <button class="btn rounded-pill btn-outline-orange">Verb Entry</button>
+                  <button class="btn rounded-pill btn-outline-orange">Vocabulary Entry</button>
+                  <!-- <p>Add a new entry</p> -->
+                </div>
+              </div>
 
-                <div class="container mt-5 px-5">
-                  <br/>
-                  <!-- verb edit or new card -->
+              <form action="/submit-login" method="POST">
+                <!-- verb edit or new card -->
+                <div class="container mb-5 mt-4 px-5">
+                  <div class="mx-5 pb-3">
+                    <form>
+                      <input type="search" class="form-control" id="search" placeholder="Search for an English/Farsi Word or Farsi Infinitive">
+                      <!-- <label for="search">Edit an existing entry</label> -->
+                    </form>
+                  </div>
                   <div class="card px-3 mx-5 gray-card" id="verb">
                     <div class="card-body px-5 py-5">
                       <form>
                         <!-- english and infinitive row -->
                         <div class="row">
                           <div class="col">
-                            <label for="english">English <span class="red-text">*</span></label>
+                            <label for="english">English Definition <span class="red-text">*</span></label>
                             <!-- <a tabindex="0" class="btn btn-link" role="button" data-toggle="popover" data-trigger="hover" data-content="Some content about the field">
                               <i class="fas fa-question-circle"></i>
                             </a> -->
                             <input type="text" class="form-control" id="english" required>
                           </div>
                           <div class="col">
-                            <label for="infinitive">Infinitive <span class="red-text">*</span></label>
+                            <label for="infinitive">Verb Infinitive <span class="red-text">*</span></label>
                             <input type="text" class="form-control" id="infinitive" required>
+                          </div>
+                        </div>
+
+                        <!-- written and spoken row -->
+                        <div class="row mt-4">
+                          <div class="col">
+                            <label for="written">Present Stem - Written <span class="red-text">*</span></label>
+                            <input type="text" class="form-control" id="written" required>
+                          </div>
+                          <div class="col">
+                            <label for="spoken">Present Stem - Spoken</label>
+                            <input type="text" class="form-control" id="spoken">
                           </div>
                         </div>
 
@@ -85,18 +104,6 @@
                           </div>
                         </div>
 
-                        <!-- written and spoken row -->
-                        <div class="row mt-4">
-                          <div class="col">
-                            <label for="written">Written <span class="red-text">*</span></label>
-                            <input type="text" class="form-control" id="written" required>
-                          </div>
-                          <div class="col">
-                            <label for="spoken">Spoken</label>
-                            <input type="text" class="form-control" id="spoken">
-                          </div>
-                        </div>
-
                         <!-- submit button or reset button -->
                         <div class="row mt-5">
                           <div class="col d-flex justify-content-center">
@@ -108,9 +115,8 @@
                     </div>
                   </div>
                 </div>
-
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>

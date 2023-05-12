@@ -231,7 +231,7 @@ def check_password():
 # edit table page
 @app.route('/edit-table')
 def edit_table():
-    return render_template('edit.html')
+    return render_template('edit.html', verb_list=verb_list, vocabulary_list=vocabulary_list)
 
 # vocabulary list page
 @app.route('/vocabulary-list')
