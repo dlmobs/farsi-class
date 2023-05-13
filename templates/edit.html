@@ -36,86 +36,96 @@
         <!-- cards -->
         <br/>
         <div class="container mt-5">
-          <div class="card">
+          <div class="card gray-card rounded-lg">
             <div class="card-body">
-              <!-- search input and edit buttons -->
-              <div class="row">
-                <!-- search input -->
-                <div class="col-5">
-
+              <!-- nav bar -->
+              <nav>
+                <div class="nav nav-pills justify-content-end" id="nav-pill" role="tablist">
+                  <a class="nav-item rounded-pill btn-outline-orange nav-link active" id="nav-verb-tab" data-toggle="tab" href="#nav-verb" role="tab" aria-controls="nav-verb" aria-selected="true">Verb</a>
+                  <a class="nav-item rounded-pill btn-outline-orange nav-link" id="nav-vocab-tab" data-toggle="tab" href="#nav-vocab" role="tab" aria-controls="nav-vocab" aria-selected="false">Vocabulary</a>
+                  <a class="nav-item rounded-pill btn-outline-orange nav-link" id="nav-help-tab" data-toggle="tab" href="#nav-help" role="tab" aria-controls="nav-help" aria-selected="false">Help</a>
                 </div>
+              </nav>
 
-                <!-- edit buttons -->
-                <div class="col-7 text-right">
-                  <button class="btn rounded-pill btn-outline-orange">Verb Entry</button>
-                  <button class="btn rounded-pill btn-outline-orange">Vocabulary Entry</button>
-                  <!-- <p>Add a new entry</p> -->
-                </div>
-              </div>
-
-              <form action="/submit-login" method="POST">
-                <!-- verb edit or new card -->
-                <div class="container mb-5 mt-4 px-5">
-                  <div class="mx-5 pb-3">
-                    <form>
-                      <input type="search" class="form-control" id="search" placeholder="Search for an English/Farsi Word or Farsi Infinitive">
-                      <!-- <label for="search">Edit an existing entry</label> -->
+              <!-- corresponding content -->
+              <div class="tab-content" id="nav-tabContent">
+                <!-- verb content -->
+                <div class="tab-pane fade show active" id="nav-verb" role="tabpanel" aria-labelledby="nav-verb-tab">
+                  <div class="container">
+                    <form class="mx-5 mt-2">
+                      <div class="row">
+                        <div class="col-4">
+                          <input type="search" class="form-control" id="search" placeholder="Search for a Farsi Infinitive to Edit">
+                        </div>
+                      </div>
                     </form>
-                  </div>
-                  <div class="card px-3 mx-5 gray-card" id="verb">
-                    <div class="card-body px-5 py-5">
-                      <form>
-                        <!-- english and infinitive row -->
-                        <div class="row">
-                          <div class="col">
-                            <label for="english">English Definition <span class="red-text">*</span></label>
-                            <!-- <a tabindex="0" class="btn btn-link" role="button" data-toggle="popover" data-trigger="hover" data-content="Some content about the field">
-                              <i class="fas fa-question-circle"></i>
-                            </a> -->
-                            <input type="text" class="form-control" id="english" required>
+                    <div class="card rounded-lg mx-5 mb-5 mt-2" id="verb">
+                      <div class="card-body mx-5 my-4">
+                        <form>
+                          <!-- english and infinitive row -->
+                          <div class="row">
+                            <div class="col">
+                              <label for="english">English Definition <span class="red-text">*</span></label>
+                              <!-- <a tabindex="0" class="btn btn-link" role="button" data-toggle="popover" data-trigger="hover" data-content="Some content about the field">
+                                <i class="fas fa-question-circle"></i>
+                              </a> -->
+                              <input type="text" class="form-control" id="english" required>
+                            </div>
+                            <div class="col">
+                              <label for="infinitive">Verb Infinitive <span class="red-text">*</span></label>
+                              <input type="text" class="form-control" id="infinitive" required>
+                            </div>
                           </div>
-                          <div class="col">
-                            <label for="infinitive">Verb Infinitive <span class="red-text">*</span></label>
-                            <input type="text" class="form-control" id="infinitive" required>
+  
+                          <!-- written and spoken row -->
+                          <div class="row mt-4">
+                            <div class="col">
+                              <label for="written">Present Stem - Written <span class="red-text">*</span></label>
+                              <input type="text" class="form-control" id="written" required>
+                            </div>
+                            <div class="col">
+                              <label for="spoken">Present Stem - Spoken</label>
+                              <input type="text" class="form-control" id="spoken">
+                            </div>
                           </div>
-                        </div>
-
-                        <!-- written and spoken row -->
-                        <div class="row mt-4">
-                          <div class="col">
-                            <label for="written">Present Stem - Written <span class="red-text">*</span></label>
-                            <input type="text" class="form-control" id="written" required>
+  
+                          <!-- common use row -->
+                          <div class="row mt-4">
+                            <div class="col">
+                              <label for="commonuse-1">Common Use (1) <span class="red-text">*</span></label>
+                              <input type="text" class="form-control" id="commonuse-1" required>
+                            </div>
+                            <div class="col">
+                              <label for="commonuse-2">Common Use (2)</label>
+                              <input type="text" class="form-control" id="commonuse-2">
+                            </div>
                           </div>
-                          <div class="col">
-                            <label for="spoken">Present Stem - Spoken</label>
-                            <input type="text" class="form-control" id="spoken">
+  
+                          <!-- submit button or reset button -->
+                          <div class="row mt-5">
+                            <div class="col d-flex justify-content-center">
+                              <button class="btn btn-primary mr-2" type="submit">Submit</button>
+                              <button type="reset" class="btn btn-danger"><i class="fas fa-rotate-right"></i></button>
+                            </div>
                           </div>
-                        </div>
-
-                        <!-- common use row -->
-                        <div class="row mt-4">
-                          <div class="col">
-                            <label for="commonuse-1">Common Use (1) <span class="red-text">*</span></label>
-                            <input type="text" class="form-control" id="commonuse-1" required>
-                          </div>
-                          <div class="col">
-                            <label for="commonuse-2">Common Use (2)</label>
-                            <input type="text" class="form-control" id="commonuse-2">
-                          </div>
-                        </div>
-
-                        <!-- submit button or reset button -->
-                        <div class="row mt-5">
-                          <div class="col d-flex justify-content-center">
-                            <button class="btn btn-primary mr-2" type="submit">Submit</button>
-                            <button type="reset" class="btn btn-danger"><i class="fas fa-rotate-right"></i></button>
-                          </div>
-                        </div>
-                      </form>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </form>
+
+                <!-- vocab -->
+                <div class="tab-pane fade" id="nav-vocab" role="tabpanel" aria-labelledby="nav-vocab-tab">
+
+                </div>
+                
+                <!-- help -->
+                <div class="tab-pane fade" id="nav-help" role="tabpanel" aria-labelledby="nav-help-tab">
+
+                </div>
+              </div>
+
+
             </div>
           </div>
         </div>

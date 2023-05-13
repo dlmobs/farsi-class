@@ -5,7 +5,7 @@
 }
 
 .gray-card {
-    background-color: rgb(206, 206, 206) !important;
+    background-color: rgb(60, 60, 60) !important;
 }
 
 .custom-margin {
@@ -13,12 +13,19 @@
 }
 
 .btn-outline-orange {
-    color: #C92C00 !important;
+    color: #ffeee6;
     border-color: #C92C00 !important;
+    border: 1px solid #C92C00 !important; /* Combines border-width, border-style, and border-color */
     background-color: transparent;
+    margin-right: 4px;
+}
+
+.btn-outline-orange:focus,
+.btn-outline-orange.active {
+    color: #ffeee6;
+    background-color: #C92C00 !important;
 }
 
 .btn-outline-orange:hover {
-    color: #fff !important;
-    background-color: #ff5f14 !important;
+    color: #ff5f14;
 }
