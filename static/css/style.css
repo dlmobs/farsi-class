@@ -39,7 +39,7 @@ transform: scale(1.05);
 }
 
 /* login button */
-.blue-button {
+.btn-blue {
   background-color: #007AA4 !important;  /* or #2375B9 */
   color: #FFFFFF !important;
   opacity: 92%;
