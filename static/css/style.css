@@ -40,13 +40,13 @@ transform: scale(1.05);
 
 /* login button */
 .btn-blue {
-  background-color: #007AA4 !important;  /* or #2375B9 */
+  background-color: #006eff !important;  /* or #2375B9  007AA4*/
   color: #FFFFFF !important;
   opacity: 92%;
 }
 
 .btn-blue:hover {
-background-color: #04AAE1 !important;
+background-color: #0091FF !important;
 transform: scale(1.05);
 }
 
