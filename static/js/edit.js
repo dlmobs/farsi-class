@@ -62,4 +62,46 @@ $(document).ready(function() {
             $('#search-results').addClass('hidden');
         }
     });
+
+
+    // next button is clicked - check info before server submission
+    var originalForm = $("#container-verb").html();
+
+    $("#next-verb").on('click', function(e) {
+
+        var english = $("#english-verb").val();
+        var infinitive = $("#infinitive-verb").val();
+        var written = $("#written-verb").val();
+        var spoken = $("#spoken-verb").val();
+        var commonUse1 = $("#commonuse-1-verb").val();
+        var commonUse2 = $("#commonuse-2-verb").val();
+
+        var cardHTML = `
+            <div class="card rounded-lg mx-5 mb-5 mt-2">
+                <div class="card-body mx-5 my-4">
+                    <p>English Definition: ${english}</p>
+                    <p>Farsi Infinitive: ${infinitive}</p>
+                    <p>Written Present Stem: ${written}</p>
+                    <p>Spoken Present Stem: ${spoken}</p>
+                    <p>Common Use (1): ${commonUse1}</p>
+                    <p>Common Use (2): ${commonUse2}</p>
+                    <button class="btn btn-blue" id="back-verb">Back</button>
+                    <button class="btn btn-blue ml-2" id="confirm-verb" type="submit">Confirm</button>
+                </div>
+            </div>
+
+        `;
+
+        $("#container-verb").html(cardHTML);
+    });
+
+    $(document).on('click', '#back-verb', function() {
+        $("#container-verb").html(originalForm);
+        $("#english-verb").val(english);
+        $("#infinitive-verb").val(infinitive);
+        $("#written-verb").val(written);
+        $("#spoken-verb").val(spoken);
+        $("#commonuse-1-verb").val(commonUse1);
+        $("#commonuse-2-verb").val(commonUse2);
+    });
 });

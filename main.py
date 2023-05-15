@@ -245,7 +245,7 @@ def search():
     else:  # else the search term is English
         results = [verb for verb in verb_list.values() if search_term.lower() in verb[search_key].lower()]
 
-    return jsonify(results)        # grabs top three results
+    return jsonify(results)
 
 
 # vocabulary list page
