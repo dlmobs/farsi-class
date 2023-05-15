@@ -213,8 +213,11 @@ def about():
 # login page
 @app.route('/login')
 def login():
+    # user is already logged in
+    if 'logged_in' in session:
+        return redirect(url_for('edit_table'))
+
     incorrect_password = session.pop('incorrect_password', False)
-    print(incorrect_password)
     return render_template("login.html", incorrect_password=incorrect_password)
 
 # check password of login attempt
@@ -224,14 +227,23 @@ def check_password():
     correct_password = "password"
 
     if password == correct_password:
+        session['logged_in'] = True
         return redirect(url_for('edit_table'))
     else:
         session['incorrect_password'] = True
         return redirect(url_for('login'))
     
+# logout
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    return redirect(url_for('login'))
+    
 # edit table page
 @app.route('/edit-table')
 def edit_table():
+    if 'logged_in' not in session:
+        return redirect(url_for('login'))
     return render_template('edit.html')
 
 # searching in the edit table page
