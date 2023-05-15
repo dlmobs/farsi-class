@@ -50,72 +50,77 @@
               <!-- corresponding content -->
               <div class="tab-content" id="nav-tabContent">
 
-                <!-- contains search results -->
-                <div id="search-results"></div>
-
                 <!-- verb content -->
                 <div class="tab-pane fade show active" id="nav-verb" role="tabpanel" aria-labelledby="nav-verb-tab">
                   <div class="container px-5 py-4">
-                    <!-- search bar -->
-                    <form class="ml-5 mr-4 mt-2">
+                    <form>
+                      <!-- search bar -->
                       <div class="row">
-                        <div class="col-4">
-                          <input type="search" class="form-control" id="search-verb" placeholder="Search for a Farsi Infinitive to Edit">
+                        <div class="col-4 ml-5 mr-4 mt-2">
+                          <div class="d-flex">
+                            <input type="search" class="form-control" id="search-verb" placeholder="Search for a Farsi Infinitive to Edit" autocomplete="off">
+                            <!-- <button type="reset" class="btn btn-orange ml-2"><i class="fas fa-rotate-right"></i></button> -->
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-3 ml-5 mt-2">
+                          <!-- contains search results -->
+                          <div id="search-results"></div>
+                        </div>
+                      </div>
+                    
+                      <div class="card rounded-lg mx-5 mb-5 mt-2">
+                        <div class="card-body mx-5 my-4">
+                            <!-- english and infinitive row -->
+                            <div class="row">
+                              <div class="col">
+                                <label for="english">English Definition <span class="red-text">*</span></label>
+                                <!-- <a tabindex="0" class="btn btn-link" role="button" data-toggle="popover" data-trigger="hover" data-content="Some content about the field">
+                                  <i class="fas fa-question-circle"></i>
+                                </a> -->
+                                <input type="text" class="form-control" id="english-verb" required>
+                              </div>
+                              <div class="col">
+                                <label for="infinitive">Farsi Verb Infinitive <span class="red-text">*</span></label>
+                                <input type="text" class="form-control" id="infinitive-verb" dir="rtl" required>
+                              </div>
+                            </div>
+    
+                            <!-- written and spoken row -->
+                            <div class="row mt-4">
+                              <div class="col">
+                                <label for="written">Present Stem - Written <span class="red-text">*</span></label>
+                                <input type="text" class="form-control" id="written-verb" dir="rtl" required>
+                              </div>
+                              <div class="col">
+                                <label for="spoken">Present Stem - Spoken</label>
+                                <input type="text" class="form-control" id="spoken-verb" dir="rtl">
+                              </div>
+                            </div>
+    
+                            <!-- common use row -->
+                            <div class="row mt-4">
+                              <div class="col">
+                                <label for="commonuse-1">Common Use (1) <span class="red-text">*</span></label>
+                                <input type="text" class="form-control" id="commonuse-1-verb" dir="rtl" required>
+                              </div>
+                              <div class="col">
+                                <label for="commonuse-2">Common Use (2)</label>
+                                <input type="text" class="form-control" id="commonuse-2-verb" dir="rtl">
+                              </div>
+                            </div>
+    
+                            <!-- submit button or reset button -->
+                            <div class="row mt-5">
+                              <div class="col d-flex justify-content-center">
+                                <button class="btn btn-blue" type="submit">Submit</button>
+                                <button type="reset" class="btn btn-orange ml-2"><i class="fas fa-rotate-right"></i></button>
+                              </div>
+                            </div>
                         </div>
                       </div>
                     </form>
-                    <div class="card rounded-lg mx-5 mb-5 mt-2">
-                      <div class="card-body mx-5 my-4">
-                        <form>
-                          <!-- english and infinitive row -->
-                          <div class="row">
-                            <div class="col">
-                              <label for="english">English Definition <span class="red-text">*</span></label>
-                              <!-- <a tabindex="0" class="btn btn-link" role="button" data-toggle="popover" data-trigger="hover" data-content="Some content about the field">
-                                <i class="fas fa-question-circle"></i>
-                              </a> -->
-                              <input type="text" class="form-control" id="english-verb" required>
-                            </div>
-                            <div class="col">
-                              <label for="infinitive">Farsi Verb Infinitive <span class="red-text">*</span></label>
-                              <input type="text" class="form-control" id="infinitive-verb" required>
-                            </div>
-                          </div>
-  
-                          <!-- written and spoken row -->
-                          <div class="row mt-4">
-                            <div class="col">
-                              <label for="written">Present Stem - Written <span class="red-text">*</span></label>
-                              <input type="text" class="form-control" id="written-verb" required>
-                            </div>
-                            <div class="col">
-                              <label for="spoken">Present Stem - Spoken</label>
-                              <input type="text" class="form-control" id="spoken-verb">
-                            </div>
-                          </div>
-  
-                          <!-- common use row -->
-                          <div class="row mt-4">
-                            <div class="col">
-                              <label for="commonuse-1">Common Use (1) <span class="red-text">*</span></label>
-                              <input type="text" class="form-control" id="commonuse-1-verb" required>
-                            </div>
-                            <div class="col">
-                              <label for="commonuse-2">Common Use (2)</label>
-                              <input type="text" class="form-control" id="commonuse-2-verb">
-                            </div>
-                          </div>
-  
-                          <!-- submit button or reset button -->
-                          <div class="row mt-5">
-                            <div class="col d-flex justify-content-center">
-                              <button class="btn btn-blue mr-2" type="submit">Submit</button>
-                              <button type="reset" class="btn btn-orange"><i class="fas fa-rotate-right"></i></button>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
                   </div>
                 </div>
 

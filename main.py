@@ -232,7 +232,7 @@ def check_password():
 # edit table page
 @app.route('/edit-table')
 def edit_table():
-    return render_template('edit.html', verb_list=verb_list, vocabulary_list=vocabulary_list)
+    return render_template('edit.html')
 
 # searching in the edit table page
 @app.route('/search', methods=['GET'])
@@ -240,12 +240,12 @@ def search():
     search_term = request.args.get('term')
     search_key = request.args.get('key')
 
-    if re.match("[\u0600-\u06FF]", search_term):  # check if the search term is Farsi
+    if search_key == "infinitive":  # check if the search term is Farsi
         results = [verb for verb in verb_list.values() if search_term.lower() in verb[search_key].lower()]
     else:  # else the search term is English
         results = [verb for verb in verb_list.values() if search_term.lower() in verb[search_key].lower()]
 
-    return jsonify(results[:3])        # grabs top three results
+    return jsonify(results)        # grabs top three results
 
 
 # vocabulary list page
